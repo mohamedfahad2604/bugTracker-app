@@ -1,0 +1,229 @@
+/* body {
+  padding-top: 5rem;
+} */
+.starter-template {
+	padding: 3rem 1.5rem;
+	text-align: center;
+}
+
+h1 {
+	color: #0000FF;
+}
+
+h2 {
+	color: #FF0000;
+}
+
+.error {
+	color: #ff0000;
+}
+
+.ccct-form-button {
+	margin-bottom: 3px;
+	padding: 0px;
+}
+
+.ccct-dropdown-menu.show {
+	max-height: 500px;
+	overflow: scroll;
+}
+
+.ccct-dropdown-menu::-webkit-scrollbar {
+	width: 5px;
+}
+
+.ccct-dropdown-menu::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+.ccct-dropdown-menu::-webkit-scrollbar-thumb {
+	background: #888;
+}
+
+.ccct-dropdown-menu::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
+@media ( max-width : 768px) {
+	.dropdown-menu.show {
+		max-height: 125px;
+		overflow: scroll;
+	}
+}
+
+.form-control {
+	background-color: #f5f5f5;
+}
+
+.ccct-action-form {
+	display: table-cell !important;
+	padding: 2px;
+}
+
+@media ( max-width : 768px) {
+	.ccct-form-inpt-mobile {
+		padding: 5px;
+	}
+}
+
+#ccct-invoice-form-checkbox {
+	padding: 0px 0px 0px 75px;
+}
+
+@media ( max-width : 768px) {
+	#ccct-invoice-form-checkbox {
+		padding: 0px 0px 0px 8px;
+	}
+}
+
+.ccct-table-header {
+	background-color: #7073a4;
+	color: #fff !important;
+}
+
+.ccct-table-container-header {
+	background-color: rgb(46, 162, 231) !important;
+	color: #fff !important;
+}
+
+.ccct-app-toast {
+	max-width: 100% !important;
+}
+
+/* .ccct-table-header{
+	background-color: #7073a4 !important;
+    color: #fff !important;
+} */
+.ccct-direct-shipment {
+	margin: 21px 17px 0px 29px;
+}
+
+@media ( max-width : 768px) {
+	.ccct-direct-shipment {
+		margin: 0px 0px 0px 0px;
+	}
+}
+
+@media ( max-width : 768px) {
+	.ccct-main-card {
+		margin-bottom: 4rem !important
+	}
+}
+
+.ccct-main-card {
+	box-shadow: inset 0 0 1px 1px #d7d7eb;
+	margin-bottom: 2rem;
+}
+
+#layout-navbar-collapse {
+	font-family: Helvetica !important;
+}
+
+#ccct-nav-footer {
+	font-family: Helvetica !important;
+}
+
+.invoice-row {
+	width: 100%;
+}
+
+table td {
+	white-space: nowrap;
+}
+
+.dropdown-item:hover {
+	background-image: none;
+	background-color: #dfecf8 !important;
+}
+
+td.invoicenumber {
+	display: grid;
+	overflow: auto;
+	height: 30px;
+}
+
+.ccct-icon-inline {
+	display: table !important;
+}
+
+.ccct-action-inline {
+	display: flex;
+}
+
+.ccct-textarea {
+	height: 50px !important;
+}
+
+.toast-body {
+	padding: 0.75rem;
+}
+
+.tis-toaster-success {
+	position: absolute;
+	top: 11%;
+	left: 81%;
+	background-color: #b7b7ff !important;
+}
+
+.tis-toaster-error {
+	position: absolute;
+	top: 11%;
+	left: 81%;
+	background-color: #de1d1d !important;
+	color: #fff;
+}
+
+.toast {
+	max-width: 350px;
+	overflow: hidden;
+	font-size: 0.875rem;
+	background-color: rgba(255, 255, 255, 0.85);
+	background-clip: padding-box;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	opacity: 0;
+	border-radius: 0.25rem;
+}
+
+.tblList {
+	border-collapse: collapse;
+	border-width: 1px;
+	border-style: solid;
+	border-spacing: 0px;
+	border-color: #FFEBC4;
+	width: 100%;
+}
+
+.tblList th {
+	border-width: 1px;
+	border-style: solid;
+	font-size: 11px;
+	color: #fff;
+	background: rgb(46, 162, 231);
+	text-align: left;
+}
+
+.tblList th {
+	padding: 3px;
+}
+
+.tblList tbody tr.add {
+	/* background:#efefef !important; */
+	background: #ffff !important;
+}
+
+.tblList tbody tr.even {
+	background: #EFE6E7 !important;
+}
+
+.tblList td {
+	border-width: 1px;
+	border-style: solid;
+	padding: 0px 0px;
+	color: #000;
+	font-family: Verdana, Arial;
+	font-size: 10px;
+}

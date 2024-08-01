@@ -1,0 +1,543 @@
+<header th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
+	<!-- Topbar Start -->
+	<div class="navbar-custom topnav-navbar topnav-navbar-dark" style="background-color: #E0FFFF">
+		<div class="container-fluid">
+
+			<!-- LOGO -->
+			<a href="" class="topnav-logo"> <span class="topnav-logo-lg">
+					<img src="assets/images/logo-light.png" alt="" height="58" >
+			</span> <span class="topnav-logo-sm"> <img
+					src="assets/images/logo-light.png" alt="" height="58" >
+			</span>
+			</a>
+
+			<ul class="list-unstyled topbar-right-menu float-right mb-0">
+
+				<li class="notification-list"><a
+					class="nav-link right-bar-toggle" href="javascript: void(0);">
+						<i class="dripicons-gear noti-icon"></i>
+				</a></li>
+
+				<li
+					class="dropdown notification-list topbar-dropdown d-none d-lg-block">
+					<a class="nav-link dropdown-toggle arrow-none"
+					data-toggle="dropdown" id="topbar-languagedrop" href="#"
+					role="button" aria-haspopup="true" aria-expanded="false"> <img
+						src="assets/images/flags/us.jpg" alt="user-image" class="mr-1"
+						height="12"> <span class="align-middle">English</span> <i
+						class="mdi mdi-chevron-down"></i>
+				</a>
+					<div
+						class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu"
+						aria-labelledby="topbar-languagedrop">
+
+						<!-- item-->
+						<a href="javascript:void(0);" class="dropdown-item notify-item">
+							<img src="assets/images/flags/germany.jpg" alt="user-image"
+							class="mr-1" height="12"> <span class="align-middle">German</span>
+						</a>
+
+						<!-- item-->
+						<a href="javascript:void(0);" class="dropdown-item notify-item">
+							<img src="assets/images/flags/italy.jpg" alt="user-image"
+							class="mr-1" height="12"> <span class="align-middle">Italian</span>
+						</a>
+
+						<!-- item-->
+						<a href="javascript:void(0);" class="dropdown-item notify-item">
+							<img src="assets/images/flags/spain.jpg" alt="user-image"
+							class="mr-1" height="12"> <span class="align-middle">Spanish</span>
+						</a>
+
+						<!-- item-->
+						<a href="javascript:void(0);" class="dropdown-item notify-item">
+							<img src="assets/images/flags/russia.jpg" alt="user-image"
+							class="mr-1" height="12"> <span class="align-middle">Russian</span>
+						</a>
+
+					</div>
+				</li>
+
+				<li class="dropdown notification-list"><a
+					class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown"
+					href="#" id="topbar-notifydrop" role="button" aria-haspopup="true"
+					aria-expanded="false"> <i class="dripicons-bell noti-icon"></i>
+						<span class="noti-icon-badge"></span>
+				</a>
+					<div
+						class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg"
+						aria-labelledby="topbar-notifydrop">
+
+						<!-- item-->
+						<div class="dropdown-item noti-title">
+							<h5 class="m-0">
+								<span class="float-right"> <a href="javascript: void(0);"
+									class="text-dark"> <small>Clear All</small>
+								</a>
+								</span>Notification
+							</h5>
+						</div>
+
+						<div class="slimscroll" style="max-height: 230px;">
+							<!-- item-->
+							<a href="javascript:void(0);" class="dropdown-item notify-item">
+								<div class="notify-icon bg-primary">
+									<i class="mdi mdi-comment-account-outline"></i>
+								</div>
+								<p class="notify-details">
+									Caleb Flakelar commented on Admin <small class="text-muted">1
+										min ago</small>
+								</p>
+							</a>
+
+							<!-- item-->
+							<a href="javascript:void(0);" class="dropdown-item notify-item">
+								<div class="notify-icon bg-info">
+									<i class="mdi mdi-account-plus"></i>
+								</div>
+								<p class="notify-details">
+									New user registered. <small class="text-muted">5 hours
+										ago</small>
+								</p>
+							</a>
+
+							<!-- item-->
+							<a href="javascript:void(0);" class="dropdown-item notify-item">
+								<div class="notify-icon">
+									<img src="assets/images/users/avatar-2.jpg"
+										class="img-fluid rounded-circle" alt="" />
+								</div>
+								<p class="notify-details">Cristina Pride</p>
+								<p class="text-muted mb-0 user-msg">
+									<small>Hi, How are you? What about our next meeting</small>
+								</p>
+							</a>
+
+							<!-- item-->
+							<a href="javascript:void(0);" class="dropdown-item notify-item">
+								<div class="notify-icon bg-primary">
+									<i class="mdi mdi-comment-account-outline"></i>
+								</div>
+								<p class="notify-details">
+									Caleb Flakelar commented on Admin <small class="text-muted">4
+										days ago</small>
+								</p>
+							</a>
+
+							<!-- item-->
+							<a href="javascript:void(0);" class="dropdown-item notify-item">
+								<div class="notify-icon">
+									<img src="assets/images/users/avatar-4.jpg"
+										class="img-fluid rounded-circle" alt="" />
+								</div>
+								<p class="notify-details">Karen Robinson</p>
+								<p class="text-muted mb-0 user-msg">
+									<small>Wow ! this admin looks good and awesome design</small>
+								</p>
+							</a>
+
+							<!-- item-->
+							<a href="javascript:void(0);" class="dropdown-item notify-item">
+								<div class="notify-icon bg-info">
+									<i class="mdi mdi-heart"></i>
+								</div>
+								<p class="notify-details">
+									Carlos Crouch liked <b>Admin</b> <small class="text-muted">13
+										days ago</small>
+								</p>
+							</a>
+						</div>
+
+						<!-- All-->
+						<a href="javascript:void(0);"
+							class="dropdown-item text-center text-primary notify-item notify-all">
+							View All </a>
+
+					</div></li>
+
+				<li class="dropdown notification-list"><a
+					class="nav-link dropdown-toggle nav-user arrow-none mr-0"
+					data-toggle="dropdown" id="topbar-userdrop" href="#" role="button"
+					aria-haspopup="true" aria-expanded="false" style="background-color: #e0ffff;border: 1px solid;border-color: #5e7faa;"> <span
+						class="account-user-avatar"> <img
+							src="assets/images/users/avatar-1.jpg" alt="user-image"
+							class="rounded-circle">
+					</span> <span> <span class="account-user-name">Dominic
+								Keller</span> <span class="account-position">Founder</span>
+					</span>
+				</a>
+					<div
+						class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown"
+						aria-labelledby="topbar-userdrop">
+						<!-- item-->
+						<div class=" dropdown-header noti-title">
+							<h6 class="text-overflow m-0">Welcome !</h6>
+						</div>
+
+						<!-- item-->
+						<a href="javascript:void(0);" class="dropdown-item notify-item">
+							<i class="mdi mdi-account-circle mr-1"></i> <span>My
+								Account</span>
+						</a>
+
+						<!-- item-->
+						<a href="javascript:void(0);" class="dropdown-item notify-item">
+							<i class="mdi mdi-account-edit mr-1" style="color: white;"></i> <span>Settings</span>
+						</a>
+
+						<!-- item-->
+						<a href="javascript:void(0);" class="dropdown-item notify-item">
+							<i class="mdi mdi-lifebuoy mr-1"></i> <span>Support</span>
+						</a>
+
+						<!-- item-->
+						<a href="javascript:void(0);" class="dropdown-item notify-item">
+							<i class="mdi mdi-lock-outline mr-1"></i> <span>Lock
+								Screen</span>
+						</a>
+
+						<!-- item-->
+						<a href="logout" class="dropdown-item notify-item">
+							<i class="mdi mdi-logout mr-1"></i> <span>Logout</span>
+						</a>
+
+					</div></li>
+
+			</ul>
+			<a class="navbar-toggle" data-toggle="collapse"
+				data-target="#topnav-menu-content">
+				<div class="lines">
+					<span></span> <span></span> <span></span>
+				</div>
+			</a>
+			<div class="app-search">
+				<form>
+					<div class="position-relative">
+						<input type="text" class="form-control" placeholder="Search..." style="background-color: #E0FFFF;border: 1px solid;border-color: #90b6ff;">
+						<span class="mdi mdi-magnify"></span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- end Topbar -->
+
+	<!-- nav bar start  -->
+	<div class="topnav shadow-sm">
+		<div class="container-fluid">
+			<nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+
+				<div class="collapse navbar-collapse" id="topnav-menu-content">
+					<ul class="navbar-nav">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle arrow-none" href="#"
+							id="topnav-dashboards" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> <i
+								class="uil-dashboard mr-1"></i>Dashboards
+								<div class="arrow-down"></div>
+						</a>
+							<div class="dropdown-menu" aria-labelledby="topnav-dashboards">
+								<a href="dashboardAnalytics" class="dropdown-item">Analytics</a>
+								<a href="dashboardCrm" class="dropdown-item">CRM</a> <a
+									href="home" class="dropdown-item">Ecommerce</a> <a
+									href="dashboardProjects" class="dropdown-item">Projects</a>
+							</div></li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle arrow-none" href="#"
+							id="topnav-apps" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> <i
+								class="uil-apps mr-1"></i>Apps
+								<div class="arrow-down"></div>
+						</a>
+							<div class="dropdown-menu" aria-labelledby="topnav-apps">
+								<a href="calendar" class="dropdown-item">Calendar</a>
+								<a href="chat" class="dropdown-item">Chat</a>
+								<div class="dropdown">
+									<a class="dropdown-item dropdown-toggle arrow-none" href="#"
+										id="topnav-ecommerce" role="button" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false"> Ecommerce
+										<div class="arrow-down"></div>
+									</a>
+									<div class="dropdown-menu" aria-labelledby="topnav-ecommerce">
+										<a href="ecommerceProducts" class="dropdown-item">Products</a>
+										<a href="ecommerceProductsDetails"
+											class="dropdown-item">Products Details</a> <a
+											href="ecommerceOrders" class="dropdown-item">Orders</a> <a
+											href="ecommerceOrdersDetails" class="dropdown-item">Order
+											Details</a> <a href="ecommerceCustomers" class="dropdown-item">Customers</a>
+										<a href="ecommerceShoppingCart"
+											class="dropdown-item">Shopping Cart</a> <a
+											href="ecommerceCheckout" class="dropdown-item">Checkout</a> <a
+											href="ecommerceSellers" class="dropdown-item">Sellers</a>
+									</div>
+								</div>
+								<div class="dropdown">
+									<a class="dropdown-item dropdown-toggle arrow-none" href="#"
+										id="topnav-email" role="button" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false"> Email
+										<div class="arrow-down"></div>
+									</a>
+									<div class="dropdown-menu" aria-labelledby="topnav-email">
+										<a href="emailInbox" class="dropdown-item">Inbox</a>
+										<a href="emailRead" class="dropdown-item">Read
+											Email</a>
+									</div>
+								</div>
+								<div class="dropdown">
+									<a class="dropdown-item dropdown-toggle arrow-none" href="#"
+										id="topnav-project" role="button" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false"> Projects
+										<div class="arrow-down"></div>
+									</a>
+									<div class="dropdown-menu" aria-labelledby="topnav-project">
+										<a href="projectsList" class="dropdown-item">List</a>
+										<a href="projectsDetails" class="dropdown-item">Details</a>
+										<a href="projectsGantt" class="dropdown-item">Gantt</a>
+										<a href="projectsAdd" class="dropdown-item">Create
+											Project</a>
+									</div>
+								</div>
+								<a href="SocialFeed" class="dropdown-item">Social
+									Feed</a>
+								<div class="dropdown">
+									<a class="dropdown-item dropdown-toggle arrow-none" href="#"
+										id="topnav-tasks" role="button" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false"> Tasks
+										<div class="arrow-down"></div>
+									</a>
+									<div class="dropdown-menu" aria-labelledby="topnav-tasks">
+										<a href="tasksList" class="dropdown-item">List</a> <a
+											href="tasksDetails" class="dropdown-item">Details</a>
+										<a href="tasksKanban" class="dropdown-item">Kanban
+											Board</a>
+									</div>
+								</div>
+							</div></li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle arrow-none" href="#"
+							id="topnav-pages" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> <i
+								class="uil-copy-alt mr-1"></i>Pages
+								<div class="arrow-down"></div>
+						</a>
+							<div class="dropdown-menu" aria-labelledby="topnav-pages">
+								<div class="dropdown">
+									<a class="dropdown-item dropdown-toggle arrow-none" href="#"
+										id="topnav-auth" role="button" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false">
+										Authenitication
+										<div class="arrow-down"></div>
+									</a>
+									<div class="dropdown-menu" aria-labelledby="topnav-auth">
+										<a href="login" class="dropdown-item">Login</a> <a
+											href="login2" class="dropdown-item">Login 2</a> <a
+											href="register" class="dropdown-item">Register</a>
+										<a href="register2" class="dropdown-item">Register
+											2</a> <a href="logout" class="dropdown-item">Logout</a>
+										<a href="logout2" class="dropdown-item">Logout
+											2</a> <a href="recoverpw" class="dropdown-item">Recover
+											Password</a> <a href="recoverpw2"
+											class="dropdown-item">Recover Password 2</a> <a
+											href="lockScreen" class="dropdown-item">Lock
+											Screen</a> <a href="lockScreen2"
+											class="dropdown-item">Lock Screen 2</a> <a
+											href="confirmMail" class="dropdown-item">Confirm
+											Mail</a> <a href="confirmMail2"
+											class="dropdown-item">Confirm Mail 2</a>
+									</div>
+								</div>
+								<div class="dropdown">
+									<a class="dropdown-item dropdown-toggle arrow-none" href="#"
+										id="topnav-error" role="button" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false"> Error
+										<div class="arrow-down"></div>
+									</a>
+									<div class="dropdown-menu" aria-labelledby="topnav-error">
+										<a href="pages404" class="dropdown-item">Error 404</a> <a
+											href="pages404alt" class="dropdown-item">Error
+											404-alt</a> <a href="pages500" class="dropdown-item">Error
+											500</a>
+									</div>
+								</div>
+								<a href="pagesStarter" class="dropdown-item">Starter
+									Page</a> <a href="pagesPreloader" class="dropdown-item">With
+									Preloader</a> <a href="profile" class="dropdown-item">Profile</a>
+								<a href="profile2" class="dropdown-item">Profile
+									2</a> <a href="invoice" class="dropdown-item">Invoice</a>
+								<a href="faq" class="dropdown-item">FAQ</a> <a
+									href="pricing" class="dropdown-item">Pricing</a> <a
+									href="maintenance" class="dropdown-item">Maintenance</a>
+								<a href="timeline" class="dropdown-item">Timeline</a>
+								<a href="landing" class="dropdown-item">Landing</a>
+							</div></li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle arrow-none" href="#"
+							id="topnav-components" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> <i
+								class="uil-package mr-1"></i>Components
+								<div class="arrow-down"></div>
+						</a>
+							<div class="dropdown-menu" aria-labelledby="topnav-components">
+								<a href="widgets" class="dropdown-item">Widgets</a>
+								<div class="dropdown">
+									<a class="dropdown-item dropdown-toggle arrow-none" href="#"
+										id="topnav-ui-kit" role="button" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false"> Base UI 1
+										<div class="arrow-down"></div>
+									</a>
+									<div class="dropdown-menu" aria-labelledby="topnav-ui-kit">
+										<a href="accordions" class="dropdown-item">Accordions</a>
+										<a href="alerts" class="dropdown-item">Alerts</a> <a
+											href="avatars" class="dropdown-item">Avatars</a> <a
+											href="badges" class="dropdown-item">Badges</a> <a
+											href="breadcrumb" class="dropdown-item">Breadcrumb</a>
+										<a href="buttons" class="dropdown-item">Buttons</a> <a
+											href="cards" class="dropdown-item">Cards</a> <a
+											href="carousel" class="dropdown-item">Carousel</a> <a
+											href="dropdowns" class="dropdown-item">Dropdowns</a>
+										<a href="embedVideo" class="dropdown-item">Embed
+											Video</a> <a href="grid" class="dropdown-item">Grid</a> <a
+											href="listGroup" class="dropdown-item">List
+											Group</a>
+									</div>
+								</div>
+								<div class="dropdown">
+									<a class="dropdown-item dropdown-toggle arrow-none" href="#"
+										id="topnav-ui-kit2" role="button" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false"> Base UI 2
+										<div class="arrow-down"></div>
+									</a>
+									<div class="dropdown-menu" aria-labelledby="topnav-ui-kit2">
+										<a href="uiMediaObject" class="dropdown-item">Media
+											Object</a> <a href="uiModals" class="dropdown-item">Modals</a>
+										<a href="uiNotifications" class="dropdown-item">Notifications</a>
+										<a href="uiPagination" class="dropdown-item">Pagination</a>
+										<a href="uiPopovers" class="dropdown-item">Popovers</a>
+										<a href="uiProgress" class="dropdown-item">Progress</a>
+										<a href="uiRibbons" class="dropdown-item">Ribbons</a> <a
+											href="uiSpinners" class="dropdown-item">Spinners</a> <a
+											href="uiTabs" class="dropdown-item">Tabs</a> <a
+											href="uiTooltips" class="dropdown-item">Tooltips</a> <a
+											href="uiTypography" class="dropdown-item">Typography</a>
+									</div>
+								</div>
+								<div class="dropdown">
+									<a class="dropdown-item dropdown-toggle arrow-none" href="#"
+										id="topnav-extended-ui" role="button" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false"> Extended UI
+										<div class="arrow-down"></div>
+									</a>
+									<div class="dropdown-menu" aria-labelledby="topnav-extended-ui">
+										<a href="extendedDragula" class="dropdown-item">Dragula</a>
+										<a href="extendedRangeSlider" class="dropdown-item">Range
+											Slider</a> <a href="extendedRatings" class="dropdown-item">Ratings</a>
+										<a href="extendedScrollbar" class="dropdown-item">Scrollbar</a>
+										<a href="extendedScrollspy" class="dropdown-item">Scrollspy</a>
+									</div>
+								</div>
+								<div class="dropdown">
+									<a class="dropdown-item dropdown-toggle arrow-none" href="#"
+										id="topnav-charts" role="button" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false"> Charts
+										<div class="arrow-down"></div>
+									</a>
+									<div class="dropdown-menu" aria-labelledby="topnav-charts">
+										<div class="dropdown">
+											<a class="dropdown-item dropdown-toggle arrow-none" href="#"
+												id="topnav-apex-charts" role="button" data-toggle="dropdown"
+												aria-haspopup="true" aria-expanded="false"> Apex Charts
+												<div class="arrow-down"></div>
+											</a>
+											<div class="dropdown-menu"
+												aria-labelledby="topnav-apex-charts">
+												<a href="chartsApexArea" class="dropdown-item">Area</a>
+												<a href="chartsApexBar" class="dropdown-item">Bar</a>
+												<a href="chartsApexBubble" class="dropdown-item">Bubble</a>
+												<a href="chartsApexCandlestick" class="dropdown-item">Candlestick</a>
+												<a href="chartsApexColumn" class="dropdown-item">Column</a>
+												<a href="chartsApexHeatmap" class="dropdown-item">Heatmap</a>
+												<a href="chartsApexLine" class="dropdown-item">Line</a>
+												<a href="chartsApexMixed.html" class="dropdown-item">Mixed</a>
+												<a href="chartsA\pexPie" class="dropdown-item">Pie</a>
+												<a href="chartsApexRadar" class="dropdown-item">Radar</a>
+												<a href="chartsApexRadialbar" class="dropdown-item">RadialBar</a>
+												<a href="chartsA\pexScatter" class="dropdown-item">Scatter</a>
+												<a href="chartsApexSparklines" class="dropdown-item">Sparklines</a>
+											</div>
+										</div>
+										<a href="charts" class="dropdown-item">Chartjs</a>
+										<a href="chartsBrite" class="dropdown-item">Britecharts</a>
+										<a href="chartsSparkline" class="dropdown-item">Sparklines</a>
+									</div>
+								</div>
+								<div class="dropdown">
+									<a class="dropdown-item dropdown-toggle arrow-none" href="#"
+										id="topnav-forms" role="button" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false"> Forms
+										<div class="arrow-down"></div>
+									</a>
+									<div class="dropdown-menu" aria-labelledby="topnav-forms">
+										<a href="formElements" class="dropdown-item">Basic
+											Elements</a> <a href="formAdvanced" class="dropdown-item">Form
+											Advanced</a> <a href="formValidation" class="dropdown-item">Validation</a>
+										<a href="formWizard" class="dropdown-item">Wizard</a> <a
+											href="formFileuploads" class="dropdown-item">File
+											Uploads</a> <a href="formEditors" class="dropdown-item">Editors</a>
+									</div>
+								</div>
+								<div class="dropdown">
+									<a class="dropdown-item dropdown-toggle arrow-none" href="#"
+										id="topnav-tables" role="button" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false"> Tables
+										<div class="arrow-down"></div>
+									</a>
+									<div class="dropdown-menu" aria-labelledby="topnav-tables">
+										<a href="tablesBasic" class="dropdown-item">Basic
+											Tables</a> <a href="tablesDatatable" class="dropdown-item">Data
+											Tables</a>
+									</div>
+								</div>
+								<div class="dropdown">
+									<a class="dropdown-item dropdown-toggle arrow-none" href="#"
+										id="topnav-icons" role="button" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false"> Icons
+										<div class="arrow-down"></div>
+									</a>
+									<div class="dropdown-menu" aria-labelledby="topnav-icons">
+										<a href="dripicons" class="dropdown-item">Dripicons</a>
+										<a href="mdi" class="dropdown-item">Material
+											Design</a> <a href="unicons" class="dropdown-item">Unicons</a>
+									</div>
+								</div>
+								<div class="dropdown">
+									<a class="dropdown-item dropdown-toggle arrow-none" href="#"
+										id="topnav-maps" role="button" data-toggle="dropdown"
+										aria-expanded="false"> Maps
+										<div class="arrow-down"></div>
+									</a>
+									<div class="dropdown-menu" aria-labelledby="topnav-maps">
+										<a href="mapsGoogle" class="dropdown-item">Google
+											Maps</a> <a href="mapsVector" class="dropdown-item">Vector
+											Maps</a>
+									</div>
+								</div>
+							</div></li>
+
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle arrow-none" href="#"
+							id="topnav-layouts" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> <i
+								class="uil-window mr-1"></i>Layouts
+								<div class="arrow-down"></div>
+						</a>
+							<div class="dropdown-menu" aria-labelledby="topnav-layouts">
+								<a href="layoutsVertical" class="dropdown-item">Vertical</a>
+								<a href="layoutsDetached" class="dropdown-item">Detached</a>
+							</div></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div>
+	<!-- End nav bar start  -->
+</header>

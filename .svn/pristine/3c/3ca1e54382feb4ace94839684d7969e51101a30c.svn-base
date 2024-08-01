@@ -1,0 +1,31 @@
+
+<div th:fragment="bcs_footer" class="footer"
+	xmlns:th="http://www.w3.org/1999/xhtml">
+
+	<div class="container text-center">
+
+
+		<div class="text-md-center footer-links d-none d-md-block">&copy;
+			Bizz Customer Support - 2021. All rights reserved.</div>
+
+
+	</div>
+</div>
+
+
+<!-- <div th:fragment="footer" 
+	xmlns:th="http://www.w3.org/1999/xhtml">
+		
+			<div class="row">
+				<div class="col-md-6">2018 - 2019 � Hyper - Coderthemes.com</div>
+				<div class="col-md-6">
+					<div class="text-md-right footer-links d-none d-md-block">
+						<a href="javascript: void(0);">About</a> <a
+							href="javascript: void(0);">Support</a> <a
+							href="javascript: void(0);">Contact Us</a>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+ -->

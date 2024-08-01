@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/userhomepage}">
+
+<head>
+
+<script type="text/javascript">
+	function FocusOnInput() {
+		document.getElementById("issueTittle").focus();
+	}
+
+	function EnableDisableTextBox(ddlModels) {
+
+		var selectedValue = ddlModels.options[ddlModels.selectedIndex].value;
+
+		if (selectedValue == "INPROGRESS") {
+			document.getElementById('solution').innerText = 'Activity';
+			document.getElementById('resolvedgroup').style.display = "none";
+		} else if (selectedValue == "INVALID") {
+			document.getElementById('resolvedgroup').style.display = "none";
+		} else if (selectedValue == "OTHERS") {
+			document.getElementById('resolvedgroup').style.display = "none";
+		} else {
+			document.getElementById('resolvedgroup').style.display = "";
+
+		}
+	}
+	function trim(el) {
+		el.value = el.value.replace(/(^\s*)|(\s*$)/gi, ""). // removes leading and trailing spaces
+		replace(/[ ]{2,}/gi, " "). // replaces multiple spaces with one space 
+		replace(/\n +/, "\n"); // Removes spaces after newlines
+		return;
+	}
+	function start() {
+		FocusOnInput();
+		EnableDisableTextBox();
+		myFunction();
+	
+		//	myFunctionDisableTime();
+
+	}
+	
+	const app = document.getElementById("application").value;
+	function formValidation() {
+	if (app == "") {
+	    alert("Please choose the Application");
+	    app.focus();
+	    return false;
+	  }
+	}
+	
+</script>
+</head>
+
+<body class="loading" data-layout="topnav">
+	<div layout:fragment="app_content">
+		<div style="padding: 3px 0px"
+			sec:authorize="hasAuthority('ROLE_USER')">
+			<h5 style="margin-left: 20px;">Edit Issue</h5>
+			<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+		
+			
+						<div class="row">
+									<div class="col s12">
+			
+						
+							<div class="fixedButton"> 
+								<a th:href="@{/allissues}"
+									style="margin-right: 16px"><div class="waves-effect waves-light btn btn-change red accent-2">Cancel</div></a>
+									</div>
+							</div>
+						</div>
+						<!-- Form Advance -->
+						<div class="col s12 m12 l12">
+							<div id="Form-advance">
+							
+									<form class="formValidate0" id="formValidate0" action="#"
+										th:action="@{/updateissues}"
+										onsubmit="return formValidation()" th:object="${issueDto}"
+										autocomplete="off" method="post">
+
+										<div class="row ">
+
+											<div class="input-field col m6 s12">
+												<textarea id="issueTittle" class="materialize-textarea"
+													rows="2" type="text" getfocus() autofocus
+													name="issueTittle" th:field="*{issueTittle}"
+													required="required" maxlength="240"></textarea>
+												<label for="issueTittle" onchange="return trim(this)">Issue
+													Title</label>
+											</div>
+											<!-- <div class="input-field col m6 s12">
+										<input placeholder="Issue No" id="issueNo" name="issueNo"
+											value="" required type="text" th:field="*{issueNo}">
+										<label for="issueNo">Issue No</label>
+									</div> -->
+										
+											<div class="input-field col m6 s12">
+												<select th:field="*{severity}">
+													<option th:value="Critical" th:text="Critical"></option>
+													<option th:value="Major" th:text="Major"></option>
+													<option th:value="Medium" th:text="Medium"></option>
+													<option th:value="Low" th:text="Low"></option>
+
+												</select> <label for="severity">Severity</label>
+											</div>
+											</div>
+
+										<div class="row ">
+											<div class="input-field col m6 s12">
+												<select class="custom-select mb-3" th:field="*{issuetype}">
+													<option th:each="listtype : ${listissuetype}"
+														th:value="${listtype.title}" th:text="${listtype.title}"
+														th:selected="selected"></option>
+												</select> <label for="issuetype">Issue Type</label>
+											</div>
+										
+											<input type="hidden" id="id" class="form-control"
+												th:field=*{id}>
+											<div class="input-field col m6 s12">
+												<input type="text" th:field="*{requestor}" required
+													id="requestor" readonly="readonly" name="requestor">
+												<label for="requestor">Requester</label>
+											</div>
+											</div>
+
+										<div class="row ">
+											<div class="input-field col m6 s12">
+												<input type="text" th:field="*{client}" required id="client"
+													readonly="readonly" name="client"> <label
+													for="client">Client</label>
+											</div>
+										
+											<div class="input-field col m6 s12">
+												<input type="text" th:field="*{environment}" required
+													id="environment" readonly="readonly" name="environment">
+												<label for="environment">Environment</label>
+											</div>
+											</div>
+										<div class="row">
+											
+											<div class="input-field col m6 s12">
+												<input type="text" th:field="*{requestDate}" required
+													id="requestDate" readonly="readonly" name="requestDate">
+												<label for="requestDate">Request Date and Time</label>
+											</div>
+										
+											<div class="input-field col m6 s12">
+												<select class="select2-multiple"
+													id="application" multiple="multiple"
+													required="required" th:field="*{application}">
+													<option value="" disabled selected>Choose....</option>
+													<option th:value="TNETS41" th:text="TNETS41"></option>
+													<option th:value="TNETS41ARC" th:text="TNETS41ARC"></option>
+													<option th:value="BOSS" th:text="BOSS"></option>
+													<option th:value="DMS" th:text="DMS"></option>
+													<option th:value="TSS" th:text="TSS"></option>
+													<option th:value="BI" th:text="BI"></option>
+													<option th:value="BCS" th:text="BCS"></option>
+													<option th:value="TIS" th:text="TIS"></option>
+													<option th:value="EMAILBACKUP" th:text="EMAILBACKUP"></option>
+													<option th:value="OTHERS" th:text="OTHERS"></option>
+												</select> <label for="application"> Application</label>
+											</div>
+											</div>
+										<div class="row">
+											<div class="input-field col m6 s12">
+										<select id="ddlModels"
+										class="custom-select mb-3" th:field=*{supporttype}
+										onchange="EnableDisableTextBox(this)">
+										<option th:value="L1" th:text="L1"></option>
+										<option th:value="L2" th:text="L2"></option>
+										<option th:value="L3" th:text="L3"></option>
+									
+									</select>
+									<label for="supporttype">Support Type</label> 
+								</div>
+								
+											<div class="input-field col m6 s12">
+												<select id="ddlModels" th:field=*{issueStatus}
+													onchange="EnableDisableTextBox(this)" required="required">
+
+													<!-- <option value="" selected>Choose....</option> -->
+
+													<option th:value="CLOSED" th:text="CLOSE"></option>
+													<option th:value="CLOSEDKT" th:text="CLOSE-KT"></option>
+													<option th:value="INPROGRESS" th:text="INPROGRESS"></option>
+													<option th:value="INVALID" th:text="INVALID"></option>
+													<option th:value="POSTPONED" th:text="POSTPONED"></option>
+													<option th:value="OTHERS" th:text="OTHERS"></option>
+												</select> <label for="issueStatus">Status </label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="input-field col m6 s12">
+
+												<input type="text" th:field="*{assignedTo}" required
+													id="assignedTo" readonly="readonly" name="assignedTo">
+												<label for="assignedTo">Assigned To</label>
+											</div>
+											
+					
+											<div class="input-field col m6 s12">
+
+												<select  th:field="*{categoryId}">
+													<option th:each="category : ${listCategory}"
+														th:value="${category.id}"
+														th:text="${category.categoryName}" th:selected="selected"
+														required="required"></option>
+												</select> <label>Category Name</label>
+											
+											</div>
+											</div>
+										
+
+										<div class="row" id="resolvedgroup">
+
+											<div class="input-field col m4 s12">
+												<select id="resolvedBy"
+													th:field="*{resolvedBy}">
+													<option th:each="user : ${listUsers}"
+														th:value="${user.userName}" th:text="${user.userName}"
+														th:selected="selected" id="resolveduser"
+														required="required"></option>
+												</select> <label for="resolvedBy">Resolved By</label>
+											</div>
+											<div class="input-field col m4 s12">
+												<label for="resolvedDate">Resolved Date</label> <input th:field="*{resolvedDate}"
+													class="datepicker"  type="text"
+													id="resolvedDate"  required readonly="readonly" value="">
+											</div>
+											<div class="input-field col m4 s12">
+												<label for="resolvedTime">Resolved Time</label> <input th:field=*{resolvedTime} 
+													class="timepicker" type="text" id="resolvedTime"
+													required readonly="readonly" value="">
+											</div>
+
+
+										</div>
+
+										<div class="row">
+
+											<div class="input-field col m6 s12">
+
+												<textarea type="text" id="description"
+													class="materialize-textarea" th:field=*{description}
+													required="required" rows="4" onchange="return trim(this)"
+													readonly="readonly"></textarea>
+												<label for="description">Description</label>
+											</div>
+											<div class="input-field col m6 s12">
+
+												<textarea type="text" id="resolution"
+													class="materialize-textarea"
+													Placeholder="Please Enter the Solution details in Brief."
+													th:field=*{resolution} required="required" rows="4"
+													onchange="return trim(this)"></textarea>
+												<label for="resolution" id="solution">Solution</label>
+											</div>
+											<button style='margin-right:16px' class="waves-effect waves-light btn btn-change green right" 
+														type="submit" name="action">Update
+			                                             </button>
+														
+										</div>
+											
+										
+												
+                                                   <div class="fixedButton1"> 
+                                                   	<a  style='margin-right: 16px'
+														class="waves-effect waves-light btn modal-trigger btn-change right" href="#myModal"> History </a>
+														</div>
+													
+														
+                                                   																	
+									</form>
+								<!-- </div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			<!-- </div>
+		</div> -->
+		<!-- ------------------------------------------------------------------------------------------------------------------------------------ -->		
+									
+		<!-- Modal View History -->
+										<div class="row">
+											<div class="col s12">
+												<div id="fixed-example" class="card card-tabs">
+
+													<div id="view-example">
+
+														<div class="col s12">
+
+															<div id="myModal" class="modal">
+																<div class="modal-content center">
+																	<h5 style="color: #3688FC;" >Solution Details</h5>
+
+																	<div class="modal-body">
+																						
+																		<table id="striped-table" class="striped">
+																			<thead>
+																				<tr style="color: #3688FC;">
+
+																					<th>Updated Date</th>
+																					<th>Status</th>
+																					<th>Updated By</th>
+																					<th>Solution</th>
+
+
+																				</tr>
+																			</thead>
+																			<tbody>
+																				<tr th:each="issue : ${result}">
+
+																					<td th:text="${issue.createDate}"></td>
+																					<td th:text="${issue.status}"></td>
+																					<td th:text="${issue.staff}"></td>
+																					<td th:text="${issue.resolution}"></td>
+
+
+																				</tr>
+																			</tbody>
+																		</table>
+																	</div>
+																	<div class="modal-footer">
+																		<button style="margin: 5px;"
+																			class="modal-action modal-close mb-6 btn btn-change waves-effect waves-light red accent-2 btn-flat">Close
+																		</button>
+
+																	</div>
+																	
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+<!-- ------------------------------------------------------------------------------------------------------------------------------------ -->										
+	</div>								
+	</div>
+	
+</body>
+
+</html>

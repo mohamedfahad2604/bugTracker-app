@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/bcs_main_layout}">
+<head>
+</head>
+<body class="loading" data-layout="topnav">
+	<div layout:fragment="app_content">
+		<div style="padding: 30px 20px"
+			sec:authorize="hasAuthority('ROLE_ADMIN')">
+			<div class="container" style="color: rgb(62, 205, 50);">
+				<h3 class="text-dark-50 text-center mt-0 font-weight-bold"
+					style="color: red;">Issue Details</h3>
+				<br>
+				<table id="issueTableone"
+					class="table table-condensed table-striped dt-responsive nowrap"
+					style="width: 100%">
+
+					<thead>
+						<tr style="color: red">
+							<th>ID</th>
+							<th>Requester</th>
+							<th>Request Date</th>
+							<th>Status</th>
+							<th>Assigned To</th>
+							<th>Resolved By</th>
+							<th>Resolved Date</th>
+							<th>Application</th>
+							<th>Environment</th>
+							<th>Client</th>
+							<th>Resolution</th>
+							<th>Description</th>
+							<th>Issue Title</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr  style="color: black" th:each="issue : ${listIssues}">
+							<td th:text="${issue.id}"></td>
+							<td th:text="${issue.requestor}"></td>
+							<td th:text="${issue.requestDate}"></td>
+							<td th:text="${issue.status}"></td>
+							<td th:text="${issue.assignedTo}"></td>
+							<td th:text="${issue.resolvedBy}"></td>
+							<td th:text="${issue.resolvedDate}"></td>
+							<td th:text="${issue.application}"></td>
+							<td th:text="${issue.environment}"></td>
+							<td th:text="${issue.client}"></td>
+							<td th:text="${issue.resolution}"></td>
+							<td th:text="${issue.description}"></td>
+							<td th:text="${issue.issueTittle}"></td>
+
+						</tr>
+					</tbody>
+				</table>
+				<br /> <br /> <br />
+				<!-- <input action="action"
+						onclick="window.history.go(-1); return false;"
+						class="action-icontext-info float-right btn btn-info" type="button" value="Back" />
+				<br/><br/><br/><br/> -->
+			</div>
+		</div>
+	</div>
+</body>
+</html>

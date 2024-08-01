@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/userhomepage}">
+<head>
+</head>
+<body class="loading" data-layout="topnav">
+	<div layout:fragment="app_content">
+		<div style="padding: 30px 0px"
+			sec:authorize="hasAuthority('ROLE_USER')">
+			<div class="col s12">
+				<div class="card">
+					<div class="card-content">
+						<h4 class="card-title">View History</h4>
+						<div class="row">
+							<div class="col s12">
+						
+					<table id="issueTableone1" class="display">
+						<thead>
+							<tr>
+								<th>Issue Title</th>
+								<th>Updated By</th>
+								<th>Status</th>
+								<th>Updated Date and Time</th>
+								<th>Resolution</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="result : ${result}">
+								<td th:text="${result.issueTittle}"></td>
+								<td th:text="${result.staff}"></td>
+								<td th:text="${result.status}"></td>
+								<td th:text="${result.createDate}"></td>
+								<td th:text="${result.resolution}"></td>
+
+
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		</div>
+		</div>
+		</div>
+	</div>
+</body>
+</html>

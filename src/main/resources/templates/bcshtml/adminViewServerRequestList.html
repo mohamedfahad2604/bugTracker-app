@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/homepage}">
+<head>
+</head>
+<body class="loading" data-layout="topnav">
+	<div layout:fragment="app_content">
+	
+		<div style="padding: 3px 0px" sec:authorize="hasAuthority('ROLE_ADMIN')">
+		<h5 style="margin-left: 20px;">Server Request List</h5>
+			<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+		
+			
+						<div class="row">
+									<div class="col s12">
+						
+				<!-- <table id="issueTableone"
+					class="table table-striped table-bordered">
+ -->
+ <div class="section section-data-tables">
+		<table id="page-length-option" class=" striped " >
+									
+					<thead>
+						<tr >
+
+							<th>User Name</th>
+							<th>Request Mode</th>
+							<th>CheckIn</th>
+							<th>CheckOut</th>
+							<th>Server Name</th>
+							<th>Reason</th>
+							<th>Comment</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr  style="color: black" th:each="serverRequestList : ${listServerRequestLogs}">
+
+							<td th:text="${serverRequestList.userName}"></td>
+							<td th:text="${serverRequestList.requestMode}"></td>
+							<td th:text="${serverRequestList.checkIn}"></td>
+							<td th:text="${serverRequestList.checkOut}"></td>
+							<td th:text="${serverRequestList.serverName}"></td>
+							<td th:text="${serverRequestList.reason}"></td>
+							<td th:text="${serverRequestList.comment}"></td>
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- </div>-->
+</div>
+</div> 
+
+</body>
+</html>

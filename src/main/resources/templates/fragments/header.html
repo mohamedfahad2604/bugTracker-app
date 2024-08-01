@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body >
+	
+	<div th:fragment="header">
+  
+	<!-- BEGIN: Header-->
+	<header class="page-topbar" id="header">
+		<div class="navbar navbar-fixed">
+			<nav
+				class="navbar-main navbar-color nav-collapsible sideNav-lock ">
+				<div class="nav-wrapper">
+					<div class="header-search-wrapper">
+                        <h5 style="color: #26B4FF;">Tickets</h5>
+                    </div>
+					<ul class="navbar-list right">
+						<li style="color: #3688FC;"><span sec:authentication="name"></span>
+						</li>
+						<li><a class="waves-effect waves-block waves-light "
+							th:href="@{/logout}" data-target="profile-dropdown"><span><i
+									class="material-icons" data-toggle="tooltip" title="Logout">
+									exit_to_app</i> </span> </a></li>
+					</ul>
+				</div>
+
+			</nav>
+		</div>
+	</header>
+	
+	<!-- END: Header-->
+	
+</div>
+
+</body>
+</html>

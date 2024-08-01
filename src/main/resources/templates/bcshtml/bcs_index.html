@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/userhomepage}">
+<!-- <link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+	rel="stylesheet" /> -->
+<head>
+<script type="text/javascript" th:src="@{/js/issue.js}"></script>
+<!-- 
+<style>
+th:last-child, td:last-child {
+	position: sticky;
+	left: 0px;
+	background-color: rgb(255, 255, 255);
+}
+</style> -->
+<style>
+.myInput {
+	background-image: url('/css/searchicon.png');
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	width: 100%;
+	font-size: 16px;
+	padding: 12px 20px 12px 40px;
+	border: 1px solid #ddd;
+	margin-bottom: 12px;
+}
+</style>
+<!-- <script>
+function search() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("bcs-data-table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script> -->
+
+</head>
+
+
+<body class="loading" data-layout="topnav">
+
+	<div layout:fragment="app_content">
+
+		<!-- BEGIN: Horizontal bar start-->
+
+		<!--  <div class="right">
+            
+                    <ul class="center" id="ul-horizontal-nav">
+					
+						<li><a class="dropdown-trigger" th:href="@{/}" data-target="dropdown123" ><span class="dropdown-title" data-i18n="Apps">Open Issues</span></a>
+     
+                        </li>     
+					
+	
+                         <li><a class="dropdown-trigger" th:href="@{/allissues}"  data-target="dropdown123" style="border-color: white; background-color: #3688FC; color: white;padding:20px 20px;"><span class="dropdown-title" data-i18n="Apps">All Issues</span></a>
+     
+                        </li>   
+                     
+                        <li><a class="dropdown-trigger" th:href="@{/currentmonthissuelist}"   data-target="dropdown123" ><span class="dropdown-title" data-i18n="Apps">This Month Issues</span></a>
+     
+                        </li> 
+                      
+                            
+                    </ul>
+					
+       </div> -->
+
+
+		<!-- -------------Search with Popover------------------- -->
+		<!-- Modal Example -->
+		<div class="row">
+			<div id="fixed-example" class="card card-tabs">
+
+				<div id="view-example">
+
+					<div id="login-modal" class="modal">
+						<div class="modal-content center">
+
+							<form th:action="@{/searchissues}" method="get"
+								autocomplete="off">
+								<div class="row">
+
+									<div class="input-field col m6 s12">
+										<label for="requestDateStart">From Date</label> <input
+											class="datepicker" name="startDate" value="" type="text"
+											id="requestDateStart" placeholder="01/01/2022" required>
+
+									</div>
+
+									<div class="input-field col m6 s12">
+										<label for="requestDateEnd">To Date</label> <input
+											class="datepicker" name="endDate" type="text"
+											id="requestDateEnd" placeholder="01/01/2022" required>
+
+
+									</div>
+
+
+								</div>
+								<button style="margin: 5px;" type="submit"
+									class="modal-action  mb-6 btn waves-effect waves-light red accent-2 btn-change btn-flat right">Search
+								</button>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+
+		<!-- -----------End Search with Popover--------------------- -->
+
+		<div style="padding: 3px 0px"
+			sec:authorize="hasAuthority('ROLE_USER')">
+
+			<h5 style="margin-left: 20px;">Issue Details</h5>
+			<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+					<div class="row">
+						<div class="col s12">
+							<div class="fixedButton1">
+								<a th:href="@{/newissues}">
+									<div class="waves-effect waves-light btn btn-change green">Add</div>
+								</a>
+							</div>
+							<div class="fixedButton">
+								<a
+									class="waves-effect waves-light btn btn-change modal-trigger mb-2 mr-1 red accent-2 "
+									href="#login-modal">Search</a>
+							</div>
+							<!-- <div class="input-field col m2 s12 right">
+					<input type="text" id="myInput" onkeyup="search()" placeholder="Search for Requester.." >
+					
+					</div> -->
+							<div class="section section-data-tables">
+								<table id="page-length-option" class="striped">
+									<thead>
+										<tr>
+											<!-- <th>Issue No</th> -->
+											<th>Requester</th>
+											<th>Request Date</th>
+											<th>Status</th>
+											<th>Assigned To</th>
+											<th>Resolved By</th>
+											<th>Resolved Date</th>
+											<th>Created Date</th>
+											<th>Description:</th>
+											<th>Application:</th>
+											<th>Environment:</th>
+											<th>Client:</th>
+											<th>Solution:</th>
+											<th>Issue Title:</th>
+											<th>Action:</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr style="color: black" th:each="issue : ${listIssues}">
+											<!-- <td th:text="${issue.issueNo}"></td> -->
+											<td th:text="${issue.requestor}"></td>
+											<td th:text="${issue.requestDate}"></td>
+											<td th:text="${issue.status}"></td>
+											<td th:text="${issue.assignedTo}"></td>
+											<td th:text="${issue.resolvedBy}"></td>
+											<td th:text="${issue.resolvedDate}"></td>
+											<td th:text="${issue.createDate}"></td>
+											<td th:text="${issue.description}"></td>
+											<td th:text="${issue.application}"></td>
+											<td th:text="${issue.environment}"></td>
+											<td th:text="${issue.client}"></td>
+											<td th:text="${issue.resolution}"></td>
+											<td th:text="${issue.issueTittle}"></td>
+
+											<td><a onclick="getHistory(this)"
+												th:attr="issueId=${issue.id}" href="#myModal"
+												class="tooltipped btn-floating btn-small btn-change waves-light modal-trigger mb-2 mr-1"
+												data-tooltip="History"><i class="material-icons"
+													style="color: green; background-color: #e0efe0;">history</i></a>
+												<a th:href="@{'/editissues/'+ ${issue.id}}"
+												class="tooltipped btn-floating btn-small btn-change waves-light modal-trigger mb-2 mr-1 "
+												data-tooltip="Edit"> <i class="material-icons"
+													style="color: blue; background-color: #e8e8f5;">edit</i></a> <a
+												th:href="@{'/addcomment/'+ ${issue.id}}"
+												class="tooltipped btn-floating btn-small btn-change waves-light modal-trigger mb-2 mr-1 "
+												data-tooltip="Add Comment"><i class="material-icons"
+													style="color: #fff; background-color: #00bcd421;">comment</i></a>
+
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
+
+			<!-- Modal -->
+			<div class="row">
+				<div class="col s12">
+					<div id="fixed-example" class="card card-tabs">
+
+						<div id="view-example">
+
+							<div class="col s12">
+
+								<div id="myModal" class="modal">
+									<div class="modal-content center">
+
+										<div class="modal-body">
+
+											<table id="striped-table" class="striped">
+												<thead>
+													<tr style="color: #3688FC;">
+														<th>Staff</th>
+														<th>Status</th>
+														<th>Updated Date</th>
+
+													</tr>
+												</thead>
+												<tbody id="issuehistorytable">
+												</tbody>
+											</table>
+										</div>
+										<div class="modal-footer">
+											<button
+												class="modal-action modal-close mb-6 btn waves-effect waves-light red accent-2 btn-flat btn-change right ">Close
+											</button>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+package com.bizz.customersupport.controllers;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.bizz.customersupport.entities.User;
+import com.bizz.customersupport.services.UserListService;
+import com.bizz.customersupport.services.UserService;
+
+@Controller
+public class UserController {
+
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	@Autowired
+	private UserListService service;
+
+	@Autowired
+	private UserService userService;
+
+	@RequestMapping("/listAllUsers")
+	public String viewAllUsers(Model model) {
+		List<User> listuser = service.listAll();
+		model.addAttribute("listuser", listuser);
+		return "bcshtml/listAllUsers";
+	}
+
+	@Valid
+	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+	public String savaUser(@ModelAttribute("user") User user) {
+		logger.info("Going to change the user password....");
+		logger.info("For " + user.getUserName() + "this user........");
+		userService.editAndUpdate(user);
+		return "redirect:/listAllUsers";
+	}
+
+	@RequestMapping("/editUser/{id}")
+	public ModelAndView showEditBusPage(@PathVariable(name = "id") long id) {
+		ModelAndView mav = new ModelAndView("bcshtml/editUser");
+		User user = service.get(id);
+		user.setId(id);
+		logger.info("User id of editing user" + user.getId());
+		mav.addObject("user", user);
+		return mav;
+	}
+
+}

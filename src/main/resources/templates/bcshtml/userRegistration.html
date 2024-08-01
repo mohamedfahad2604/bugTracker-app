@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/homepage}">
+<head>
+<!-- <script type="text/javascript">
+	function FocusOnInput() {
+		document.getElementById("name").focus();
+	}
+</script> -->
+</head>
+<body class="loading" data-layout="topnav" >
+	<div layout:fragment="app_content">
+	
+		<div style="padding: 3px 0px" sec:authorize="hasAuthority('ROLE_ADMIN')">
+		<h5 style="margin-left: 20px;">User Registration Form</h5>
+			<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+		
+			
+						<div class="row">
+									<div class="col s12">
+				
+					<div class="fixedButton"> 
+						<a th:href="@{/listAllUsers}"><div class="waves-effect waves-light btn btn-change red accent-2">Cancel</div></a>
+									</div>
+
+						<!-- Form Advance -->
+						<div class="col s12 m12 l12">
+							<div id="Form-advance" >
+								<!-- <div class="card-content"> -->
+									<div id="html-view-validations">
+										<form class="formValidate0" id="formValidate0"
+											th:action="@{/registration/newuser}" th:object="${user}"
+											autocomplete="off" method="post">
+
+											<div class="row ">
+												<div class="input-field col m6 s12">
+													<input value="" required type="text" id="name" name="name">
+													<label for="name">Employee Name</label>
+												</div>
+												<div class="input-field col m6 s12">
+													<input value="" required type="number" id="employeeNumber"
+														name="employeeNumber"> <label for="employeeNumber">Employee
+														ID</label>
+												</div>
+											</div>
+
+
+											<div class="row ">
+												<div class="input-field col m6 s12">
+													<label for="name">Username</label> <input value="" required
+														type="text" id="userName" name="userName">
+
+													<!-- <div class="input-group">
+														<div class="input-group-prepend">
+															<span class="input-group-text" id="userName">@</span>
+														</div>
+													</div> -->
+												</div>
+												<div class="input-field col m6 s12">
+													<select th:field="*{designation}">
+
+														<option value="" disabled selected>Choose....</option>
+														<option th:value="ADMIN" th:text="ADMIN"></option>
+														<option th:value="MANAGER" th:text="MANAGER"></option>
+														<option th:value="DEVELOPMENT" th:text="DEVELOPMENT"></option>
+														<option th:value="SUPPORT" th:text="SUPPORT"></option>
+														 <option th:value="TESTING" th:text="TESTING"></option> 
+														<!-- <option th:value="OTHERS" th:text="OTHERS"></option> -->
+													</select> <label for="Team"> Team</label>
+												</div>
+
+											</div>
+										<div class="row ">
+												<div class="input-field col m6 s12">
+													<input placeholder="Email" required type="email"
+														id="email" name="email"> <label for="email">Email
+														Address</label>
+												</div>
+												<div class="input-field col m6 s12">
+													<input  placeholder="Email" required type="email"
+														id="confirmEmail" name="confirmEmail"> <label for="confirmEmail">Confirm
+														Email Address</label>
+												</div>
+											</div>
+											<div class="row ">
+												<div class="input-field col m6 s12">
+													<input value="" placeholder="password" required
+														type="password" id="password" name="password"> <label
+														for="email">Password</label>
+												</div>
+												<div class="input-field col m6 s12">
+													<input value="" placeholder="confirmPassword" required
+														type="password" id="confirmPassword"
+														name="confirmPassword"> <label for="email">Confirm
+														Password</label>
+												</div>
+                                              
+                                              <!-- <div class="input-field col m6 s12">
+		     									<select  multiple="multiple">
+											
+											    <option value="DASHBOARD">DASHBOARD</option>
+											    <option value="ISSUE">ISSUE</option>
+											    <option value="KNOWLEDGE TRANSFER">KNOWLEDGE TRANSFER</option>
+											    <option value="TASK">TASK</option>
+											    <option value="SERVER">SERVER</option>
+											    <option value="DEPLOYMENT">DEPLOYMENT</option>
+											    <option value="TICKET">TICKET</option>
+											    <option value="ISSUE REPORT">ISSUE REPORT</option>
+											    <option value="TASK REPORT">TASK REPORT</option>
+											</select><label for="Role"> Role</label> 
+											</div>  -->
+											 <div class="input-field col m6 s12">
+								            <select th:field="*{selectedRoles}" multiple="multiple">
+								                <option th:each="role : ${allRoles}" th:value="${role.id}" th:text="${role.name}">
+								                </option>
+								            </select>
+								            <label for="selectedRoles">Select Roles</label>
+								      		  </div>
+																							
+											 
+											<div class="fixedButton1">
+											<button class="waves-effect waves-light btn btn-change green" 
+											type="submit" name="action">Save
+                                             </button>
+											</div>	
+											</div>
+											</form>
+									</div>
+								<!-- </div> -->
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	
+	<script src="assets/js/vendor.min.js"></script>
+	<script src="assets/js/app.min.js"></script>
+</body>
+</html>

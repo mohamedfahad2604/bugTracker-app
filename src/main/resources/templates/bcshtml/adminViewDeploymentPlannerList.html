@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/homepage}">
+<head>
+
+</head>
+<body class="loading" data-layout="topnav">
+	<div layout:fragment="app_content">
+	
+		<div style="padding: 3px 0px" sec:authorize="hasAuthority('ROLE_ADMIN')">
+		<h5 style="margin-left: 20px;">Deployment Planner</h5>
+			<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+		
+			
+						<div class="row">
+									<div class="col s12">
+
+					<div class="section section-data-tables">
+								<table id="page-length-option" class="table table-condensed striped dt-responsive nowrap" >
+									
+				<!-- <table id="issueTableone"
+					class="display"
+					style="width: 100%"> -->
+					<thead>
+						<tr>
+							<th>Author</th>
+							<th>Performer</th>
+							<th>Server Name</th>
+							<th>Application</th>
+							<th>Deployment</th>
+							<th>File Type</th>
+							<th>EnhancedFor</th>
+							<th>Deployment Date</th>
+							<th>Comment</th>
+
+							<!-- <th>Action</th> -->
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr  style="color: black" th:each="deploymentPlannerList : ${listDeploymentPlanners}">
+
+							<td th:text="${deploymentPlannerList.auther}"></td>
+							<td th:text="${deploymentPlannerList.performer}"></td>
+							<td th:text="${deploymentPlannerList.application}"></td>
+							<td th:text="${deploymentPlannerList.serverName}"></td>
+							<td th:text="${deploymentPlannerList.deployment}"></td>
+							<td th:text="${deploymentPlannerList.fileType}"></td>
+							<td th:text="${deploymentPlannerList.enhancedFor}"></td>
+							<td th:text="${deploymentPlannerList.deploymentDate}"></td>
+							<td th:text="${deploymentPlannerList.comment}"></td>
+							<!-- 	<td><a
+								th:href="@{'/deleteDeploymentPlanner/' + ${deploymentPlannerList.id}}"
+								class="text-danger" data-toggle="tooltip"
+								title="Delete Deployment Planner"> <i class="mdi mdi-delete"></i>
+							</a></td> -->
+
+						</tr>
+					</tbody>
+				</table>
+				
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div> 
+	
+</body>
+</html>

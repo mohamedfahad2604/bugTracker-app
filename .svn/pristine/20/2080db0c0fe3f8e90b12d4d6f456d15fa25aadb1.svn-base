@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/bcs_main_layout}">
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+	rel="stylesheet" />
+<head>
+<script type="text/javascript" th:src="@{/js/issue.js}"></script>
+
+<style>
+th:last-child, td:last-child {
+	position: sticky;
+	left: 0px;
+	background-color: rgb(255, 255, 255);
+}
+</style>
+
+
+</head>
+
+
+<body class="loading" data-layout="topnav">
+
+
+
+
+	<div layout:fragment="app_content">
+
+		<ul class="nav nav-tabs justify-content-center">
+			<li class="nav-item"><a class="nav-link  active"
+				aria-current="page" th:href="@{/}"
+				style="border-color: white; background-color: #3688FC; color: white;">Open
+					Issues</a></li>
+
+			<li class="nav-item"><a class="nav-link" th:href="@{/allissues}">All
+					Issues</a></li>
+
+			<li class="nav-item"><a class="nav-link "
+				th:href="@{/currentmonthissuelist}">This Month Issues</a></li>
+				
+					
+
+
+
+		</ul>
+
+
+
+		<div style="padding: 30px 0px"
+			sec:authorize="hasAuthority('ROLE_USER')">
+			<div class="account-pages mt-1 mb-5">
+				<div class="container" style="color: rgb(62, 205, 50);">
+					<h3 class="text-dark-50 text-center mt-0 font-weight-bold"
+						style="color: red;">Open Issue Details</h3>
+					<br> <br> <a th:href="@{/newissues}"
+						class="btn btn-secondary float-right"
+						style='border-color: white; background-color: #3688FC; color: white;'><i
+						class="mdi mdi-plus-circle mr-2"></i> Create Issue</a>
+
+
+					<table id="scroll-horizontal-datatable"
+						class="table table-condensed table-striped dt-responsive nowrap"
+						style="width: 100%">
+
+						<thead>
+							<tr style="color: red">
+								<th>Requester</th>
+								<th>Request Date</th>
+<th>Created Date</th>
+								<th>Assigned To</th>
+
+								<th>Description:</th>
+								<th>Application:</th>
+								<th>Environment:</th>
+								<th>Client:</th>
+
+								<th>Issue Title:</th>
+								<th>Action:</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr style="color: black" th:each="issue : ${listIssues}">
+								<td th:text="${issue.requestor}"></td>
+								<td th:text="${issue.requestDate}"></td>
+<td th:text="${issue.createDate}"></td>
+								<td th:text="${issue.assignedTo}"></td>
+
+								<td th:text="${issue.description}"></td>
+								<td th:text="${issue.application}"></td>
+								<td th:text="${issue.environment}"></td>
+								<td th:text="${issue.client}"></td>
+
+								<td th:text="${issue.issueTittle}"></td>
+
+								<td>
+									<!--   <form action="#" th:action="@{'/viewhistory/'+ ${issue.id}}" method="get">-->
+									<!-- <form action="#" th:action="${issue.id}" onclick="getPermitHistory(this)"
+										method="get">
+
+
+										<button action="#" class="btn btn-danger" type="button" onclick="getHistory(this)" th:attr="histories=${issue.id}"
+											>
+
+											View History
+										</button>
+									</form> --> <a onclick="getHistory(this)"
+									th:attr="issueId=${issue.id}" class="text-success"
+									title="View History"> <i
+										class="btn  btn-outline-info btn-sm">View History</i></a> <a
+									th:href="@{'/editissues/'+ ${issue.id}}" class="text-success"
+									title="Edit Issue"> <i
+										class="btn  btn-outline-danger btn-sm">Edit</i></a> <a
+									th:href="@{'/addcomment/'+ ${issue.id}}" class="text-primary"
+									title="Add Comment"> <i
+										class="btn  btn-outline-success  btn-sm">Comment</i>
+								</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<br /> <br />
+				</div>
+			</div>
+
+
+
+
+			<!-- Modal -->
+			<div id="myModal" class="  modal fade" tabindex="-1" role="dialog">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Issue History</h4>
+
+						</div>
+						<div class="modal-body card-datatable table-responsive">
+							<!-- <table class="datatables-demo table table-striped table-bordered"> -->
+							<table class=" table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th>Staff</th>
+										<th>Status</th>
+										<th>Updated Date</th>
+
+									</tr>
+								</thead>
+								<tbody id="issuehistorytable">
+								</tbody>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary"
+								data-dismiss="modal">Close</button>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

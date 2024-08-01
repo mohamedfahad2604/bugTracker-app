@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/userhomepage}">
+<head>
+<script type="text/javascript">
+	function FocusOnInput() {
+		document.getElementById("comments").focus();
+	}
+</script>
+</head>
+<body class="loading" data-layout="topnav" onload="FocusOnInput()">
+	<div layout:fragment="app_content">
+		<div style="padding: 3px 0px"
+			sec:authorize="hasAuthority('ROLE_USER')">
+			<h5 style="margin-left: 20px;">Comments</h5>
+			<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+		
+			
+						<div class="row">
+									<div class="col s12">
+						
+									<table id="striped-table"
+										class="striped" style="color: black;">
+										<thead>
+											<tr>
+												<th>User Name</th>
+												<th>Date</th>
+												<th>Notes</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="issue_history : ${listAllComments}">
+												<td th:text="${issue_history.user.userName}"></td>
+												<td th:text="${issue_history.commentDate }"></td>
+												<td th:text="${issue_history.comments }"></td>
+
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+					<div class="card">
+					<div class="card-content">
+						<h4 class="card-title left">New Comment</h4>
+						
+							
+                           
+                        <br><br><br><br>
+
+								
+								<form class="formValidate0" id="formValidate0"
+										th:action="@{/saveComment}" th:object="${issueHistory}"
+										autocomplete="off" method="post">
+							
+								<input type="hidden" id="id" name="id" 
+									readonly="" th:field=*{issue.id}>
+								<div class="collapse" id="searchCriteriaDiv"
+									style="color: black;">
+									<div class="row ">
+										<div class="input-field col m6  s12">
+											<label for="userName">User Name</label> <input type="text"
+												id="userName" name="userName" 
+												readonly="" th:field=*{user.userName}>
+										</div>
+										<div class="input-field col m6  s12">
+											<label for="issueTittle">Issue Title</label> <input type="text"
+												id="issueTittle" name="issueTittle" 
+												readonly="" th:field=*{issue.issueTittle}>
+										</div>
+									</div>
+									<div class="row ">
+										<div class="input-field col m6  s12">
+											<label for="comments">Comment</label>
+											<textarea id="comments" name="comments" type="text"
+												class="materialize-textarea" placeholder="comments" value="" th:field=*{comments}
+												required></textarea>
+										</div>
+									</div>
+								
+								 <div class="fixedButton1">
+											<button style='margin-right:16px' class="waves-effect waves-light btn btn-change green" 
+											type="submit">Save
+                                             </button>
+											</div>
+								<div class="fixedButton"> 
+								<a th:href="@{/allissues}"
+									style="margin-right: 16px"><div class="waves-effect waves-light btn btn-change red accent-2">Cancel</div></a>
+									</div>
+							</div>
+							</form>
+							
+							</div>
+							</div>
+							</div>
+						</div>
+					</div>
+					</div>
+</body>
+</html>

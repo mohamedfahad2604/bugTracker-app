@@ -1,0 +1,75 @@
+/*----------------------------------------
+    Login Page
+------------------------------------------*/
+.login-bg
+{
+    background-image: url('../../images/gallery/222-04.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-size: 100% 100%; */
+}
+
+#login-page
+{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+
+    height: 100vh;
+
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+            
+}
+
+#login-page .card-panel.border-radius-6.login-card
+{
+    margin-left: 0 !important;
+    /*  margin-top:375px;
+    position-bottom:0;*/
+    /* background-color: #03429f1f;  */
+     background-color: white transparent; 
+}
+
+
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  background-color: #fff;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  background-color: fff;
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  right:2%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+
+

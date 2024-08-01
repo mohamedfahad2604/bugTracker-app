@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/homepage}">
+<head>
+
+</head>
+<body class="loading" data-layout="topnav">
+<div layout:fragment="app_content">
+	
+		<div style="padding: 3px 0px" security:authorize access="hasAuthority('ROLE_ADMIN')">
+		<h5 style="margin-left: 20px;">Ticket List</h5>
+			<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+				<div class="row">
+									<div class="col s12">
+						
+	
+				<div class="fixedButton"> 		
+				 <a th:href="@{/addAdminBug}">
+					<div class="waves-effect waves-light btn btn-change green">Add</div></a>
+						</div>	
+
+
+				<div class="section section-data-tables">
+							<table id="page-length-option" class="striped" >
+					<thead>
+						<tr>
+						    <th style="min-width: 230px; max-width: 230px; white-space: normal;">Ticket Id</th>
+						<!-- 	<th>Author</th> -->
+							<th style="min-width: 230px; max-width: 230px; white-space: normal;">Created Date</th>
+							<th style="min-width: 230px; max-width: 230px; white-space: normal;">Application</th>
+							<!-- <th>Server</th> -->
+							<th style="min-width: 230px; max-width: 230px; white-space: normal;">Author</th>
+							<th style="min-width: 230px; max-width: 230px; white-space: normal;"> Assignee</th>
+							<th style="min-width: 230px; max-width: 230px; white-space: normal;">Ticket Name</th>
+							<th style="min-width: 230px; max-width: 230px; white-space: normal;">Status</th>
+							<th style="min-width: 230px; max-width: 230px; white-space: normal;">Est Fix Date</th>
+							<th style="min-width: 230px; max-width: 230px; white-space: normal;">Description</th>
+							<th style="min-width: 230px; max-width: 230px; white-space: normal;">Action</th>
+							
+							
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="bugTracker : ${bugsList}">
+							<td th:text="${bugTracker.BugNo}"></td>
+						<!--  	<td th:text="${bugTracker.author.name}"></td> -->
+							<td th:text="${bugTracker.createdDate}"></td>
+							<td th:text="${bugTracker.applicationName}"></td>
+						<!-- 	<td th:text="${bugTracker.serverName}"></td> -->
+							<td th:text="${bugTracker.author.name}"></td>
+							<td th:text="${bugTracker.assignee.name}"></td>
+							<td th:text="${bugTracker.bugName}"></td>
+							<td th:text="${bugTracker.bugStatus}"></td>
+							<td th:text="${#dates.format(bugTracker.estimatedFixDate, 'dd/MM/yyyy')}"></td>
+							<td th:text="${bugTracker.description}"></td>
+							
+							
+							<td><a th:href="@{'/editAdminBug/'+ ${bugTracker.id}}"
+									class="btn-floating btn-small btn-change waves-light modal-trigger mb-2 mr-1" data-toggle="tooltip"
+									title="Edit Category"><i class="material-icons" style="color: blue; background-color: #e8e8f5;">edit</i></a>
+								 <a th:href="@{'/deleteBug/' + ${bugTracker.id}}"
+									class="btn-floating btn-small btn-change" data-toggle="tooltip"
+									title="Delete Category"><i class="material-icons" style="color: red;background-color: #f5cbcb;">delete_forever</i>
+								</a></td>
+							
+
+						</tr>
+					</tbody>
+				</table><br><br>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+</body>
+</html>

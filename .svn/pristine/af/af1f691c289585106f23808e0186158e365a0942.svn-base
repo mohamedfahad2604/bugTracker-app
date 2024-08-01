@@ -1,0 +1,7 @@
+package com.bizz.customersupport.constant;
+
+public class EmailConstant {
+	public final static  String SIGNATURE="<br><br>Thanks and Regards,<br><br>BIZZ Customer Support.<br><br>IT Support<br><br>This is an auto-generated email form the Bizz Customer Support Application, sent from an un-monitored mailbox. Please do not reply to this email. Thank you.<br>";
+	
+
+}

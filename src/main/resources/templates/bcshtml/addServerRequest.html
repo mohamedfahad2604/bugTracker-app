@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/userhomepage}">
+<head>
+<script>
+$(document).ready(function() {
+	const myInput = document.getElementById('hours');
+	const timeInstance = M.Timepicker.init(myInput, {
+	twelveHour: false,
+    defaultTime: 'now'
+});
+
+// forces materialize time picker to display default time in input
+timeInstance._updateTimeFromInput();
+timeInstance.done();
+
+});
+
+</script>
+<script>
+$(document).ready(function() {
+	const myInput = document.getElementById('hours1');
+	const timeInstance = M.Timepicker.init(myInput, {
+	twelveHour: false,
+    defaultTime: 'now'
+});
+
+// forces materialize time picker to display default time in input
+timeInstance._updateTimeFromInput();
+timeInstance.done();
+
+});
+
+</script>
+</head>
+
+<body class="loading" data-layout="topnav">
+<div layout:fragment="app_content">
+	<div style="padding: 3px 0px"
+			sec:authorize="hasAuthority('ROLE_USER')">
+			<div class="col s12">
+				
+			<h5 style="margin-left: 20px;">Add Server Request</h5>
+				<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+					<div class="row">
+									<div class="col s12">	
+						
+					
+									<div class="fixedButton"> 
+									<a th:href="@{/serverRequests}"><div class="waves-effect waves-light btn btn-change red accent-2">Cancel</div></a>
+									</div>
+
+
+								<!-- Form Advance -->
+                            <div class="col s12 m12 l12">
+                                <div id="Form-advance" >
+                                   
+                                        <div id="html-view-validations">
+										<form class="formValidate0" id="formValidate0" action="#"
+												th:action="@{/saveServerRequest}" th:object="${serverRequestDto}"
+												autocomplete="off" method="post">
+										
+											<div class="row ">
+											
+											<div class="input-field col m6 s12">
+                                                    <select th:field="*{userName}">
+                                                        <option value="" disabled selected>User Name</option>
+                                                        <option th:each="user : ${listUser}" readonly
+															th:value="${user.userName}" th:text="${user.userName}"
+															th:selected="selected"></option>
+                                         
+                                                    </select>
+                                                    <label> User Name</label>
+                                                </div>
+												<div class="input-field col m6 s12">
+                                                    <select	required="required"
+													th:field="*{requestMode}">
+                                                        <option value="" >Choose....</option>
+                                                        <option th:value="SLACK" th:text="SLACK"></option>
+														<option th:value="WHATS-APP" th:text="WHATS-APP"></option>
+                                                    </select>
+                                                    <label> Request Mode</label>
+                                                </div>
+                                                												
+												</div>
+												
+												<div class="row ">
+                                                
+                                                <div class="input-field col m6 s12">
+                                                    <select class="select2-multiple"
+													 multiple="multiple" 
+													 required="required"
+													th:field="*{serverName}">
+                                                        <option  value="" disabled selected>Choose....</option>
+                                                        <option th:value="DC1" th:text="DC1"></option>
+														<option th:value="DC2" th:text="DC2"></option>
+														<option th:value="HQ" th:text="HQ"></option>
+														<option th:value="YUSEN" th:text="YUSEN"></option>
+														<option th:value="NAIGAI" th:text="NAIGAI"></option>
+														<option th:value="NIPPON" th:text="NIPPON"></option>
+														<option th:value="KEPPEL" th:text="KEPPEL"></option>
+														<option th:value="GA-TRIAL" th:text="GA-TRIAL"></option>
+														<option th:value="GA-PROD" th:text="GA-PROD"></option>
+														<option th:value="TSS_BI" th:text="TSS_BI"></option>
+														<option th:value="SIT" th:text="SIT"></option>
+														<option th:value="TIS" th:text="TIS"></option>
+														<option th:value="EMAILBACKUP" th:text="EMAILBACKUP"></option>
+														<option th:value="CR2" th:text="CR2"></option>
+														<option th:value="OTHERS" th:text="OTHERS"></option>
+                                                    </select>
+                                                    <label> Server Name</label>
+                                                </div>
+                                                <div class="input-field col m6 s12">
+																		<label for="date-demo2">Check-In Date</label> <input class="task-datepicker"
+																			type="text" id="date-demo2" 
+																			th:field="*{checkIn}" required>
+
+												</div>	
+												</div>									
+											<div class="row ">
+											
+											<div class="input-field col m6 s12">
+									
+																	<label for="time-demo">Check-In Hour</label> <input class="timepicker"
+																			type="text" id="hours" th:field="*{checkInHour}" placeholder="00:00"
+																			 required>
+
+																	</div>
+																	
+												<div class="input-field col m6 s12">
+																		<label for="date-demo2">Check-Out Date</label> <input class="task-datepicker"
+																			type="text" id="date-demo2" 
+																			th:field="*{checkOut}" required>
+
+												</div>	
+												
+                                                
+												</div>
+												
+												<div class="row ">
+												<div class="input-field col m6 s12">
+									
+																	<label for="time-demo">Check-Out Hour</label> <input class="timepicker"
+																			type="text" id="hours1" th:field="*{checkOutHour}" placeholder="00:00"
+																			 required>
+
+																	</div>
+												
+												 <div class="input-field col m6  s12">
+                                                    <textarea rows="2"  id="reason" class="materialize-textarea" 
+                                                    th:field="*{reason}" name="reason" placeholder="Reason"
+														value="" required></textarea>
+                                                    <label for="message">Reason</label>
+                                                </div>
+											</div>
+											
+											<div class="row ">
+												<div class="input-field col m6  s12">
+                                                    <textarea rows="2"  id="reason" class="materialize-textarea" 
+                                                    th:field="*{comment}" name="comment" placeholder="Comment"
+														value="" ></textarea>
+                                                    <label for="message">Comment</label>
+                                                </div>
+												
+											
+										<div class="fixedButton1">
+											<button class="waves-effect waves-light btn btn-change green" 
+											type="submit" name="action">Save
+                                             </button>
+											</div>												
+											</div>
+												</form>
+										</div>
+									</div>
+									
+								</div>
+								</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+</body>
+</html>

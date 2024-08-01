@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/bcs_main_layout}">
+<head>
+<script type="text/javascript">
+	
+</script>
+</head>
+<body class="loading" data-layout="topnav" onload="FocusOnInput()">
+	<div layout:fragment="app_content">
+		<div sec:authorize="hasAuthority('ROLE_ADMIN')">
+			<div class="account-pages mt-3 mb-5">
+				<div class="row justify-content-center">
+					<div class="container" style="color: black;">
+
+						<div class="card">
+							<div class="card-body">
+								<!-- ------------------------------- End Search With Popover----------------------------------------- -->
+								<div class="form-group col-md-12" align="right">
+									<button type="button" class="btn btn-info" data-toggle="modal"
+										style='border-color: white; background-color: #3688FC; color: white;'
+										data-target="#login-modal">Search</button>
+									<div id="login-modal" class="modal fade" tabindex="-1"
+										role="dialog" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-body">
+													<div class="text-center mt-2 mb-4"></div>
+
+													<form th:action="@{/searchByDate/view/dailyTaskList}"
+														method="get" autocomplete="off">
+														<div class="form-row " align="left">
+
+															<div class="form-group col-md-6">
+																<label for="requestDateStart">From Date</label> <input
+																	type="text" class="form-control date"
+																	data-toggle="date-picker"
+																	data-single-date-picker="true" id="requestDateStart"
+																	name="startDate" value="" required="required">
+															</div>
+															<div class="form-group col-md-6">
+																<label for="requestDateEnd">To Date</label> <input
+																	type="text" class="form-control date"
+																	data-toggle="date-picker"
+																	data-single-date-picker="true" id="requestDateEnd"
+																	name="endDate" value="" required="required">
+															</div>
+
+															<div class="form-row col-md-12">
+																<div class="form-group col-md-12">
+																	<label for="User">Choose the User</label> <select
+																		id="User" name="User" class="custom-select mb-3">
+																		<option th:value="AllUser" th:text="AllUser"></option>
+																		<option th:each="user : ${listUser}"
+																			th:value="${user.userName}"
+																			th:text="${user.userName}"></option>
+
+																	</select>
+																</div>
+															</div>
+														</div>
+														<div class="float-right ">
+															<button class="btn btn-primary float-right" type="submit"
+																value="submit">Search</button>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- ------------------------------- End Search With Popover----------------------------------------- -->
+
+
+								<h3 class="text-dark-50 text-center mt-0 font-weight-bold"
+									style="color: red;">Task View</h3>
+								<table id="issueTableone"
+									class="table table-condensed table-striped dt-responsive nowrap"
+									style="width: 100%">
+									<thead>
+										<tr style="color: red">
+											<th>Name</th>
+
+											<th>Date</th>
+											<th>Hours & Mins</th>
+											<th>Task/Issue</th>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr  style="color: black" th:each="dailytask : ${listOfDailyTask}">
+											<td th:text="${dailytask.userName.userName}"></td>
+
+											<td th:text="${dailytask.Date }"></td>
+											<td th:text="${dailytask.hours}"></td>
+											<td th:text="${dailytask.task}"></td>
+										</tr>
+									</tbody>
+								</table>
+								<br> <br> <br>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

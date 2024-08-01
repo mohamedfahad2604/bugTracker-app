@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/userhomepage}">
+
+<head>
+<script type="text/javascript">
+	function FocusOnInput() {
+		document.getElementById("issueTittle").focus();
+	}
+
+	function trim(el) {
+		el.value = el.value.replace(/(^\s*)|(\s*$)/gi, ""). // removes leading and trailing spaces
+		replace(/[ ]{2,}/gi, " "). // replaces multiple spaces with one space 
+		replace(/\n +/, "\n"); // Removes spaces after newlines
+		return;
+	}
+</script>
+<script>
+$(document).ready(function() {
+	const myInput = document.getElementById('hours');
+	const timeInstance = M.Timepicker.init(myInput, {
+	twelveHour: false,
+    defaultTime: 'now'
+});
+
+// forces materialize time picker to display default time in input
+timeInstance._updateTimeFromInput();
+timeInstance.done();
+
+});
+
+</script>
+</head>
+
+<body class="loading" data-layout="topnav" onload="FocusOnInput()">
+	<div layout:fragment="app_content">
+
+		<div style="padding: 3px 0px"
+			sec:authorize="hasAuthority('ROLE_USER')">
+			<h5 style="margin-left: 20px;">Create Issue</h5>
+			<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+		
+			
+						<div class="row">
+									<div class="col s12">
+						
+							<div class="fixedButton"> 
+								<a th:href="@{/allissues}"><div class="waves-effect waves-light btn btn-change red accent-2">Cancel</div></a>
+								</div>
+
+							</div>
+						</div>
+						
+						<!-- Form Advance -->
+						
+                            <div class="col s12 m12 l12">
+                                <div id="Form-advance">
+                                
+                                        <div id="html-view-validations">
+										<form class="formValidate0" id="formValidate0" action="#"
+												th:action="@{/saveIssues}" th:object="${issueDto}"
+												autocomplete="off" method="post">
+
+											<div class="row">
+                                                <div class="input-field col s12">
+                                                    <textarea id="issueTittle" class="materialize-textarea" th:field="*{issueTittle}"
+											maxlength="240" required></textarea>
+                                                    <label for="message">Issue Title *</label>
+                                                </div>
+                                            <!-- <div class="input-field col m6 s12">
+											<input placeholder="Issue No" id="issueNo" name="issueNo"
+												value="" required type="text" th:field="*{issueNo}">
+											<label for="issueNo">Issue No</label>
+										</div> -->
+                                                
+												</div>
+                                            <div class="row">
+                                                <div class="input-field col m6 s12">
+                                                    <input  name="requestor" id="requestor" type="text" th:field="*{requestor}" required>
+                                                    <label for="required">Requester </label>
+                                                </div>
+												<div class="input-field col m6 s12">
+                                                    <input id="client"	th:field="*{client}" type="text" value="" required>
+                                                    <label for="first_name01">Client </label>
+                                                </div>
+                                           
+                                            </div>
+                                           
+                                            <div class="row">
+                                            
+                                             <div id="view-multiple">
+                                                <div class="input-field col m6 s12">
+                                                
+                                                   <select  class="select2-multiple"
+													 multiple="multiple" 									
+														required="required"
+														th:field="*{application}"> 
+				                                        <option value="" disabled selected>Choose....</option>
+                                                        <option th:value="TNETS41" th:text="TNETS41"></option>
+															<option th:value="TNETS41ARC" th:text="TNETS41ARC"></option>
+															<option th:value="BOSS" th:text="BOSS"></option>
+															<option th:value="DMS" th:text="DMS"></option>
+															<option th:value="TSS" th:text="TSS"></option>
+															<option th:value="BI" th:text="BI"></option>
+															<option th:value="BCS" th:text="BCS"></option>
+															<option th:value="TIS" th:text="TIS"></option>
+															<option th:value="EMAILBACKUP" th:text="EMAILBACKUP"></option>
+															<option th:value="OTHERS" th:text="OTHERS"></option>
+                                                    </select>
+                                                    <label> Application</label>
+                                                </div>
+                                                </div>
+                                                <div class="input-field col m6  s12">
+													<select
+															th:field="*{issuetype}">
+															<!-- <option value="" selected>Choose....</option> -->
+															<option th:each="listtype : ${listissuetype}"
+																th:value="${listtype.title}" th:text="${listtype.title}"
+																th:selected="selected"></option>
+														</select>
+														<label >Issue Type</label> 
+														</div>
+                                            </div>
+										 <div class="row">
+										 <div class="input-field col m6 s12">
+																		<label for="date-demo2">Requested Date</label> <input class="task-datepicker"
+																			data-date-format="mm/dd/yyyy" type="text" id="date-demo2" placeholder="01/01/2022"
+																			th:field="*{requestDate}" required>
+
+																	</div>
+											<div class="input-field col m6 s12">
+									
+																	<label for="time-demo">Requested Time</label> <input class="timepicker"
+																			type="text" id="hours" th:field="*{requestTime}" placeholder="00:00"
+																			 required>
+
+																	</div>			
+                                                    										
+												</div>
+											<div class="row">
+													<div class="input-field col m6 s12">
+                                                    <select th:field="*{issueStatus}">
+                                                        <option value="" disabled selected>Status</option>
+                                                        <option th:value="OPEN" th:text="OPEN"></option>
+                                                       
+                                                    </select>
+                                                    <label> Status</label>
+                                                </div>
+												<div class="input-field col m6 s12">
+                                                    <select th:field="*{assignedTo}">
+                                                        <option value="" disabled selected>Assigned To</option>
+                                                        <option th:each="user : ${listUser}"
+												th:value="${user.userName}" th:text="${user.userName}"
+												th:selected="selected"></option>
+                                         
+                                                    </select>
+                                                    <label> Assigned To</label>
+                                                </div>
+												</div>
+                                            <div class="row">
+                                               
+												<div class="input-field col m6 s12">
+                                                    <select th:field="*{categoryId}">
+                                                        <option th:each="category : ${listCategory}"
+												th:value="${category.id}" th:text="${category.categoryName}"
+												th:selected="selected"></option>
+                                                       
+                                                    </select>
+                                                    <label > Category Name</label>
+                                                </div>
+                                                 <div class="input-field col m6  s12">
+												<select
+													 th:field="*{severity}">
+													<!--  <option value="" selected>Choose....</option> -->
+														<option th:value="Critical" th:text="Critical"></option>
+														<option th:value="Major" th:text="Major"></option>
+														<option th:value="Medium" th:text="Medium"></option>
+														<option th:value="Low" th:text="Low"></option>
+
+													</select>
+													<label for="severity">Severity</label> 
+													</div> 
+												
+                                             <div class="row">
+                                              												
+													 <div class="input-field col m6 s12">
+                                                    <input type="text" id="environment" 
+																th:field="*{environment}" value=""
+																required placeholder="Environment">
+                                                    <label for="environment">Environment </label>
+                                                </div>
+													 <div class="input-field col m6 s12">
+                                                    <textarea id="description" class="materialize-textarea" value="" th:field="*{description}" required placeholder="Description" rows="4"></textarea>
+                                                    <label for="description">Description</label>
+                                                </div>
+													
+													</div> 
+                                               	<div class="fixedButton1">
+                                                        <button class="waves-effect waves-light btn btn-change green" type="submit" name="action">Save
+                                                        </button>
+											    </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                              <!--   </div> -->
+                            </div>
+						</div>
+						</div>	
+
+					</div>
+				</div>
+			</div>
+		<!-- </div> -->
+
+</body>
+
+</html>

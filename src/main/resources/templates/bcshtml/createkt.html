@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/userhomepage}">
+<head>
+
+</head>
+
+<body class="loading" data-layout="topnav">
+	<div layout:fragment="app_content">
+		<div style="padding: 3px 0px"
+			sec:authorize="hasAuthority('ROLE_USER')">
+			<h5 style="margin-left: 20px;"> Create KT</h5>
+			<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+		
+			
+						<div class="row">
+									<div class="col s12">
+						
+					
+							<div class="fixedButton"> 
+								<a th:href="@{/givenkt}"><div class="waves-effect waves-light btn btn-change red accent-2">Cancel</div></a>
+									</div>
+								
+
+								<!-- Form Advance -->
+								
+                            <div class="col s12 m12 l12">
+                                <div id="Form-advance" class="card card card-default scrollspy">
+                                        <div id="html-view-validations">
+										<form class="formValidate0" id="formValidate0" action="#"
+												th:action="@{/updatekt}" th:object="${ktDto}"
+												autocomplete="off" method="post">
+												
+									
+											<div class="form-row ">
+												<div class="input-field col m6 s12">
+                                                    <textarea rows="2" id="reason" class="materialize-textarea" th:field="*{ktTopic}" placeholder="KT Topic"
+													value="" required></textarea>
+                                                    <label for="reason">KT Topic</label>
+                                                </div>
+												<div class="input-field col m6 s12">
+                                                    <textarea rows="2" id="comment" class="materialize-textarea" th:field="*{resolution}" placeholder="Solution Details..."
+													value="" ></textarea>
+                                                    <label for="comment">Solution</label>
+                                                </div>
+										
+											<div class="fixedButton1">
+											<button class="waves-effect waves-light btn btn-change green" 
+											type="submit" name="action">Save
+                                             </button>
+											</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+</body>
+</html>

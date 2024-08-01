@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/homepage}">
+
+<head>
+	<!-- <script type="text/javascript">
+		function FocusOnInput() {
+			document.getElementById("name").focus();
+		}
+	</script> -->
+</head>
+
+<body class="loading" data-layout="topnav" onload="FocusOnInput()">
+<div layout:fragment="app_content">
+	
+		<div style="padding: 3px 0px" sec:authorize="hasAuthority('ROLE_ADMIN')">
+		<h5 style="margin-left: 20px;">Task Update</h5>
+			<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+		
+			
+						<div class="row">
+									<div class="col s12">
+						
+							<div class="fixedButton"> 
+							 <a th:href="@{/admintaskviews}"><div class="waves-effect waves-light btn btn-change red accent-2">Cancel</div></a>
+									</div>
+						
+					
+				
+				
+								<!-- Form Advance -->
+                            <div class="col s12 m12 l12">
+                                <div id="Form-advance">
+
+                                        <div id="html-view-validations">
+										<form class="formValidate0" id="formValidate0" action="#"
+												th:action="@{/updateadmintask}" th:object="${task}"
+												autocomplete="off" method="post">
+										
+											<div class="row ">
+											<input type="hidden" id="id" class="form-control" th:field=*{id}>
+												<div class="input-field col m6 s12">
+                                                            <input placeholder="00:00" 
+												th:field="*{taskName}" value="" required type="text">
+                                                            <label for="name">Task Name</label>
+                                                  </div>
+	
+												<div class="input-field col m6 s12">
+                                                    <select th:field="*{tasktype}">
+                                                        <option value="" disabled selected>Type</option>
+                                                        <option th:each="task : ${listtasktype}" th:value="${task.title}"
+														th:text="${task.title}" th:selected="selected"></option>
+                                         
+                                                    </select>
+                                                    <label> Type</label>
+                                                </div>
+								</div>
+								<div class="row">
+								<div class="input-field col m6 s12">
+                                                    <select required="required"
+													th:field="*{taskstatus}">
+                                                        <option value="" disabled selected>Choose....</option>
+                                                        <option th:value="OPEN" th:text="OPEN"></option>
+														<option th:value="CLOSED" th:text="CLOSED"></option>
+														<option th:value="PENDING" th:text="PENDING"></option>
+	                                                    </select>
+                                                    <label> Status</label>
+                                                </div>
+								<div class="input-field col m6  s12">
+                                                    <textarea rows="4"  id="description" class="materialize-textarea" 
+                                                    th:field="*{description}" name="description" placeholder="description"
+														value="" required ></textarea>
+                                                    <label for="message">Description</label>
+                                                </div>
+
+							</div>
+							
+													<div class="fixedButton1">
+														<button class="waves-effect waves-light btn btn-change green " 
+														type="submit" name="action">Update
+			                                             </button>
+														</div>	
+						</form>
+					</div>
+				</div>
+				</div>
+				</div>
+				</div>
+				
+</div>
+</div>
+			</div>
+		</div>
+
+	<script src="assets/js/vendor.min.js"></script>
+	<script src="assets/js/app.min.js"></script>
+</body>
+
+</html>

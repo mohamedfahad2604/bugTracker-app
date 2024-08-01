@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/bcs_main_layout}">
+
+<head>
+<script type="text/javascript">
+	function FocusOnInput() {
+		document.getElementById("issueTittle").focus();
+	}
+
+	function trim(el) {
+		el.value = el.value.replace(/(^\s*)|(\s*$)/gi, ""). // removes leading and trailing spaces
+		replace(/[ ]{2,}/gi, " "). // replaces multiple spaces with one space 
+		replace(/\n +/, "\n"); // Removes spaces after newlines
+		return;
+	}
+</script>
+</head>
+
+<body class="loading" data-layout="topnav" onload="FocusOnInput()">
+	<div layout:fragment="app_content">
+
+		<div style="padding: 30px 0px"
+			sec:authorize="hasAuthority('ROLE_USER')">
+
+			<div class="container" style="color: rgb(62, 205, 50);">
+				<h3 class="text-dark-50 text-center mt-0 font-weight-bold"
+					style="color: red;">Create Issue</h3>
+				<div class="form-row ">
+					<div class="form-group col-md-12">
+						<a th:href="@{/allissues}" class="btn btn-primary float-right"
+							style='border-color: white; background-color: #3688FC; color: white;'>
+							Issue Details</a>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-body">
+
+
+						<form class="needs-validation" novalidate action="#"
+							style="color: black;" th:action="@{/saveIssues}"
+							th:object="${issueDto}" autocomplete="off" method="post">
+
+							<div class="form-row ">
+								<div class="form-group col-md-12">
+									<label for="issueTittle">Issue Title</label>
+
+									<textarea rows="2" type="text" class="form-control" getfocus()
+										autofocus id="issueTittle" name="issueTittle"
+										placeholder="Issue Title" value="" th:field="*{issueTittle}"
+										maxlength="240" onchange="return trim(this)" required />
+
+									<div class="invalid-feedback">Please Enter the Issue
+										Title.</div>
+								</div>
+							</div>
+							<div class="form-row ">
+								<div class="form-group col-md-4">
+									<label for="Requestor">Requester </label> <input type="text"
+										class="form-control" id="requestor" name="requestor"
+										placeholder="Requester" value="" th:field="*{requestor}"
+										required>
+
+									<div class="invalid-feedback">Please Enter the Requester
+										Name</div>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="client">Client</label> <input type="text"
+										class="form-control" id="client" th:field="*{client}"
+										placeholder="Client" value="" required>
+
+									<div class="invalid-feedback">Please Enter the Client
+										Name</div>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="application">Application</label><select
+										class="select2 form-control select2-multiple"
+										data-toggle="select2" multiple="multiple"
+										data-placeholder="Choose ..." required="required"
+										th:field="*{application}">
+										<option th:value="TNETS41" th:text="TNETS41"></option>
+										<option th:value="TNETS41ARC" th:text="TNETS41ARC"></option>
+										<option th:value="BOSS" th:text="BOSS"></option>
+										<option th:value="DMS" th:text="DMS"></option>
+										<option th:value="TSS" th:text="TSS"></option>
+										<option th:value="BI" th:text="BI"></option>
+										<option th:value="BCS" th:text="BCS"></option>
+										<option th:value="TIS" th:text="TIS"></option>
+										<option th:value="EMAILBACKUP" th:text="EMAILBACKUP"></option>
+										<option th:value="OTHERS" th:text="OTHERS"></option>
+									</select>
+
+									<div class="invalid-feedback">Please Choose the
+										Application</div>
+								</div>
+							</div>
+							<div class="form-row ">
+								<div class="form-group col-md-4">
+									<label for="environment">Environment</label> <input type="text"
+										class="form-control" id="environment"
+										th:field="*{environment}" placeholder="Environment" value=""
+										required>
+
+									<div class="invalid-feedback">Please Enter the
+										Environment</div>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="requestDate">Request Date</label>
+									<div class="input-group">
+										<input type="text" class="form-control date"
+											id="birthdatepicker" data-toggle="date-picker"
+											data-single-date-picker="true" th:field="*{requestDate}"
+											value="" required>
+										<div class="input-group-append">
+											<span class="input-group-text"><i
+												class="dripicons-calendar"></i></span>
+										</div>
+										<div class="invalid-feedback">Please Select the Request
+											Date</div>
+									</div>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="requestTime">Request Time</label>
+									<div class="input-group">
+										<input type="text" class="form-control"
+											data-toggle='timepicker' data-minute-step="1"
+											data-show-meridian="false" id="requestTime"
+											th:field="*{requestTime}" value="" required>
+										<div class="input-group-append">
+											<span class="input-group-text"><i
+												class="dripicons-clock"></i></span>
+										</div>
+									</div>
+
+									<div class="invalid-feedback">Please Select the Request
+										Time</div>
+								</div>
+							</div>
+							<div class="form-row ">
+								<div class="form-group col-md-4">
+									<label for="issueStatus">Status </label> <select
+										class="custom-select mb-3" th:field="*{issueStatus}">
+										<option th:value="OPEN" th:text="OPEN"></option>
+
+									</select>
+
+									<div class="invalid-feedback">Please choose the Status.</div>
+								</div>
+
+								<div class="form-group col-md-4">
+									<label for="assignedTo">Assigned To</label> <select
+										class="custom-select mb-3" th:field="*{assignedTo}">
+										<option th:each="user : ${listUser}"
+											th:value="${user.userName}" th:text="${user.userName}"
+											th:selected="selected"></option>
+									</select>
+
+									<div class="invalid-feedback">Please choose a Assigned
+										To.</div>
+								</div>
+								<div class="form-group col-md-4">
+									<label>Category Name</label> <select class="custom-select mb-3"
+										th:field="*{categoryId}">
+										<option th:each="category : ${listCategory}"
+											th:value="${category.id}" th:text="${category.categoryName}"
+											th:selected="selected"></option>
+									</select>
+
+									<div class="invalid-feedback">Please choose a Category</div>
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="form-group col-md-12">
+									<label for="description">Description</label>
+									<textarea class="form-control" id="description"
+										placeholder="Description" value="" th:field="*{description}"
+										required rows="4" onchange="return trim(this)"></textarea>
+
+									<div class="invalid-feedback">Please write a Description.</div>
+								</div>
+
+
+							</div>
+							<button class="btn btn-success float-right" type="submit">Create
+								Issue</button>
+
+						</form>
+
+					</div>
+				</div>
+
+				<br /> <br /> <br> <br>
+			</div>
+		</div>
+	</div>
+
+	<script src="assets/js/vendor.min.js"></script>
+	<script src="assets/js/app.min.js"></script>
+</body>
+
+</html>

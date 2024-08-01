@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/bcs_main_layout}">
+
+<head>
+	<script type="text/javascript">
+		function FocusOnInput() {
+			document.getElementById("name").focus();
+		}
+	</script>
+</head>
+
+<body class="loading" data-layout="topnav" onload="FocusOnInput()">
+	<div layout:fragment="app_content">
+		<div class="account-pages mt-5 mb-5">
+			<div class="container" style="color: black;">
+				<h3 class="text-dark-50 text-center mt-0 font-weight-bold" style="color: red;">Task Creation Page</h3>
+				<div class="form-row ">
+					<div class="form-group col-md-12">
+						<a th:href="@{/admintaskviews}" class="btn btn-primary float-right"
+							style='border-color: white; background-color: #3688FC; color: white;'>
+							Task View</a>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-body">
+						<form class="needs-validation" novalidate th:action="@{/saveadmintask}" th:object="${task}"
+							autocomplete="off" method="post">
+							<div class="form-row ">
+								<div class="form-group col-md-6">
+									<label for="name">Task Name</label> <input type="text" class="form-control"
+										id="taskName" name="taskName" getfocus() autofocus placeholder="Task name"
+										value="" required>
+									<div class="valid-feedback"></div>
+									<div class="invalid-feedback">Please Enter the Task Name.</div>
+								</div>
+
+								<div class="form-group col-md-3">
+									<label for="type">Type</label>
+									<select class="custom-select mb-3" th:field="*{tasktype}">
+										<option th:each="task : ${listtasktype}" th:value="${task.title}"
+											th:text="${task.title}" th:selected="selected"></option>
+									</select>
+
+									<div class="invalid-feedback">Please choose a Task Type</div>
+								</div>
+
+
+
+
+								<div class="form-group col-md-3">
+									<label for="taskstatus">Status</label>
+									<select class="custom-select mb-3" th:field="*{taskstatus}">
+
+
+
+										<option th:value="OPEN" th:text="OPEN"></option>
+
+									</select>
+								</div>
+
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-12" style="text-align: left">
+									<label for="text">Description</label> <textarea class="form-control"
+										id="description" name="description" placeholder="Description" value="" required
+										rows="4"></textarea>
+									<div class="invalid-feedback">Please Enter the
+										Description.</div>
+								</div>
+							</div>
+
+
+
+
+
+
+
+							<div class="text-right">
+								<button class="btn btn-success float-center" type="submit">Create Task</button>
+
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<br>
+				<br>
+				<br>
+			</div>
+		</div>
+	</div>
+	<script src="assets/js/vendor.min.js"></script>
+	<script src="assets/js/app.min.js"></script>
+</body>
+
+</html>

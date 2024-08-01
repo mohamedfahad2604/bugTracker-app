@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/userhomepage}">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<head>
+
+
+<style>
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 90px;
+	height: 34px;
+}
+
+.switch input {
+	display: none;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ca2222;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+input:checked+.slider {
+	background-color: #2ab934;
+}
+
+input:focus+.slider {
+	box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+	-webkit-transform: translateX(55px);
+	-ms-transform: translateX(55px);
+	transform: translateX(55px);
+}
+
+/*------ ADDED CSS ---------*/
+.on {
+	display: none;
+}
+
+.on, .off {
+	color: white;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+	font-size: 10px;
+	font-family: Verdana, sans-serif;
+}
+
+input:checked+.slider .on {
+	display: block;
+}
+
+input:checked+.slider .off {
+	display: none;
+}
+
+/*--------- END --------*/
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+</style>
+</head>
+
+
+<body class="loading" data-layout="topnav">
+	<div layout:fragment="app_content">
+
+
+		<!-- Modal -->
+		<div class="modal fade" id="Modal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<form class="needs-validation" novalidate action="#"
+						th:action="@{/saveserverstatus}" 	autocomplete="off" method="post"  th:object="${serverStatus}" >
+					
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel" style="color: red">Server
+								Acknowledge</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="form-row" align="left">
+								<div class="form-group col-md-12">
+									<label for="Requester" style="color: black">Requester </label>
+									<select class="custom-select mb-3" id="accessedby">
+									<!-- 	th:field="*{accessedby}"> -->
+										<option th:each="user : ${listUsers}"
+											th:value="${user.userName}" th:text="${user.userName}"
+											th:selected="selected" id="accessedby" required="required"></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-row" align="left">
+								<div class="form-group col-md-12">
+									<label for="Remarks" style="color: black">Remarks </label>
+									<textarea rows="2" type="text" id="Remarks"name="Remarks" class="form-control"
+										required="required" maxlength="100"></textarea>
+										<!-- th:field="*{Remarks}"  -->
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary"
+								data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-success">Acknowledge</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div style="padding: 30px 0px"
+			sec:authorize="hasAuthority('ROLE_USER')">
+
+			<div class="container" style="color: rgb(62, 205, 50);">
+				<h3 class="text-dark-50 text-center mt-0 font-weight-bold"
+					style="color: red;">Server Status View</h3>
+				<br> <br>
+				<div class="card">
+					<div class="card-body">
+
+
+						<table id="basic-datatable"
+							class="table table-condensed table-striped dt-responsive nowrap"
+							style="width: 100%">
+
+							<thead>
+								<tr style="color: red">
+									<th>Server</th>
+									<th>Status</th>
+
+									<th>Accessed By</th>
+									<th>Date</th>
+									<th>Login Time</th>
+									<th>Logout Time</th>
+									<th>Remarks</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr style="color: black" th:each="server : ${listss}">
+
+									<td th:text="${server.servername}"></td>
+									<td><label class="switch"> <input type="checkbox"
+											data-toggle="modal" data-target="#Modal"
+											th:checked="${server.status}" id="togBtn">
+											<div class="slider round">
+												<!--ADDED HTML -->
+												<span class="on">IN </span> <span class="off">OUT</span>
+												<!--END-->
+											</div>
+									</label></td>
+
+
+									<td th:text="${server.accessedby}"></td>
+									<td th:text="${server.date}"></td>
+									<td th:text="${server.logintime}"></td>
+									<td th:text="${server.logouttime}"></td>
+									<td th:text="${server.Remarks}"></td>
+
+
+
+
+
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+</body>
+
+</html>

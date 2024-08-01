@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/homepage}">
+<head>
+<script type="text/javascript">
+	function FocusOnInput() {
+		document.getElementById("startDate").focus();
+	}
+</script>
+</head>
+<body class="loading" data-layout="topnav" onload="FocusOnInput()">
+	<div layout:fragment="app_content">
+	
+		<div style="padding: 3px 0px" sec:authorize="hasAuthority('ROLE_ADMIN')">
+		<h5 style="margin-left: 20px;">Issue Details</h5>
+			<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+		
+			
+						<div class="row">
+									<div class="col s12">
+						
+							<div class="fixedButton">	
+							<a class="waves-effect waves-light btn modal-trigger mb-2 mr-1 right btn-change red accent-2"
+														href="#login-modal">Search</a></div>
+								<!-- -------------Search with Popover------------------- -->
+										<!-- Modal Example -->
+								<div class="row">
+									<div class="col s12">
+										<div id="fixed-example" class="card card-tabs">
+
+											<div id="view-example">
+
+												<div class="col s12">
+
+													<div id="login-modal" class="modal">
+														<div class="modal-content center">
+															
+															<form th:action="@{/searchByDate/view/dailyActivity}" method="get" autocomplete="off">
+																<div class="row">
+																	
+																
+																	<div class="input-field col m6 s12">
+																		<label for="requestDateStart">From Date</label> <input class="datepicker"
+																		name="startDate" value="" type="text" id="requestDateStart" placeholder="dd/MM/yyyy" >
+
+																	</div>
+																
+																	<div class="input-field col m6 s12">
+																		<label for="requestDateEnd">To Date</label> <input class="datepicker"
+																			name="endDate" type="text" id="requestDateEnd" placeholder="dd/MM/yyyy" >
+																			
+
+																	</div>
+																
+																	
+																</div>													
+																	<button style="margin:5px;" type="submit"
+																		class="modal-action  mb-6 btn waves-effect waves-light red accent-2 btn-flat btn-change right">Search
+																		</button>
+																		
+															</form>
+														</div>
+														</div>
+													</div>
+												</div>
+
+											</div>
+
+										</div>
+									</div>
+			
+			 
+								<!-- -----------End Search with Popover--------------------- -->
+
+								<!-- <table id="issueTableone"
+									class="table table-condensed table-striped dt-responsive nowrap"
+									style="width: 100%"> -->
+								<div class="section section-data-tables">
+								<table id="page-length-option" class="striped" >
+									
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Requester</th>
+											<th>Request Date</th>
+											<th>Status</th>
+											<th>Assigned To</th>
+											<th>Resolved By</th>
+											<th>Resolved Date</th>
+											<th>Application</th>
+											<th>Environment</th>
+											<th>Client</th>
+											<th>Solution</th>
+											<th>Description</th>
+											<th>Issue Title</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr  style="color: black" th:each="issue : ${issues}">
+											<td th:text="${issue.id}"></td>
+											<td th:text="${issue.requestor}"></td>
+											<td th:text="${issue.requestDate}"></td>
+											<td th:text="${issue.status}"></td>
+											<td th:text="${issue.assignedTo}"></td>
+											<td th:text="${issue.resolvedBy}"></td>
+											<td th:text="${issue.resolvedDate}"></td>
+											<td th:text="${issue.application}"></td>
+											<td th:text="${issue.environment}"></td>
+											<td th:text="${issue.client}"></td>
+											<td th:text="${issue.resolution}"></td>
+											<td th:text="${issue.description}"></td>
+											<td th:text="${issue.issueTittle}"></td>
+										</tr>
+									</tbody>
+								</table>
+								</div>
+							</div>
+						</div>
+				 	</div>
+				</div>
+			</div>
+		</div>
+
+
+
+</body>
+</html>
+

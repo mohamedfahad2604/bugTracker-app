@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/bcs_main_layout}">
+
+<head>
+
+</head>
+
+
+<body class="loading" data-layout="topnav">
+
+
+	<!-- ============= COMPONENT ============== -->
+
+
+	<div layout:fragment="app_content">
+
+
+		<ul class="nav nav-tabs justify-content-center">
+			<li class="nav-item"><a class="nav-link " aria-current="page"
+				th:href="@{/givenkt}">KT Given</a></li>
+			<li class="nav-item"><a class="nav-link active"
+				th:href="@{/viewkt}"
+				style="border-color: white; background-color: #3688FC; color: white;">Pending
+					KT</a></li>
+			<li class="nav-item"><a class="nav-link"
+				th:href="@{/viewcompletedkt}">Completed KT</a></li>
+
+		</ul>
+
+
+
+		<div style="padding: 30px 0px"
+			sec:authorize="hasAuthority('ROLE_USER')">
+
+			<div class="container" style="color: rgb(62, 205, 50);">
+				<h3 class="text-dark-50 text-center mt-0 font-weight-bold"
+					style="color: red;">Pending KT Details</h3>
+				<br> <br>
+
+
+
+				<table id="basic-datatable"
+					class="table table-condensed table-striped dt-responsive nowrap"
+					style="width: 100%">
+
+
+					<thead>
+						<tr style="color: red">
+							<th>Created Date</th>
+							<th>From</th>
+							<th>Topic</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr  style="color: black" th:each="kt : ${listKt}">
+							<td th:text="${kt.createDate}"></td>
+							<td th:text="${kt.createdBy}"></td>
+							<td th:text="${kt.ktTopic}"></td>
+							<!-- <td th:text="${kt.ktTo}" hidden="hidden"></td>
+
+									
+									<td th:text="${kt.issueid}" hidden="hidden"></td>
+									<td th:text="${kt.ktDate}" hidden="hidden"></td>
+									<td th:text="${kt.resolution}" hidden="hidden"></td>
+									<td th:text="${kt.ktTimeTaken}" hidden="hidden"></td>
+									<td th:text="${kt.status}" hidden="hidden"></td>
+									<td th:text="${kt.ktfrom}" hidden="hidden"></td>
+									<td th:text="${kt.ktstatus}" hidden="hidden"></td>
+									<td th:text="${kt.ktauthor}" hidden="hidden"></td> -->
+							<td><a th:href="@{'/editkt/'+ ${kt.id}}"
+								class="mdi mdi-square-edit-outline" title="Acknowledge"
+								style="color: red;"> <i></i></a></td>
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div>
+	</div>
+
+
+
+
+</body>
+
+</html>

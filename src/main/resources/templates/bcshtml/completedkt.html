@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/userhomepage}">
+
+<head>
+
+</head>
+
+
+<body class="loading" data-layout="topnav">
+
+
+	<!-- ============= COMPONENT ============== -->
+
+
+	<div layout:fragment="app_content">
+	<!-- <div class="right">
+            
+                    <ul class="center" id="ul-horizontal-nav">
+					
+						<li><a class="dropdown-trigger" th:href="@{/givenkt}" data-target="dropdown123" ><span><span class="dropdown-title" data-i18n="Apps">KT Given</span></span></a>
+                            
+                        </li>
+                        <li ><a class="dropdown-trigger" th:href="@{/viewkt}"  data-target="dropdown123" ><span><span class="dropdown-title" data-i18n="Templates">Pending KT</span></span></a>
+       
+                        </li>
+                         <li ><a class="dropdown-trigger" th:href="@{/viewcompletedkt}" data-target="dropdown123" style="border-color: white; background-color: #3688FC; color: white; padding:20px 20px;"><span class="dropdown-title" data-i18n="Templates">Completed KT</span></a>
+       
+                        </li>
+                            
+                    </ul>
+					
+       		</div> -->
+
+		
+		
+		<div style="padding: 3px 0px"
+			sec:authorize="hasAuthority('ROLE_USER')">
+			<h5 style="margin-left: 20px;"> Completed KT</h5>
+			<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+		
+			
+						<div class="row">
+									<div class="col s12">
+						
+
+			<div class="section section-data-tables">
+								<table id="page-length-option" class="striped" >
+			<thead>
+						<tr>
+							<th>Created Date</th>
+							<th>From</th>
+							<th>KT Date and Time</th>
+							<th>Time Taken</th>
+							<th>Topic</th>
+							<th>Solution</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="kt : ${listKt}">
+							<td th:text="${kt.createDate}"></td>
+							<td th:text="${kt.createdBy}"></td>
+							<td th:text="${kt.ktDate}"></td>
+							<td th:text="${kt.ktTimeTaken}"></td>
+
+							<td th:text="${kt.ktTopic}"></td>
+							<td th:text="${kt.resolution}"></td>
+
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div>
+	</div>
+
+</div>
+</div>
+</div>
+
+</body>
+
+</html>

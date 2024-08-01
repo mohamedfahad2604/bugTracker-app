@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+<meta name="description"
+	content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google.">
+<meta name="keywords"
+	content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
+<meta name="author" content="ThemeSelect">
+
+ 		<title>Ticketing System</title>
+   <link rel="apple-touch-icon" href="/assets/images/favicon/icon-bug-15.jpg">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon/icon-bug-15.jpg">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- BEGIN: VENDOR CSS-->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/vendors/vendors.min.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/vendors/sweetalert/sweetalert.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/vendors/flag-icon/css/flag-icon.min.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/vendors/data-tables/css/jquery.dataTables.min.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css}">
+<!-- END: VENDOR CSS--
+    
+    <!-- BEGIN: Page Level CSS-->
+     <link rel="stylesheet" type="text/css" href="/assets/css/themes/vertical-menu-nav-dark-template/materialize.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/themes/vertical-menu-nav-dark-template/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/pages/form-select2.css">
+   <link rel="stylesheet" type="text/css"
+	th:href="@{/assets/css/pages/dashboard.css}">
+
+<!-- END: Page Level CSS-->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/vendors/animate-css/animate.css}">
+
+<!-- BEGIN: Custom CSS-->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/css/pages/icon.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/vendors/data-tables/css/dataTables.checkboxes.css}">
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/css/pages/data-tables.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/vendors/data-tables/css/select.dataTables.min.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/css/custom/custom.css}">
+<!-- END: Custom CSS-->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/vendors/sweetalert/sweetalert.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/vendors/dropify/css/dropify.min.css}">
+<!-- <link rel="stylesheet" type="text/css"
+	th:href="@{/assets/vendors/quill/quill.snow.css}"> -->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/css/pages/app-sidebar.css}">
+	<!-- <link rel="stylesheet" type="text/css"
+	th:href="@{/assets/css/pages/app-email.css}"> -->
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/vendors/chartist-js/chartist.min.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/vendors/chartist-js/chartist-plugin-tooltip.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/vendors/animate-css/animate.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/vendors/select2/select2.min.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/vendors/select2/select2-materialize.css}">
+	
+	
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
+    <!-- END: Custom CSS-->
+ 	
+     
+ <!-- BEGIN VENDOR JS-->
+<script th:src="@{/assets/js/vendors.min.js}"></script>
+
+<!-- BEGIN VENDOR JS-->
+<!-- BEGIN PAGE VENDOR JS-->
+<script th:src="@{/assets/vendors/chartjs/chart.min.js}"></script>
+<script th:src="@{/assets/vendors/chartist-js/chartist.min.js}"></script>
+<script
+	th:src="@{/assets/vendors/chartist-js/chartist-plugin-tooltip.js}"></script>
+<script
+	th:src="@{/assets/vendors/chartist-js/chartist-plugin-fill-donut.min.js}"></script>
+<!-- END PAGE VENDOR JS-->
+<script
+	th:src="@{/assets/vendors/data-tables/js/jquery.dataTables.min.js}"></script>
+<script
+	th:src="@{/assets/vendors/data-tables/extensions/responsive/js/dataTables.responsive.min.js}"></script>
+<script
+	th:src="@{/assets/vendors/data-tables/js/datatables.checkboxes.min.js}"></script>
+<script
+	th:src="@{/assets/vendors/data-tables/js/dataTables.select.min.js}"></script>
+<script th:src="@{/assets/vendors/formatter/jquery.formatter.min.js}"></script>
+<!-- BEGIN THEME  JS-->
+<script th:src="@{/assets/js/plugins.js}"></script>
+<script th:src="@{/assets/js/search.js}"></script>
+<script th:src="@{/assets/js/custom/custom-script.js}"></script>
+<!-- <script th:src="@{/assets/js/scripts/customizer.js}"></script> -->
+<!-- END THEME  JS-->
+<script th:src="@{/assets/js/scripts/app-invoice.js}"></script>
+<script th:src="@{/assets/js/scripts/advance-ui-modals.js}"></script>
+<script th:src="@{/assets/js/scripts/form-elements.js}"></script>
+<script th:src="@{/assets/js/scripts/form-masks.js}"></script>
+<script th:src="@{/assets/js/scripts/form-validation.js}"></script>
+<script th:src="@{/assets/js/scripts/data-tables.js}"></script>
+
+<!-- BEGIN PAGE LEVEL JS-->
+
+<!-- <script th:src="@{/assets/vendors/sweetalert/sweetalert.min.js}"></script>
+<script th:src="@{/assets/js/scripts/extra-components-sweetalert.js}"></script>
+<script th:src="@{/assets/js/scripts/sweetalert.js}"></script> -->
+<script th:src="@{/assets/js/scripts/ui-alerts.js}"></script>
+<script th:src="@{/assets/js/scripts/advance-ui-toasts.js}"></script>
+
+<script th:src="@{/assets/vendors/dropify/js/dropify.min.js}"></script>
+<script th:src="@{/assets/js/scripts/form-file-uploads.js}"></script>
+<!-- <script th:src="@{/assets/js/scripts/app-email.js}"></script> -->
+<!-- <script th:src="@{/assets/vendors/quill/quill.min.js}"></script> -->
+<script th:src="@{/assets/vendors/sortable/jquery-sortable-min.js}"></script>
+
+<script th:src="@{/assets/vendors/select2/select2.full.min.js}"></script>
+<script th:src="@{/assets/js/scripts/form-select2.js}"></script>
+<!-- END PAGE LEVEL JS-->
+ <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    
+</head>
+<!-- END: Head-->
+
+<body class="vertical-layout page-header-light vertical-menu-collapsible vertical-menu-nav-dark preload-transitions 2-columns" data-open="click" data-menu="vertical-menu-nav-dark" data-col="2-columns">
+
+            <div th:replace="fragments/header :: header"></div>
+            
+            <!-- BEGIN: Vertical nav start-->
+             <aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light navbar-full sidenav-active-rounded">
+      			  <div class="brand-sidebar">
+      			   <a class="brand-logo darken-1" href="/"><img
+					class="hide-on-med-and-down"
+					th:src="@{/assets/images/logo/c360P.png}" alt="materialize logo" /><img
+					class="show-on-medium-and-down hide-on-med-and-up"
+					th:src="@{/assets/images/logo/c360P.png}" alt="materialize logo" />
+					<!-- <span
+					class="logo-text hide-on-med-and-down"
+					style="color: #26B4FF; font-size: 18px;">Tickets</span> -->
+					</a>
+            <!-- <h1 class="logo-wrapper"><a class="brand-logo darken-1" href="#"><img src="/assets/images/bizz-soluytions-white-logo.png" alt="BCS logo" /><span class="logo-text hide-on-med-and-down"></span></a>
+            </h1> -->
+           
+            </div>
+      		   <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="menu-accordion" >
+                   
+					 	<li class="bold"><a class="waves-effect waves-cyan " sec:authorize="hasAuthority('ROLE_DASHBOARD')" th:href="@{/dashboard}" data-target="Cards"><i class="material-icons">dashboard</i><span class="dropdown-title" data-i18n="Dashboard">Dashboard</span></a>
+                        
+                        </li>  
+						 <li class="bold"><a class="waves-effect waves-cyan " sec:authorize="hasAuthority('ROLE_TASK')" th:href="@{/addtask}" data-target="AppsDropdown"><i class="material-icons">folder_open</i><span class="dropdown-title" data-i18n="Task">Task</span></a>
+						                            
+                        </li>
+                        
+                       <!-- 	 <li class="navigation-header"><a class="navigation-header-text" >Knowledge Transfer</a>
+                       		   </li>  -->    
+                       		    <li class="bold"><a class="waves-effect waves-cyan " sec:authorize="hasAuthority('ROLE_GIVENKT')" th:href="@{/givenkt}"><i class="material-icons">memory</i><span class="menu-title" data-i18n="KT Given">KT Given</span></a>
+            					</li>  
+            					<li class="bold"><a class="waves-effect waves-cyan " sec:authorize="hasAuthority('ROLE_PENDINGKT')" th:href="@{/viewkt}"><i class="material-icons">memory</i><span class="menu-title" data-i18n="KT Given">Pending KT</span></a>
+            					</li>  
+            					 <li class="bold"><a class="waves-effect waves-cyan " sec:authorize="hasAuthority('ROLE_COMPLETEDKT')" th:href="@{/viewcompletedkt}"><i class="material-icons">memory</i><span class="menu-title" data-i18n="KT Given">Completed KT</span></a>
+            					</li>                     
+                        
+                        <!-- <li class="navigation-header"><a class="navigation-header-text" >Issue</a>
+                       		   </li>   		    -->
+                                              
+                        		<li class="bold"><a class="waves-effect waves-cyan " sec:authorize="hasAuthority('ROLE_OPENISSUE')" th:href="@{/openedIssues}"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="Open Issues">Open Issues</span></a>
+            					</li> 
+                                <li class="bold"><a class="waves-effect waves-cyan " sec:authorize="hasAuthority('ROLE_ALLISSUE')" th:href="@{/allissues}"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="All Issues">All Issues</span></a>
+            					</li>
+            					 <li class="bold"><a class="waves-effect waves-cyan " sec:authorize="hasAuthority('ROLE_CURRENTMONTHISSUE')" th:href="@{/currentmonthissuelist}"><i class="material-icons">chrome_reader_mode</i><span class="menu-title" data-i18n="This Month Issues">This Month Issues</span></a>
+            					</li>
+							    
+                        
+                        
+                        <li class="bold"><a class="waves-effect waves-cyan " sec:authorize="hasAuthority('ROLE_SERVER')" th:href="@{/serverRequests}" data-target="PageDropdown"><i class="material-icons">desktop_windows</i><span class="dropdown-title" data-i18n="Pages">Server</span></a>
+                         
+                        </li>
+                        <li class="bold"><a class="waves-effect waves-cyan " sec:authorize="hasAuthority('ROLE_DEPLOYMENT')" th:href="@{/deploymentPlanners}" data-target="Cards"><i class="material-icons">cast</i><span class="dropdown-title" data-i18n="Deployment">Deployment</span></a>
+                            
+                        </li>
+                        
+                        <li class="bold"><a  class="waves-effect waves-cyan " data-target="Cards" sec:authorize="hasAuthority('ROLE_TICKETTRACKER')" th:href="@{/userbugTracker}" ><i class="material-icons"> nfc</i><span class="dropdown-title" data-i18n="Bug tracker">Ticket</span></a>
+                        </li>
+                        
+                    </ul>
+			        <ul
+						class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow"
+						id="slide-out" data-menu="menu-navigation"
+						data-collapsible="menu-accordion"
+						sec:authorize="hasAuthority('ROLE_MANAGER')">
+						<li class="bold"><a class="waves-effect waves-cyan "
+							data-target="Cards" th:href="@{/userbugTracker}"><i
+								class="material-icons"> nfc</i><span class="dropdown-title"
+								data-i18n="Bug tracker">Ticket</span></a></li>
+								
+					</ul>
+	 			<div class="navigation-background"></div>
+                    <a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out" ><i class="material-icons">menu</i></a>
+		  </aside>
+      
+             <!-- END: vertical nav start-->
+         
+           
+            <script type="text/javascript">
+		function checkTime(i) {
+			if (i < 10) {
+				i = "0" + i;
+			}
+			return i;
+		}
+
+		/* function startTime() {
+			var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			var s = today.getSeconds();
+			// add a zero in front of numbers<10
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+			t = setTimeout(function() {
+				startTime()
+			}, 500);
+		}
+		startTime(); */
+	</script>
+   
+    
+   
+
+
+    <!-- BEGIN: Page Main-->
+    <div id="main">
+          <!-- <div style=" margin-top: -25px">   -->
+                <div class="container">
+                   <!-- App's page -->
+					<div layout:fragment="app_content"></div>
+					<div layout:fragment="admin_content"></div> 
+                </div>
+           
+    </div>
+    <div class="layout-overlay layout-sidenav-toggle"></div>
+
+	<div th:replace="fragments/footer :: footer"></div>
+    <!-- END: Page Main-->
+    
+    
+
+   
+	<!-- <script>
+		
+				 $(document).ready(
+							function() {
+								var table = $('#issueTableone').DataTable({
+									lengthChange : false,
+									order : [ 2, 'desc' ],
+									buttons : [ 'excel', {
+										extend : 'pdfHtml5',
+										orientation : 'landscape',
+										pageSize : 'LEGAL',
+									}, 'colvis' ]
+								});
+
+								table.buttons().container().appendTo(
+										'#issueTableone_wrapper .col-md-6:eq(0)');
+								var table = $('#issueTableone1').DataTable({
+									lengthChange : false,
+									order : [ 1, 'desc' ]
+								});
+							});
+	</script>
+ -->
+</body>
+
+</html>

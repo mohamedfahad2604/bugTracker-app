@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/bcs_main_layout}">
+<head>
+</head>
+<body class="loading" data-layout="topnav">
+	<div layout:fragment="app_content">
+		<div style="padding: 30px 20px"
+			sec:authorize="hasAuthority('ROLE_ADMIN')">
+
+			<div class="container" style="color: black;">
+				<h3 class="text-dark-50 text-center mt-0 font-weight-bold"
+					style="color: red;">Server Request List</h3>
+
+				<table id="issueTableone"
+					class="table table-condensed table-striped dt-responsive nowrap"
+					style="width: 100%">
+
+					<thead>
+						<tr style="color: red;">
+
+							<th>User Name</th>
+							<th>Request Mode</th>
+							<th>CheckIn</th>
+							<th>CheckOut</th>
+							<th>Server Name</th>
+							<th>Reason</th>
+							<th>Comment</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr  style="color: black" th:each="serverRequestList : ${listServerRequestLogs}">
+
+							<td th:text="${serverRequestList.userName}"></td>
+							<td th:text="${serverRequestList.requestMode}"></td>
+							<td th:text="${serverRequestList.checkIn}"></td>
+							<td th:text="${serverRequestList.checkOut}"></td>
+							<td th:text="${serverRequestList.serverName}"></td>
+							<td th:text="${serverRequestList.reason}"></td>
+							<td th:text="${serverRequestList.comment}"></td>
+
+						</tr>
+					</tbody>
+				</table>
+				<br />  <br /> <br /> <br /> <br />
+			</div>
+		</div>
+	</div>
+</body>
+</html>

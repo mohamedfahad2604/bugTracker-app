@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google.">
+    <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
+    <meta name="author" content="ThemeSelect">
+ 		<title>Ticketing System</title>
+    <link rel="apple-touch-icon" href="/assets/images/favicon/icon-bug-15.jpg">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon/icon-bug-15.jpg">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- BEGIN: VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/vendors.min.css">
+     <link rel="stylesheet" type="text/css" href="/assets/vendors/sweetalert/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/flag-icon/css/flag-icon.min.css">
+     <link rel="stylesheet" type="text/css" href="/assets/vendors/data-tables/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css">
+    <!-- END: VENDOR CSS-->
+   
+    <!-- BEGIN: Page Level CSS-->
+  
+    <link rel="stylesheet" type="text/css" href="/assets/css/themes/vertical-menu-nav-dark-template/materialize.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/themes/vertical-menu-nav-dark-template/style.css">
+
+      
+     <link rel="stylesheet" type="text/css" href="/assets/css/pages/icon.css">
+     <link rel="stylesheet" type="text/css" href="/assets/vendors/data-tables/css/dataTables.checkboxes.css">
+
+      <link rel="stylesheet" type="text/css" href="/assets/css/pages/data-tables.css">
+      <link rel="stylesheet" type="text/css" href="/assets/vendors/data-tables/css/select.dataTables.min.css">
+    <!-- END: Page Level CSS-->
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/custom/custom.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
+    <!-- END: Custom CSS-->
+   <!-- Export Starts -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" />
+	<!-- Export Ends -->
+	 <script src="https://momentjs.com/downloads/moment.min.js"></script>
+</head>
+
+<body class="vertical-layout page-header-light vertical-menu-collapsible vertical-menu-nav-dark preload-transitions 2-columns" data-open="click" data-menu="vertical-menu-nav-dark" data-col="2-columns">
+
+   <div th:replace="fragments/header :: header"></div>
+   
+            <!-- BEGIN: Vertical Sidenav start-->
+             <aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light navbar-full sidenav-active-rounded">
+      			  <div class="brand-sidebar">
+      			  <a class="brand-logo darken-1" href="/dashboard"><img
+					class="hide-on-med-and-down"
+					th:src="@{/assets/images/logo/c360P.png}" alt="materialize logo" /><img
+					class="show-on-medium-and-down hide-on-med-and-up"
+					th:src="@{/assets/images/logo/c360P.png}" alt="materialize logo" />
+					<!-- <span
+					class="logo-text hide-on-med-and-down"
+					style="color: #26B4FF; font-size: 18px;">Tickets</span> -->
+					</a>
+           <!--  <h1 class="logo-wrapper"><a class="brand-logo darken-1" href="#"><img src="/assets/images/bizz-soluytions-white-logo.png" ><span class="logo-text hide-on-med-and-down"></span></a></h1> -->
+            </div>
+      		           
+                    <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" sec:authorize="hasAuthority('ROLE_ADMIN')" data-menu="menu-navigation" ><!--  -->
+					
+						<li class="bold"><a class="waves-effect waves-cyan " th:href="@{/dashboard}" data-target="Cards"><i class="material-icons">dashboard</i><span class="dropdown-title" data-i18n="Dashboard">Dashboard</span></a>
+                        
+                        </li> 
+                         <li><a class="dropdown-menu" th:href="@{/adminviewissuelist}" data-target="TemplatesDropdown"><i class="material-icons">chrome_reader_mode</i><span><span class="dropdown-title" data-i18n="Templates">Issue</span></span></a>
+       
+                        </li>
+                        <li><a class="dropdown-menu" th:href="@{/ktadminview}"  data-target="TemplatesDropdown"><i class="material-icons">memory</i><span><span class="dropdown-title" data-i18n="Templates">Knowledge Transfer</span></span></a>
+       
+                        </li>
+                        <li><a class="dropdown-menu" th:href="@{/admintaskviews}" data-target="AppsDropdown"><i class="material-icons">folder_open</i><span><span class="dropdown-title" data-i18n="Apps">Task</span></span></a>
+                            
+                        </li>
+                        <li><a class="dropdown-menu" th:href="@{/adminViewServerRequestList}" data-target="PageDropdown"><i class="material-icons">desktop_windows</i><span><span class="dropdown-title" data-i18n="Pages">Server</span></span></a>
+                         
+                        </li>
+                        <li><a class="dropdown-menu" th:href="@{/adminViewDeploymentPlannerList}" data-target="Cards"><i class="material-icons">cast</i><span><span class="dropdown-title" data-i18n="Cards">Deployment</span></span></a>
+                            
+                        </li>
+                        <li><a class="dropdown-menu" th:href="@{/adminViewBugTrackerList}" data-target="Cards"><i class="material-icons"> nfc</i><span><span class="dropdown-title" data-i18n="Bug tracker">Ticket</span></span></a></li>
+                        <li class="navigation-header"><a class="navigation-header-text">Report</a>
+                       		   </li>  
+                       		   <li class="bold"><a class="waves-effect waves-cyan " th:href="@{/search4Report}"><i class="material-icons">bug_report</i><span class="menu-title" data-i18n="Issue Report">Issue Report</span></a>
+            					</li> 
+                        		<li class="bold"><a class="waves-effect waves-cyan " th:href="@{/adminViewDailyTaskList}"><i class="material-icons">bug_report</i><span class="menu-title" data-i18n="Task Report">Task Report</span></a>
+            					</li> 
+							    
+             			 <li class="navigation-header"><a class="navigation-header-text">User View</a>
+             			 </li>
+                        		 <li class="bold"><a class="waves-effect waves-cyan " th:href="@{/categories}"><i class="material-icons">people_outline</i><span class="menu-title" data-i18n="Category View">Category View</span></a>
+            					</li> 
+                                <li class="bold"><a class="waves-effect waves-cyan " th:href="@{/listAllUsers}"><i class="material-icons">people_outline</i><span class="menu-title" data-i18n="User View">User View</span></a>
+            					</li>
+							   
+                    </ul>
+                    <ul
+						class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow"
+						id="slide-out" data-menu="menu-navigation"
+						data-collapsible="menu-accordion" sec:authorize="hasAuthority('ROLE_MANAGER')">
+						
+						<li class="bold"><a class="waves-effect waves-cyan " th:href="@{/dashboard}" data-target="Cards"><i class="material-icons">dashboard</i><span class="dropdown-title" data-i18n="Dashboard">Dashboard</span></a>
+                        
+                        </li>
+                         <li><a class="dropdown-menu" th:href="@{/adminViewBugTrackerList}" data-target="Cards"><i class="material-icons"> nfc</i><span><span class="dropdown-title" data-i18n="Bug tracker">Ticket</span></span></a></li>
+                          <li><a class="dropdown-menu" th:href="@{/adminviewissuelist}" data-target="TemplatesDropdown"><i class="material-icons">chrome_reader_mode</i><span><span class="dropdown-title" data-i18n="Templates">Issue</span></span></a>
+       
+                        </li>
+					</ul> 
+                    <div class="navigation-background"></div>
+                    <a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
+		  </aside>
+      
+        <!-- END: Horizontal nav start-->
+         
+           
+            <script type="text/javascript">
+		function checkTime(i) {
+			if (i < 10) {
+				i = "0" + i;
+			}
+			return i;
+		}
+
+		/* function startTime() {
+			var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			var s = today.getSeconds();
+			// add a zero in front of numbers<10
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+			t = setTimeout(function() {
+				startTime()
+			}, 500);
+		}
+		startTime(); */
+	</script>
+    
+      <!-- BEGIN: Page Main-->
+    <br>
+    <div id="main">
+            <div style=" margin-top: -25px">
+                <div class="container">
+                   <!-- App's page -->
+					<div layout:fragment="app_content"></div>
+					<div layout:fragment="admin_content"></div> 
+                </div>
+           </div>
+            
+    </div>
+     <div class="layout-overlay layout-sidenav-toggle"></div>
+
+	<div th:replace="fragments/footer :: footer"></div>
+    <!-- END: Page Main-->
+
+   
+    
+    <!-- BEGIN VENDOR JS-->
+    <script src="/assets/js/vendors.min.js"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+     <script src="/assets/vendors/data-tables/js/jquery.dataTables.min.js"></script>
+    <script src="/assets/vendors/data-tables/extensions/responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/assets/vendors/data-tables/js/datatables.checkboxes.min.js"></script>
+    <script src="/assets/vendors/data-tables/js/dataTables.select.min.js"></script>
+     <script src="/assets/vendors/formatter/jquery.formatter.min.js"></script>
+     
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN THEME  JS-->
+    <script src="/assets/js/plugins.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/js/custom/custom-script.js"></script>
+    
+    <!-- END THEME  JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+     <script src="/assets/js/scripts/app-invoice.js"></script>
+     <script src="/assets/js/scripts/advance-ui-modals.js"></script>
+     <script src="/assets/js/scripts/form-masks.js"></script>
+      <script src="/assets/js/scripts/form-elements.js"></script>
+      <script th:src="@{/assets/js/scripts/form-validation.js}"></script>
+       <script src="/assets/js/scripts/data-tables.js"></script>
+        <script src="/assets/js/scripts/app-invoice.js"></script>
+        <!--  <script src="/assets/js/scripts/dashboard-modern.js"></script> -->
+  
+        <!-- END PAGE LEVEL JS-->
+
+	<!-- Export Starts -->
+	<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> -->
+	<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+	<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.colVis.min.js"></script>
+	<!-- Export Ends -->
+	
+	<script> 
+		 
+		 /*  $(document).ready(
+					function() {
+						var table = $('#issueTableone').DataTable({
+							lengthChange : false,
+							order : [ 2, 'desc' ],
+							buttons : [ 'excel', {
+								extend : 'pdfHtml5',
+								orientation : 'landscape',
+								pageSize : 'LEGAL',
+							}, 'colvis' ]
+						});
+
+						table.buttons().container().appendTo(
+								'#issueTableone_wrapper .col-md-6:eq(0)');
+						var table = $('#issueTableone1').DataTable({
+							lengthChange : false,
+							order : [ 1, 'desc' ]
+						});
+					}); */
+		
+	</script>
+    
+	
+
+</body>
+
+</html>

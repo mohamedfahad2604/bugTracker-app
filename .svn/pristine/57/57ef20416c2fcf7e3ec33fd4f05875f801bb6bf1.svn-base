@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/bcs_main_layout}">
+<head>
+<script type="text/javascript">
+	
+</script>
+</head>
+<body class="loading" data-layout="topnav" onload="FocusOnInput()">
+	<div layout:fragment="app_content">
+		<!-- <div sec:authorize="hasAuthority('ROLE_ADMIN')"> -->
+		<div class="account-pages mt-5 mb-5">
+			<div class="row justify-content-center">
+				<div class="col-lg-12">
+					<div class="text-center w-75 m-auto">
+						<div class="container" style="color: black;">
+							<h4 class="text-dark-50 text-center mt-0 font-weight-bold"
+								style="color: red;">Add Daily Task</h4>
+
+							<br />
+
+							<div class="account-pages mt-5 mb-5">
+								<div class="container">
+									<h4 class="text-dark-50 text-center mt-0 font-weight-bold">Comments</h4>
+									<table id="list-comment-datatable"
+										class="table dt-responsive nowrap" style="color: black;">
+										<thead>
+											<tr>
+												<th>Task/Issue</th>
+												<th>Hour</th>
+												<th>Min</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="task : ${listOfTask}">
+												<td th:text="${task.task}"></td>
+												<td th:text="${task.hours }"></td>
+												<!-- <td><a th:href="@{'/addTask/'+ ${dailytask.id}}"
+													class="text-success" title="Add Task"> <i
+														class="mdi mdi-message-settings-outline">
+														</i></a> <a
+													th:href="@{'/editTaskt/'+ ${dailytask.id}}"
+													class="text-primary" title="Edit Task"> <i
+														class="mdi mdi-square-edit-outline"></i>
+												</a></td> -->
+
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<h4 class="text-dark-50 text-center mt-0 font-weight-bold">New
+								Task</h4>
+							<a alig data-toggle="collapse" href="#searchCriteriaDiv"
+								role="button" aria-expanded="false"
+								aria-controls="searchCriteriaDiv">[+]</a> <br />
+
+
+							<form class="needs-validation" novalidate action="#"
+								th:action="@{/saveTask}" th:object="${taskDto}"
+								autocomplete="off" method="post">
+								<input type="text" id="id" name="id" class="form-control"
+									readonly="" th:field=*{dailyTask.id}>
+								<div class="collapse" id="searchCriteriaDiv"
+									style="color: black;">
+									<div class="form-row ">
+										<div class="form-group col-md-6">
+											<label for="Task/Issue">Task/Issue</label> <input type="text"
+												id="Task/Issue" name="Task/Issue" class="form-control"
+												th:field=*{Task}>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="hours">Hours & Min</label> <input type="text"
+												id="hours" name="hours" class="form-control"
+												data-toggle="input-mask" data-mask-format="00:00:00"
+												th:field=*{hours}> <span class="font-13 text-muted">e.g
+												"HH:MM:SS"</span>
+										</div>
+									</div>
+
+								</div>
+								<button class="btn btn-primary float-right" type="submit">Save
+									Comment</button>
+								<input action="action"
+									class="action-icontext-info float-right btn btn-info"
+									style='margin-right: 16px'
+									onclick="window.history.go(-1); return false;" type="button"
+									value="Back" />
+							</form>
+							<!-- 	<form class="needs-validation" novalidate action="#"
+									th:action="@{/saveTask}" th:object="${dailyTask}"
+									autocomplete="off" method="post">
+									
+									<div class="form-row ">
+									<div class="form-group mb-4">
+										<label for="date">Date</label> <input type="date"
+											class="form-control" getfocus() autofocus id="date"
+											name="date" placeholder="Date" value="" th:field="*{date}"
+											required>
+										<div class="valid-feedback">Good!</div>
+										<div class="invalid-feedback">Please enter date.</div>
+
+									</div>
+								</div>
+								<div class="form-group col-md-4">
+								<label for="assignedTo">Assigned To</label> <select
+									class="custom-select mb-3" th:field="*{userName}">
+									<option th:each="user : ${listUser}"
+										th:value="${user.id}" th:text="${user.userName}"
+										th:selected="selected"></option>
+								</select>
+								<div class="valid-feedback">Looks good!</div>
+								<div class="invalid-feedback">Please choose a Assigned To.</div>
+							</div>
+							<input type="hidden" id="id" name="id" class="form-control"
+										readonly="" th:value="${taskDto.id}" th:field=*{task}> 
+										<button class="btn btn-primary float-right" type="submit">Save
+										taskList</button>
+									</form> -->
+
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

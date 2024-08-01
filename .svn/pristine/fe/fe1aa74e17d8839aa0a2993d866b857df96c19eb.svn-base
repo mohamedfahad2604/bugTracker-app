@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/bcs_main_layout}">
+<head>
+
+</head>
+<body class="loading" data-layout="topnav">
+	<div layout:fragment="app_content">
+
+
+		<div style="padding: 30px 0px"
+			sec:authorize="hasAuthority('ROLE_USER')">
+
+			<div class="container" style="color: rgb(62, 205, 50);">
+				<h3 class="text-dark-50 text-center mt-0 font-weight-bold"
+					style="color: red;">Server Request List</h3>
+				<br> <br> <a th:href="@{/addServerRequest}"
+					class="btn btn-secondary float-right"
+					style='border-color: white; background-color: #3688FC; color: white;'><i
+					class="mdi mdi-plus-circle mr-2"></i>Create Server Request</a>
+
+
+				<table id="basic-datatable"
+					class="table table-condensed table-striped dt-responsive nowrap"
+					style="width: 100%">
+					<thead>
+						<tr style="color: red">
+							 <th>User Name</th> 
+							<th>Request-Mode</th>
+							<th>Check-In</th>
+							<th>Check-Out</th>
+							<th>Server Name</th>
+							<th>Reason</th>
+							<th>Comment</th>
+							<!-- <th>Action</th> -->
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr  style="color: black" th:each="serverRequestList : ${listServerRequest}">
+
+						 	<td th:text="${serverRequestList.userName}"></td> 
+							<td th:text="${serverRequestList.requestMode}"></td>
+							<td th:text="${serverRequestList.checkIn}"></td>
+							<td th:text="${serverRequestList.checkOut}"></td>
+							<td th:text="${serverRequestList.serverName}"></td>
+							<td th:text="${serverRequestList.reason}"></td>
+							<td th:text="${serverRequestList.comment}"></td>
+							<!-- 	<td><a
+								th:href="@{'/deleteServerRequest/' + ${serverRequestList.id}}"
+								class="text-danger" data-toggle="tooltip"
+								title="Delete Server Request"> <i class="mdi mdi-delete"></i>
+							</a></td> -->
+
+						</tr>
+					</tbody>
+				</table>
+				<br /> <br /> <br /> <br /> <br />
+			</div>
+		</div>
+	</div>
+</body>
+</html>

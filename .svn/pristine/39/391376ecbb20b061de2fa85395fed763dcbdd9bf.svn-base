@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/bcs_main_layout}">
+
+<head>
+<script type="text/javascript" th:src="@{/js/kthistory.js}"></script>
+</head>
+
+
+<body class="loading" data-layout="topnav">
+
+
+	<!-- ============= COMPONENT ============== -->
+
+
+	<div layout:fragment="app_content">
+
+
+
+
+		<div style="padding: 30px 0px"
+			sec:authorize="hasAuthority('ROLE_ADMIN')">
+
+			<div class="container" style="color: rgb(62, 205, 50);">
+				<h3 class="text-dark-50 text-center mt-0 font-weight-bold"
+					style="color: red;">KT View</h3>
+				<br> <br>
+
+
+
+				<table id="basic-datatable"
+					class="table table-condensed table-striped dt-responsive nowrap"
+					style="width: 100%">
+
+
+					<thead>
+						<tr style="color: red">
+
+							<th>Created Date</th>
+							<th>From</th>
+							<th>To</th>
+							<th>Topic</th>
+							<th>Solution</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr  style="color: black" th:each="kt : ${listKt}">
+							<td th:text="${kt.createDate}"></td>
+							<td th:text="${kt.createdBy}"></td>
+							<td><a onclick="getHistory(this)"
+								th:attr="ktId=${kt.issueid}" class="text-success"
+								title="Click to See the KT Acknowledged Staff Details..."> <i
+									class="btn  btn-outline-danger btn-sm">Staff</i></a></td>
+							<td th:text="${kt.ktTopic}"></td>
+							<td th:text="${kt.resolution}"></td>
+							<!-- <td th:text="${kt.ktTo}" hidden="hidden"></td>
+
+									
+									<td th:text="${kt.issueid}" hidden="hidden"></td>
+									<td th:text="${kt.ktDate}" hidden="hidden"></td>
+									<td th:text="${kt.resolution}" hidden="hidden"></td>
+									<td th:text="${kt.ktTimeTaken}" hidden="hidden"></td>
+									<td th:text="${kt.status}" hidden="hidden"></td>
+									<td th:text="${kt.ktfrom}" hidden="hidden"></td>
+									<td th:text="${kt.ktstatus}" hidden="hidden"></td>
+									<td th:text="${kt.ktauthor}" hidden="hidden"></td> -->
+
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+
+
+
+
+		<!-- Modal -->
+		<div id="myModal" class="  modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" style="color: red">KT Acknowledge View</h4>
+
+					</div>
+					<div class="modal-body card-datatable table-responsive">
+						<!-- <table class="datatables-demo table table-striped table-bordered"> -->
+						<table class=" table table-striped table-bordered">
+							<thead>
+								<tr style="color: blue">
+									<th>Staff Name</th>
+									<th>Status</th>
+									<th>KT Date and Time</th>
+									<th>Time Taken</th>
+
+								</tr>
+							</thead>
+							<tbody  style="color: black" id="kthistorytable">
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+
+</body>
+
+</html>

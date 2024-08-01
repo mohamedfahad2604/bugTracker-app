@@ -1,0 +1,17 @@
+package com.bizz.customersupport.services;
+
+
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+import com.bizz.customersupport.entities.User;
+import com.bizz.customersupport.web.dto.UserRegistrationDto;
+
+public interface UserService extends UserDetailsService {
+
+	User findByuserName(String userName);
+
+	User save(UserRegistrationDto registration);
+
+	User editAndUpdate(User user);
+
+}

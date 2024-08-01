@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/homepage}">
+
+<head>
+<script type="text/javascript" th:src="@{/js/kthistory.js}"></script>
+
+</head>
+
+
+<body class="loading" data-layout="topnav">
+
+
+	<!-- ============= COMPONENT ============== -->
+
+	<div layout:fragment="app_content">
+
+		<div style="padding: 3px 0px"
+			sec:authorize="hasAuthority('ROLE_ADMIN')">
+			<h5 style="margin-left: 20px;">KT View</h5>
+			<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+
+					<div class="row">
+						<div class="col s12">
+
+							<div class="section section-data-tables">
+								<table id="bcs-data-table" class="striped">
+									<thead>
+										<tr>
+
+											<th>Created Date</th>
+											<th>From</th>
+											<th>To</th>
+											<th>Topic</th>
+											<th>Solution</th>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr style="color: black" th:each="kt : ${listKt}">
+											<td th:text="${kt.createDate}"></td>
+											<td th:text="${kt.createdBy}"></td>
+											<td><a onclick="getHistory(this)"
+												th:attr="ktId=${kt.issueid}" href="#myModal"
+												class="waves-effect waves-light btn modal-trigger mb-2 mr-1 btn-change"
+												title="Click to See the KT Acknowledged Staff Details...">
+													Staff</a></td>
+											<td th:text="${kt.ktTopic}"></td>
+											<td th:text="${kt.resolution}"></td>
+											<!-- <td th:text="${kt.ktTo}" hidden="hidden"></td>
+
+									
+									<td th:text="${kt.issueid}" hidden="hidden"></td>
+									<td th:text="${kt.ktDate}" hidden="hidden"></td>
+									<td th:text="${kt.resolution}" hidden="hidden"></td>
+									<td th:text="${kt.ktTimeTaken}" hidden="hidden"></td>
+									<td th:text="${kt.status}" hidden="hidden"></td>
+									<td th:text="${kt.ktfrom}" hidden="hidden"></td>
+									<td th:text="${kt.ktstatus}" hidden="hidden"></td>
+									<td th:text="${kt.ktauthor}" hidden="hidden"></td> -->
+
+
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- Modal -->
+
+				<div class="row">
+					<div class="col s12">
+						<div id="fixed-example" class="card card-tabs">
+
+							<div id="view-example">
+
+								<div class="col s12">
+
+									<div id="myModal" class="modal">
+										<div class="modal-content center">
+											<h5 style="color: #3688FC;">KT Acknowledge View</h5>
+
+											<div class="modal-body">
+
+												<table id="striped-table" class="striped">
+													<thead>
+														<tr style="color: #000;">
+															<th>Staff Name</th>
+															<th>Status</th>
+															<th>KT Date and Time</th>
+															<th>Time Taken</th>
+
+
+														</tr>
+													</thead>
+													<tbody style="color: black" id="kthistorytable">
+													</tbody>
+												</table>
+											</div>
+											<div class="modal-footer">
+												<button style="margin: 5px;"
+													class="modal-action modal-close mb-6 btn waves-effect waves-light red accent-2 btn-change btn-flat ">Close
+												</button>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

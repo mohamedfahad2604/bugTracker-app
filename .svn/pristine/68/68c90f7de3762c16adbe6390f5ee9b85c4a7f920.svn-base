@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/bcs_main_layout}">
+<head>
+</head>
+<body class="loading" data-layout="topnav">
+	<div layout:fragment="app_content">
+		<div sec:authorize="hasAuthority('ROLE_ADMIN')">
+			<div class="account-pages mt-5 mb-5">
+				<div class="container" style="color: rgb(62, 205, 50);">
+					<h3 class="text-dark-50 text-center mt-0 font-weight-bold"
+						style="color: red;">Task View</h3>
+					<br> <a th:href="@{/addadmintask}"
+						class="btn btn-secondary float-right"
+						style='border-color: white; background-color: #3688FC; color: white;'><i
+						class="mdi mdi-plus-circle mr-2"></i>Create Task</a>
+
+
+					<table id="issueTableone1"
+						class="table table-condensed table-striped dt-responsive nowrap"
+						style="width: 100%">
+						<thead>
+							<tr style="color: red;">
+								<th>Status</th>
+								<th>Task Name</th>
+								<th>Type</th>
+								<th>Description</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr  style="color: black" th:each="task : ${listTaskService}">
+
+
+								<td th:text="${task.taskstatus}"></td>
+								<td th:text="${task.taskName}"></td>
+								<td th:text="${task.tasktype}"></td>
+								<td th:text="${task.description}"></td>
+								
+
+								<td><a th:href="@{'/edittask/'+ ${task.id}}"
+									class="text-success" data-toggle="tooltip"
+									title="Edit Task"> <i
+										class="mdi mdi-square-edit-outline"></i>
+								</a> </td>
+							</tr>
+						</tbody>
+					</table>
+
+					<br />
+					<br />
+					<br />
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/bcs_main_layout}">
+
+<head>
+
+<script type="text/javascript">
+	function FocusOnInput() {
+		document.getElementById("issueTittle").focus();
+	}
+
+	//	function myFunctionDisableTime() {
+	//		document.getElementById("input-group").disabled = true;
+	//	}
+
+	function EnableDisableTextBox(ddlModels) {
+
+		var selectedValue = ddlModels.options[ddlModels.selectedIndex].value;
+
+		if (selectedValue == "INPROGRESS") {
+			document.getElementById('solution').innerText = 'Activity';
+			document.getElementById('resolvedgroup').style.display = "none";
+		} else if (selectedValue == "INVALID") {
+			document.getElementById('resolvedgroup').style.display = "none";
+		} else if (selectedValue == "OTHERS") {
+			document.getElementById('resolvedgroup').style.display = "none";
+		} else {
+			document.getElementById('resolvedgroup').style.display = "";
+
+		}
+	}
+	function trim(el) {
+		el.value = el.value.replace(/(^\s*)|(\s*$)/gi, ""). // removes leading and trailing spaces
+		replace(/[ ]{2,}/gi, " "). // replaces multiple spaces with one space 
+		replace(/\n +/, "\n"); // Removes spaces after newlines
+		return;
+	}
+	function start() {
+		FocusOnInput();
+		EnableDisableTextBox();
+		myFunction();
+	
+		//	myFunctionDisableTime();
+
+	}
+	
+	const app = document.getElementById("application").value;
+	function formValidation() {
+	if (app == "") {
+	    alert("Please choose the Application");
+	    app.focus();
+	    return false;
+	  }
+	}
+	
+</script>
+</head>
+
+<body class="loading" data-layout="topnav" onload="start()">
+	<div layout:fragment="app_content">
+		<div style="padding: 30px 0px"
+			sec:authorize="hasAuthority('ROLE_USER')">
+
+
+
+			<div class="container" style="color: red;">
+
+				<h3 class="text-dark-50 text-center mt-0 font-weight-bold"
+					style="color: red;">Edit Issue</h3>
+				<div class="form-row ">
+					<div class="form-group col-md-12">
+						<a th:href="@{/allissues}" class="btn btn-primary float-right"
+							style='border-color: white; background-color: #3688FC; color: white;'>
+							Issue Details</a>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-body">
+
+						<form class="needs-validation" novalidate  th:action="@{/updateissues}"  onsubmit="return formValidation()"
+							 th:object="${issueDto}"
+							autocomplete="off" method="post" style="color: black;">
+							<div class="form-row ">
+								<div class="form-group col-md-12">
+									<label for="issueTittle">Issue Title</label>
+									<textarea id="issueTittle" rows="2" type="text" getfocus()
+										autofocus name="issueTittle" class="form-control"
+										th:field=*{issueTittle} required="required" maxlength="240"
+										onchange="return trim(this)" ></textarea>
+								</div>
+							</div>
+
+							<div class="form-row ">
+								<input type="hidden" id="id" class="form-control" th:field=*{id}>
+								<div class="form-group col-md-6">
+									<label for="requestor">Requester</label> <input type="text"
+										id="requestor" class="form-control" readonly="readonly"
+										th:field=*{requestor} required="required">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="client">Client</label> <input type="text"
+										id="client" class="form-control" th:field=*{client}
+										required="required" readonly="readonly">
+								</div>
+
+
+
+							</div>
+							<div class="form-row">
+
+								<div class="form-group col-md-4">
+									<label for="environment">Environment</label> <input type="text"
+										id="environment" class="form-control" th:field=*{environment}
+										required="required" readonly="readonly">
+								</div>
+								<div class="form-group col-md-4">
+									<label for="requestDate">Request Date and Time</label>
+									<div class="input-group">
+										<input class="form-control" type="text" id="requestDate"
+											th:field="*{requestDate}" readonly="readonly"
+											required="required">
+										<div class="input-group-append">
+											<span class="input-group-text"><i
+												class="dripicons-calendar"></i></span>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group col-md-4">
+									<label for="application">Application</label>
+										
+									  <select id="application"
+										class="select2 form-control select2-multiple"
+										data-toggle="select2" multiple="multiple"
+										data-placeholder="Choose ..." required="required" 
+										readonly="readonly" th:field="*{application}">
+										<option th:value="TNETS41" th:text="TNETS41"></option>
+										<option th:value="TNETS41ARC" th:text="TNETS41ARC"></option>
+										<option th:value="BOSS" th:text="BOSS"></option>
+										<option th:value="DMS" th:text="DMS"></option>
+										<option th:value="TSS" th:text="TSS"></option>
+										<option th:value="BI" th:text="BI"></option>
+										<option th:value="BCS" th:text="BCS"></option>
+										<option th:value="TIS" th:text="TIS"></option>
+										<option th:value="EMAILBACKUP" th:text="EMAILBACKUP"></option>
+										<option th:value="OTHERS" th:text="OTHERS"></option>
+
+									</select>
+
+										<div class="invalid-feedback">Please Choose the
+										Application</div>
+								</div>
+								<!--	<div class="form-group col-md-4">
+								<label for="requestTime">Request Time</label>
+								<div class="input-group">
+									<input class="form-control" type="text" data-toggle='timepicker' id="requestTime"
+										th:field=*{requestTime} readonly="readonly" disabled />
+									<div class="input-group-append">
+										<span class="input-group-text"><i class="dripicons-clock"></i></span>
+									</div>
+								</div>
+							</div>-->
+
+
+
+							</div>
+
+							<div class="form-row">
+								<div class="form-group col-md-4">
+									<label for="issueStatus">Status </label> <select id="ddlModels"
+										class="custom-select mb-3" th:field=*{issueStatus}
+										onchange="EnableDisableTextBox(this)">
+
+
+
+										<option th:value="CLOSED" th:text="CLOSE"></option>
+										<option th:value="CLOSEDKT" th:text="CLOSE-KT"></option>
+										<option th:value="INPROGRESS" th:text="INPROGRESS"></option>
+										<option th:value="INVALID" th:text="INVALID"></option>
+										<option th:value="POSTPONED" th:text="POSTPONED"></option>
+										<option th:value="OTHERS" th:text="OTHERS"></option>
+									</select>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="assignedTo">Assigned To</label> <input type="text"
+										class="form-control" id="assignedTo" readonly="readonly"
+										th:field=*{assignedTo} required="required">
+								</div>
+								<div class="form-group col-md-4">
+									<label>Category Name</label> <select class="custom-select mb-3"
+										th:field="*{categoryId}">
+										<option th:each="category : ${listCategory}"
+											th:value="${category.id}" th:text="${category.categoryName}"
+											th:selected="selected" required="required"></option>
+									</select>
+
+									<div class="invalid-feedback">Please choose the Category
+										Name.</div>
+								</div>
+
+
+
+							</div>
+
+
+							<div class="form-row" id="resolvedgroup">
+
+								<div class="form-group col-md-4">
+									<label for="resolvedBy">Resolved By</label> <select
+										class="custom-select mb-3" id="resolvedBy"
+										th:field="*{resolvedBy}">
+										<option th:each="user : ${listUsers}"
+											th:value="${user.userName}" th:text="${user.userName}"
+											th:selected="selected" id="resolveduser" required="required"></option>
+									</select>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="resolvedDate">Resolved Date</label>
+									<div class="input-group">
+										<input type="text" class="form-control datepicker"
+											id="birthdatepicker" data-toggle="date-picker"
+											data-single-date-picker="true" th:field=*{resolvedDate}
+											readonly="readonly" value="">
+										<div class="input-group-append">
+											<span class="input-group-text"><i
+												class="dripicons-calendar"></i></span>
+										</div>
+										<div class="invalid-feedback">Please choose a Resolved
+											Date.</div>
+									</div>
+								</div>
+
+
+								<div class="form-group col-md-4">
+									<label for="resolvedTime">Resolved Time</label>
+									<div class="input-group">
+										<input ttype="text" class="form-control"
+											data-toggle='timepicker' data-minute-step="1"
+											data-show-meridian="false" id="resolvedTime"
+											th:field=*{resolvedTime} readonly="readonly" value="">
+										<div class="input-group-append">
+											<span class="input-group-text"><i
+												class="dripicons-clock"></i></span>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="form-row">
+
+								<div class="form-group col-md-6">
+									<label for="description">Description</label>
+									<textarea type="text" id="description" class="form-control"
+										th:field=*{description} required="required" rows="4"
+										onchange="return trim(this)" readonly="readonly"></textarea>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="resolution" id="solution">Solution</label>
+									<textarea type="text" id="resolution" class="form-control"
+										Placeholder="Please Enter the Solution details in Brief."
+										th:field=*{resolution} required="required" rows="4"
+										onchange="return trim(this)"></textarea>
+								</div>
+							</div>
+
+
+							<!-- Modal -->
+							<div class="modal fade" id="exampleModalScrollable" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalScrollableTitle"
+								aria-hidden="true">
+								<div class="modal-dialog modal-dialog-scrollable"
+									role="document" style="max-width: 80%;">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalScrollableTitle">Solution
+												Details</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<div class="table-responsive">
+												<table id="issueTableone1"
+													class="table table-striped table-fixed "
+													style="color: black;">
+													<thead>
+														<tr>
+
+															<th>Updated Date</th>
+
+															<th>Status</th>
+															<th>Updated By</th>
+															<th>Solution</th>
+
+
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:each="issue : ${result}">
+
+															<td th:text="${issue.createDate}"></td>
+
+															<td th:text="${issue.status}"></td>
+															<td th:text="${issue.staff}"></td>
+															<td th:text="${issue.resolution}"></td>
+
+
+														</tr>
+													</tbody>
+												</table>
+
+
+
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary"
+												data-dismiss="modal">Close</button>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="text-right">
+
+								<button type="button" class="btn btn-danger"
+									style='margin-right: 16px;' data-placement="top"
+									data-toggle="modal" data-target="#exampleModalScrollable">Solution
+									History</button>
+								<button class="btn btn-success " type="submit">Update
+									Issue</button>
+
+							</div>
+
+
+
+
+						</form>
+					</div>
+				</div>
+				<br /> <br />
+
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>

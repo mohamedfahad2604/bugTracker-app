@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/userhomepage}">
+<head>
+
+</head>
+<body class="loading" data-layout="topnav">
+
+	<div layout:fragment="app_content">			
+		<div style="padding: 3px 0px; background-color:#fff;"
+			sec:authorize="hasAuthority('ROLE_USER')">
+			
+			<h5 style="margin-left: 20px;">Server Request</h5>
+				<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+					<div class="row">
+									<div class="col s12">	
+						
+						 <div class="fixedButton"> 
+						 
+							<a th:href="@{/addServerRequest}">  <div class="waves-effect waves-light btn btn-change green">Add</div></a>
+				
+							</div>
+				<div class="section section-data-tables">
+								<table id="page-length-option" class="striped " >
+
+
+					<thead>
+						<tr>
+							 <th>User Name</th> 
+							<th>Request-Mode</th>
+							<th>Check-In</th>
+							<th>Check-Out</th>
+							<th>Server Name</th>
+							<th>Reason</th>
+							<th>Comment</th>
+							<!-- <th>Action</th> -->
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr  style="color: black" th:each="serverRequestList : ${listServerRequest}">
+
+						 	<td th:text="${serverRequestList.userName}"></td> 
+							<td th:text="${serverRequestList.requestMode}"></td>
+							<td th:text="${serverRequestList.checkIn}"></td>
+							<td th:text="${serverRequestList.checkOut}"></td>
+							<td th:text="${serverRequestList.serverName}"></td>
+							<td th:text="${serverRequestList.reason}"></td>
+							<td th:text="${serverRequestList.comment}"></td>
+							<!-- 	<td><a
+								th:href="@{'/deleteServerRequest/' + ${serverRequestList.id}}"
+								class="text-danger" data-toggle="tooltip"
+								title="Delete Server Request"> <i class="mdi mdi-delete"></i>
+							</a></td> -->
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+	</div>
+</div>	
+	
+</body>
+</html>

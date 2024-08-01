@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google.">
+    <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
+    <meta name="author" content="ThemeSelect">
+ 		<title>Ticketing System</title>
+	 <link rel="stylesheet" type="text/css" href="/assets/css/themes/vertical-menu-nav-dark-template/style.css">
+	 <link rel="stylesheet" type="text/css" href="/assets/css/pages/cards-basic.css">
+ 	 <link rel="stylesheet" type="text/css" href="/assets/css/custom/custom.css">
+</head>
+
+<body class="loading" data-layout="topnav">
+
+<div layout:fragment="app_content">
+
+                <div class="container" style="padding-top:100px;height:500px;width:700px;">
+                    <!--Basic Card-->
+                                <div class="row">
+                                    <div class="col s12 m6 l6">
+                                    <div class="card large" style="background-color:#55595a;" th:if="${response == 'yes'}">
+                                            <div class="card-content white-text">
+                                             <img style="padding-left:150px;" src="/assets/images/cards/macbook.png" alt="materialize logo">
+                                                <span class="card-title"></span>
+                                                
+                                                  <h6 class="white-text" style="padding-left:50px;"> Thank you for your response, this ticket has already been taken care of.
+                                             </h6>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                    </div>
+                       					 <div class="row">
+                                    <div class="col s12 m6 l6">
+                                       <div class="card large" style="background-color:#55595a;" th:if="${response == 'no'}">
+                                            <div class="card-content white-text">
+                                             <img style="padding-left:150px;" src="/assets/images/cards/macbook.png" alt="materialize logo">
+                                                <span class="card-title"></span>
+                                              <h6 class="white-text" style="padding-left:200px;">
+                                                    Thank you for your valuable feedback.
+                                                </h6>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                   				 
+                   				 
+						</div>
+				</div>
+			 <!-- BEGIN VENDOR JS-->
+    <script src="/assets/js/vendors.min.js"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+     <script src="/assets/vendors/formatter/jquery.formatter.min.js"></script>
+     
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN THEME  JS-->
+    <script src="/assets/js/plugins.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/js/custom/custom-script.js"></script>
+    
+    <!-- END THEME  JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+  
+        <!-- END PAGE LEVEL JS-->
+
+</body>
+
+</html>

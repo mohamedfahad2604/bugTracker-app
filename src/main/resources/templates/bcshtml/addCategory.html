@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/homepage}">
+<head>
+<script type="text/javascript">
+	function FocusOnInput() {
+		document.getElementById("categoryName").focus();
+	}
+</script>
+</head>
+<body class="loading" data-layout="topnav" onload="FocusOnInput()">
+	<div layout:fragment="app_content">
+	
+		<div style="padding: 3px 0px" sec:authorize="hasAuthority('ROLE_ADMIN')">
+		<h5 style="margin-left: 20px;">Add Category</h5>
+			<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+		
+			
+						<div class="row">
+									<div class="col s12">
+						
+								
+									<div class="fixedButton"> 
+									<a th:href="@{/categories}"><div class="waves-effect waves-light btn btn-change red accent-2">Cancel</div></a>
+									</div>
+									</div>
+								</div>
+								
+								<!-- Form Advance -->
+                            <div class="col s12 m12 l12">
+                                <div id="Form-advance" >
+                                   
+                                        <div id="html-view-validations">
+										<form class="formValidate0" id="formValidate0" action="#"
+												th:action="@{/savecategory}" th:object="${category}"
+												autocomplete="off" method="post">
+										
+										<div class="row ">
+											
+											<div class="input-field col m6 s12">
+                                                            <input placeholder="Category Name" 
+												id="categoryName" name="categoryName" value="" required type="text" class="">
+                                                            <label for="text">Category Name</label>
+                                                  </div>
+                                                  
+                                                  <div class="input-field col m6  s12">
+                                                    <textarea rows="2"  id="description" class="materialize-textarea" 
+                                                    name="description" placeholder="Description"
+														value="" required></textarea>
+                                                    <label for="message">Description</label>
+                                                </div>
+											
+											
+
+											
+											<div class="fixedButton1">
+											<button class="waves-effect waves-light btn btn-change green" 
+											type="submit" name="action">Save
+                                             </button>
+											</div>	
+											</div>
+												</form>
+										</div>
+									
+										
+									</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				
+		<!-- </div>
+	</div> -->
+	
+</body>
+</html>

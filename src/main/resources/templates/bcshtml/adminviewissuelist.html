@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/homepage}">
+<!-- <link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+	rel="stylesheet" /> -->
+<head>
+
+
+</head>
+
+<body class="loading" data-layout="topnav" >
+	<div layout:fragment="app_content">
+	
+		<div style="padding: 3px 0px" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')">
+		<h5 style="margin-left: 20px;">Issue Details</h5>
+			<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+		
+			
+						<div class="row">
+									<div class="col s12">
+                  			<div class="section section-data-tables">
+								<table id="page-length-option" class=" striped " >
+									
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Requester</th>
+											<th>Request Date</th>
+											<th>Status</th>
+											<th>Assigned To</th>
+											<th>Issue Type</th>
+											<th>Severity</th>
+											<th>Resolved By</th>
+											<th>Resolved Date</th>
+											<th>Application</th>
+											<th>Environment</th>
+											<th>Client</th>
+											<th>Support Type</th>
+											<th>Solution</th>
+											<th>Description</th>
+											<th>Issue Title</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="issue : ${listIssues}">
+											<td th:text="${issue.id}"></td>
+										<td th:text="${issue.requestor}"></td>
+										<td th:text="${issue.requestDate}"></td>
+										<td th:text="${issue.status}"></td>
+										<td th:text="${issue.assignedTo}"></td>
+										<td th:text="${issue.issuetype}"></td>
+										<td th:text="${issue.severity}"></td>
+										<td th:text="${issue.resolvedBy}"></td>
+										<td th:text="${issue.resolvedDate}"></td>
+										<td th:text="${issue.application}"></td>
+										<td th:text="${issue.environment}"></td>
+										<td th:text="${issue.client}"></td>
+										<td th:text="${issue.supporttype}"></td>
+										<td th:text="${issue.resolution}"></td>
+										<td th:text="${issue.description}"></td>
+										<td th:text="${issue.issueTittle}"></td>
+
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+</body>
+</html>

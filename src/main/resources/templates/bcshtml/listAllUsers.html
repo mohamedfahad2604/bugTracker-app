@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/homepage}">
+<head>
+</head>
+<body class="loading" data-layout="topnav">
+	<div layout:fragment="app_content">
+	
+		<div style="padding: 3px 0px" sec:authorize="hasAuthority('ROLE_ADMIN')">
+		<h5 style="margin-left: 20px;">User View</h5>
+			<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+		
+			
+						<div class="row">
+									<div class="col s12">
+						
+					<div class="fixedButton">		
+					 <a th:href="@{/registration}">
+								<div class="waves-effect waves-light btn btn-change green">Add</div></a>
+								</div>	
+					
+
+
+					<div class="section section-data-tables">
+							<table id="bcs-data-table" class="striped" >
+						
+						<thead>
+							<tr>
+								<th>Emp.ID</th>
+								<th>Name</th>
+								<th>Team</th>
+								<th>Email</th>
+								<th>Username</th>
+
+
+								<th>State</th>
+
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="user : ${listuser}">
+								<!-- <td th:text="${user.id }"></td> -->
+								<td th:text="${user.employeeNumber }"></td>
+								<td th:text="${user.name }"></td>
+
+								<td th:text="${user.designation }"></td>
+								<td th:text="${user.email }"></td>
+								<td th:text="${user.userName }"></td>
+								<td th:text="${user.state }"></td>
+								<td><a th:href="@{'/editUser/'+ ${user.id}}"
+									class="tooltipped btn-floating btn-small btn-change " 
+									data-tooltip="Edit"> <i class="material-icons" style="color: blue; background-color: #e8e8f5;">edit</i>
+								</a></td>
+							</tr>
+						</tbody>
+					</table>
+					</div>
+				
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+</body>
+</html>

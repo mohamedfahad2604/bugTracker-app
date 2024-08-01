@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/homepage}">
+
+<head>
+</head>
+
+<body class="loading" data-layout="topnav">
+	<div layout:fragment="app_content">
+	
+		<div style="padding: 3px 0px" sec:authorize="hasAuthority('ROLE_ADMIN')">
+		<h5 style="margin-left: 20px;">Task Creation</h5>
+			<div class="card"
+				style="margin-top: 0px; margin-left: 20px; margin-right: 20px;">
+				<div class="card-content">
+		
+			
+						<div class="row">
+									<div class="col s12">
+						
+                                       <form class="formValidate0" id="formValidate0" th:action="@{/saveadmintask}" th:object="${task}"
+										autocomplete="off" method="post">
+                                            <div class="row">
+                                                <div class="input-field col m6 s12">
+                                                    <input  class="validate" required name="taskName" id="taskName" type="text">
+                                                    <label   for="first_name01">Task Name *</label>
+                                                    <small class="errorTxt1"></small>
+                                                </div>
+                                           
+                                                <div class="input-field col m6 s12">
+                                                    <select th:field="*{tasktype}">
+                                                        <option value="" disabled selected>Type</option>
+                                                        <option th:each="task : ${listtasktype}" th:value="${task.title}"
+													th:text="${task.title}"></option>
+                                                      
+                                                    </select>
+                                                    <label> Type</label>
+                                          	</div> 
+                                          	</div>
+											 <div class="row">
+                                               <div class="input-field col m6 s12">
+                                                    <select th:field="*{taskstatus}">
+                                                        <option value="" disabled selected>Status</option>
+                                                        <option th:value="OPEN" th:text="OPEN"></option>
+                                                      
+                                                    </select>
+                                                    <label> Status</label>
+                                                </div>
+                                           
+                                                <div class="input-field col m6 s12">
+                                                    <textarea id="description" name="description" class="materialize-textarea" required></textarea>
+                                                    <label for="text">Description *</label>
+                                                     <small class="errorTxt7"></small>
+                                                </div>
+                                                </div>
+                                                                                                
+                                                <div class="fixedButton1">
+													<button class="waves-effect waves-light btn btn-change green" 
+													type="submit" name="action">Save
+		                                             </button>
+													</div>	
+													 <div class="fixedButton">	
+													<a th:href="@{/admintaskviews}"><div class="waves-effect waves-light btn btn-change red accent-2">Cancel</div></a>
+													</div>
+                      									
+                                                  
+                                          
+                                        </form>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div> 
+						 </div> 
+						 </div>
+					
+	
+</body>
+
+</html>

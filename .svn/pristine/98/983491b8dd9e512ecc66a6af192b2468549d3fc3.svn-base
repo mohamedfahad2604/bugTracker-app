@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/bcs_main_layout}">
+<head>
+</head>
+<body class="loading" data-layout="topnav">
+	<div layout:fragment="app_content">
+		<div sec:authorize="hasAuthority('ROLE_USER')">
+			<div class="account-pages mt-5 mb-5">
+				<div class="container" style="color: red;">
+					<h4 class="text-dark-50 text-center mt-0 font-weight-bold">
+						View History</h4>
+					<table id="issueTableone1" class="table dt-responsive nowrap"
+						style="color: black;">
+						<thead>
+							<tr>
+								<th>Issue Title</th>
+								<th>Updated By</th>
+								<th>Status</th>
+								<th>Updated Date and Time</th>
+								<th>Resolution</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="result : ${result}">
+								<td th:text="${result.issueTittle}"></td>
+								<td th:text="${result.staff}"></td>
+								<td th:text="${result.status}"></td>
+								<td th:text="${result.createDate}"></td>
+								<td th:text="${result.resolution}"></td>
+
+
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

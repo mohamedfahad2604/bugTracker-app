@@ -1,0 +1,106 @@
+<html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google.">
+    <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
+    <meta name="author" content="ThemeSelect">
+    <title>Ticketing System</title>
+    <link rel="icon" href="/assets/images/favicon/icon-bug-15.jpg">
+    <link rel="shortcut icon" type="image/jpg" href="/assets/images/favicon/icon-bug-15.jpg">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- BEGIN: VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/vendors.min.css">
+    <!-- END: VENDOR CSS-->
+    <!-- BEGIN: Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/themes/horizontal-menu-template/materialize.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/themes/horizontal-menu-template/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/layouts/style-horizontal.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/pages/login.css">
+    <!-- END: Page Level CSS-->
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/custom/custom.css">
+    <!-- END: Custom CSS-->
+</head>
+<!-- END: Head-->
+
+<body class="horizontal-layout page-header-light horizontal-menu preload-transitions 1-column login-bg   blank-page blank-page" data-open="click" data-menu="horizontal-menu" data-col="1-column">
+    <div class="row">
+        <div class="col s12">
+            <div class="container">
+                <div id="login-page" class="row">
+                <div class="split left">
+                  <!--   <div class="col s12 m6 l4 z-depth-4 card-panel border-radius-6 login-card bg-opacity-8"> -->
+                   <div class="centered">
+                    <div id="html-view-validations">
+                        <form role="form" class="login-form" action="" th:action="@{/login}" method="post"
+							autocomplete="off">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <h5 class="ml-4 center" style="color: #020f20;">Ticket Tracker</h5>
+                                </div>
+                            </div>
+                             
+                            <div class="row margin">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix pt-2">person_outline</i>
+                                    <input type="text" style="color:#000;" name="username" id="username" required>
+                                    <label style="color: #12b0ed;"  for="username" class="center-align">User Name</label>
+                                </div>
+                            </div>
+                            <div class="row margin">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix pt-2">lock_outline</i>
+                                    <input type="password" style="color:#000;" name="password" id="password" required>
+                                    <label style="color: #12b0ed;"  for="password">Password</label>
+                                </div>
+                                <div th:if="${param.error}">
+								<div class="row ">
+								<p style="color:red;" class="center">Error : Invalid User Name and Password.</p>
+								</div>
+						</div>
+                            </div>
+                            <!-- <div class="row">
+                                <div class="col s12 m12 l12 ml-2 mt-1">
+                                    <p>
+                                        <label>
+                                            <input type="checkbox" />
+                                            <span style="color: #e53935;">Remember Me</span>
+                                        </label>
+                                    </p>
+                                </div>
+                            </div> -->
+                            <div class="row">
+                                <div class="input-field col s12">
+                                   
+                                   <button type="submit"class="btn waves-effect waves-light border-round col s11 right" style="background-color:#020f20;">Login</button>
+                                </div>
+                            </div>
+                            
+                        </form>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div>
+
+    <!-- BEGIN VENDOR JS-->
+    <script src="/assets/js/vendors.min.js"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN THEME  JS-->
+    <script src="/assets/js/plugins.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/js/custom/custom-script.js"></script>
+    <!-- END THEME  JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <!-- END PAGE LEVEL JS-->
+</body>
+
+</html>

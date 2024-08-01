@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml">
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+	rel="stylesheet" />
+<head>
+
+</head>
+
+<body class="loading" data-layout="topnav">
+	<div layout:fragment="app_content">
+		<div sec:authorize="hasAuthority('ROLE_USER')">
+			<div class="account-pages mt-5 mb-5">
+				<div class="row justify-content-center">
+					<div class="col-lg-12">
+						<div class="text-center w-75 m-auto">
+							<div class="container" style="color: black;">
+								<h3 class="text-dark-50 text-center mt-0 font-weight-bold"
+									style="color: red;">Add Deployment Planner</h3>
+
+								<div class="form-row ">
+									<div class="form-group col-md-12">
+										<a th:href="@{/deploymentPlanners}"
+											class="btn btn-primary float-right"
+											style='border-color: white; background-color: #3688FC; color: white;'>
+											View Deployment Planner</a>
+									</div>
+								</div>
+								<div class="card">
+									<div class="card-body">
+										<form class="needs-validation" novalidate action="#"
+											style="color: black;" th:action="@{/saveDeploymentPlanner}"
+											th:object="${deploymentPlannerDto}" autocomplete="off"
+											method="post">
+											<div class="form-row ">
+												<div class="form-group col-md-3" style="text-align: left">
+													<label for="userName">Performer</label> <select
+														class="custom-select mb-3" th:field="*{performer}">
+														<option th:each="user : ${assignedToUsers}" readonly
+															th:value="${user.userName}" th:text="${user.userName}"
+															th:selected="selected"></option>
+													</select>
+
+													<div class="invalid-feedback">Please Choose the
+														Performer.</div>
+
+												</div>
+												<div class="form-group col-md-3" style="text-align: left">
+													<label for="requestMode">Author</label> <select
+														class="custom-select mb-3" id="resolvedBy"
+														th:field="*{auther}">
+														<option
+															th:each="listUsersForAuther : ${listUsersForAuther}"
+															th:value="${listUsersForAuther.userName}"
+															th:text="${listUsersForAuther.userName}"
+															th:selected="selected"></option>
+													</select>
+
+
+													<div class="invalid-feedback">Please Choose the
+														Author.</div>
+												</div>
+
+												<div class="form-group col-md-3" style="text-align: left">
+													<label for="application">Application</label><select
+														class="select2 form-control select2-multiple"
+														data-toggle="select2" multiple="multiple"
+														data-placeholder="Choose ..." required="required"
+														th:field="*{application}">
+														<option th:value="TNETS41" th:text="TNETS41"></option>
+														<option th:value="TNETS41ARC" th:text="TNETS41ARC"></option>
+														<option th:value="BOSS" th:text="BOSS"></option>
+														<option th:value="DMS" th:text="DMS"></option>
+														<option th:value="TSS" th:text="TSS"></option>
+														<option th:value="BI" th:text="BI"></option>
+														<option th:value="BCS" th:text="BCS"></option>
+														<option th:value="TIS" th:text="TIS"></option>
+														<option th:value="EMAILBACKUP" th:text="EMAILBACKUP"></option>
+														<option th:value="OTHERS" th:text="OTHERS"></option>
+													</select>
+
+													<div class="invalid-feedback">Please Choose the
+														Application</div>
+												</div>
+												<div class="form-group col-md-3" style="text-align: left">
+													<label for="application">Server Name</label><select
+														class="select2 form-control select2-multiple"
+														data-toggle="select2" multiple="multiple"
+														data-placeholder="Choose ..." required="required"
+														th:field="*{serverName}">
+														<option th:value="DC1" th:text="DC1"></option>
+														<option th:value="DC2" th:text="DC2"></option>
+														<option th:value="HQ" th:text="HQ"></option>
+														<option th:value="YUSEN" th:text="YUSEN"></option>
+														<option th:value="NAIGAI" th:text="NAIGAI"></option>
+														<option th:value="NIPPON" th:text="NIPPON"></option>
+														<option th:value="KEPPEL" th:text="KEPPEL"></option>
+														<option th:value="GA-TRIAL" th:text="GA-TRIAL"></option>
+														<option th:value="GA-PROD" th:text="GA-PROD"></option>
+														<option th:value="TSS_BI" th:text="TSS_BI"></option>
+														<option th:value="SIT" th:text="SIT"></option>
+														<option th:value="TIS" th:text="TIS"></option>
+														<option th:value="EMAILBACKUP" th:text="EMAILBACKUP"></option>
+														<option th:value="CR2" th:text="CR2"></option>
+														<option th:value="OTHERS" th:text="OTHERS"></option>
+													</select>
+
+													<div class="invalid-feedback">Please Choose a Server
+														Name.</div>
+												</div>
+											</div>
+											<div class="form-row ">
+												<div class="form-group col-md-3" style="text-align: left">
+													<label for="deploymentDate">Deployment Date</label>
+													<div class="input-group">
+														<input type="text" class="form-control date"
+															id="birthdatepicker" data-toggle="date-picker"
+															data-single-date-picker="true"
+															th:field="*{deploymentDate}" value="" required>
+														<div class="input-group-append">
+															<span class="input-group-text"><i
+																class="dripicons-calendar"></i></span>
+														</div>
+														<div class="invalid-feedback">Please choose a
+															Deployment Date.</div>
+													</div>
+												</div>
+												<div class="form-group col-md-3" style="text-align: left">
+													<label for="deploymentHour">Deployment Hour</label>
+													<div class="input-group">
+														<input type="text" class="form-control"
+															data-show-meridian="false" th:field="*{deploymentHour}"
+															data-toggle='timepicker' data-minute-step="1"
+															data-mask-format="00:00:00" placeholder="HH:MM:SS">
+														<span class="font-13 text-muted"></span>
+														<div class="input-group-append">
+															<span class="input-group-text"><i
+																class="dripicons-clock"></i></span>
+														</div>
+													</div>
+
+
+													<div class="invalid-feedback">Please choose a
+														Deployment Hour.</div>
+												</div>
+
+												<div class="form-group col-md-3" style="text-align: left">
+													<label for="fileType">File Type</label> <input type="text"
+														class="form-control" id="fileType" th:field="*{fileType}"
+														name="fileType" placeholder="FileType" value="" required>
+
+													<div class="invalid-feedback">Please write a File
+														Type.</div>
+												</div>
+												<div class="form-group col-md-3" style="text-align: left">
+													<label for="enhancedFor">Enhanced-For</label> <input
+														type="text" class="form-control" id="enhancedFor"
+														th:field="*{enhancedFor}" name="enhancedFor"
+														placeholder="EnhancedFor" value="" required>
+
+													<div class="invalid-feedback">Please write a
+														Enhanced-For.</div>
+												</div>
+											</div>
+
+
+											<div class="form-row ">
+
+												<div class="form-group col-md-6" style="text-align: left">
+													<label for="deployment">Deployment</label>
+													<textarea class="form-control" id="deployment"
+														th:field="*{deployment}" rows="3" name="deployment"
+														placeholder="Deployment" value="" required></textarea>
+
+													<div class="invalid-feedback">Please write a
+														Deployment.</div>
+												</div>
+												<div class="form-group col-md-6" style="text-align: left">
+													<label for="comment">Comment</label>
+													<textarea rows="3" type="text" class="form-control"
+														id="comment" th:field="*{comment}" name="comment"
+														placeholder="Comment" value=""></textarea>
+
+												</div>
+
+											</div>
+											<div class="form-row "></div>
+											<button class="btn btn-success float-right" type="submit">Create
+												Deployment</button>
+
+										</form>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

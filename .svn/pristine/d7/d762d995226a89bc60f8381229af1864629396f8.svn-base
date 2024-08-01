@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/bcs_main_layout}">
+
+<head>
+	<script type="text/javascript">
+		function trim(el) {
+			el.value = el.value.replace(/(^\s*)|(\s*$)/gi, ""). // removes leading and trailing spaces
+				replace(/[ ]{2,}/gi, " "). // replaces multiple spaces with one space 
+				replace(/\n +/, "\n"); // Removes spaces after newlines
+			return;
+		}
+		function FocusOnInput() {
+			document.getElementById("Task/Issue").focus();
+		}
+	</script>
+</head>
+
+<body class="loading" data-layout="topnav" onload="FocusOnInput()">
+	<div layout:fragment="app_content">
+
+
+		<div style="padding: 30px 0px" sec:authorize="hasAuthority('ROLE_USER')">
+
+			<div class="container" style="color: rgb(62, 205, 50);">
+				<h3 class="text-dark-50 text-center mt-0 font-weight-bold" style="color: red;">Task View</h3>
+				<div class="form-row ">
+					<div class="form-group col-md-12">
+						<a class="btn btn-primary float-right"
+							style='border-color: white; background-color: #3688FC; color: white;' data-toggle="modal"
+							data-target="#login-modal"> Create Task</a>
+					</div>
+				</div>
+
+
+
+
+				<!-- <div sec:authorize="hasAuthority('ROLE_ADMIN')"> -->
+				<div class="account-pages mt-3 mb-5">
+					<div class="row justify-content-center">
+						<div class="col-lg-12">
+							<div class="text-center w-100 m-auto">
+								<div class="container" style="color: rgb(62, 205, 50);" align="left">
+
+									<div class="card">
+										<div class="card-body">
+											<!-- ----------------------New Task with Popover-------------------------------------------------- -->
+
+											<div id="login-modal" class="modal fade" tabindex="-1" role="dialog"
+												aria-hidden="true">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-body">
+															<div class="text-center mt-1 mb-3"></div>
+															<form class="needs-validation" novalidate action="#"
+																th:action="@{/saveDailyTask}" th:object="${dailyTask}"
+																autocomplete="off" method="post">
+																<h4 style="color: red"
+																	class="text-dark-50 text-center mt-0 font-weight-bold">
+																	Create Task Details</h4>
+																<div class="form-row" align="left">
+
+																	<div class="form-group col-md-6">
+																		<label for="assignedTo"
+																			style="color: black">User Name</label>
+																		<select class="custom-select mb-3"
+																			th:field="*{userName}" required="required">
+																			<option th:each="user : ${listUser}"
+																				th:value="${user.id}"
+																				th:text="${user.userName}"
+																				th:selected="selected"
+																				class="dropdown-item disabled"></option>
+																		</select>
+
+																		<div class="invalid-feedback">Please write a
+																			User Name.</div>
+
+																	</div>
+																	<div class="form-group col-md-6">
+																		<label for="date"
+																			style="color: black">Date</label> <input
+																			type="text" class="form-control date"
+																			id="birthdatepicker"
+																			data-toggle="date-picker"
+																			data-single-date-picker="true" name="date"
+																			placeholder="Date" value=""
+																			th:field="*{date}" required="required">
+
+																		<div class="invalid-feedback">Please enter date.
+																		</div>
+
+																	</div>
+
+
+																</div>
+
+																<div class="form-row" align="left">
+																	<div class="form-group col-md-12">
+																		<label for="hours" style="color: black">Hours &
+																			Mins</label> <input type="text" id="hours"
+																			name="hours" class="form-control"
+																			data-toggle="input-mask"
+																			data-mask-format="00:00" th:field=*{hours}
+																			placeholder="00:00" required="required">
+																		<span class="font-13 text-muted">e.g
+																			"HH:MM"</span>
+																	</div>
+																</div>
+																<div class="form-row" align="left">
+																	<div class="form-group col-md-12">
+																		<label for="taskname" style="color: black">Task
+																			Name</label>
+																		<select class="custom-select mb-3"
+																			th:field="*{taskname}">
+																			<option th:each="task : ${listtask}"
+																				th:value="${task.taskName}"
+																				th:text="${task.taskName}"
+																				th:selected="selected"></option>
+																		</select>
+
+																	</div>
+
+																</div>
+																<div class="form-row" align="left">
+																	<div class="form-group col-md-12">
+																		<label for="Task/Issue"
+																			style="color: black">Task Details</label>
+																		<textarea rows="5" type="text" id="Task/Issue"
+																			name="Task/Issue" class="form-control"
+																			th:field=*{task} required="required"
+																			maxlength="475"
+																			onchange="return trim(this)"></textarea>
+																	</div>
+																</div>
+
+
+																<div class="text-right">
+																	<button type="button" class="btn btn btn-info"
+																		style='margin-right: 16px; border-color: white; background-color: #3688FC; color: white;'
+																		data-dismiss="modal">Close</button>
+
+																	<button class="btn btn-success" type="submit">Create
+																		Task</button>
+
+
+																</div>
+															</form>
+
+
+														</div>
+													</div>
+													<!-- /.modal-content -->
+												</div>
+												<!-- /.modal-dialog -->
+											</div>
+											<!-- /.modal -->
+
+											<!-- ------------------------------------------------------------------------ -->
+
+											<div class="account-pages mt-1 mb-5">
+												<div class="container">
+													<div th:if="${param.addtask}">
+
+														<div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show"
+															role="alert">
+															<button type="button" class="close" data-dismiss="alert"
+																aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+															<strong>Success - </strong>Your Task Created
+															Successfully...
+														</div>
+
+													</div>
+													<div th:if="${param.deletedTask}">
+														<div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show"
+															role="alert">
+															<button type="button" class="close" data-dismiss="alert"
+																aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+															<strong>Delete - </strong> Your Task Deleted
+															Successfully...
+														</div>
+
+													</div>
+
+
+													<table id="basic-datatable"
+														class="table table-condensed table-striped dt-responsive nowrap"
+														style="width: 100%">
+														<thead>
+															<tr style="color: red">
+																<th>Name</th>
+																<th>Date</th>
+																<th>Task Name</th>
+																<th>Task Details</th>
+																<th>Hours</th>
+																<th>Action</th>
+
+															</tr>
+														</thead>
+														<tbody>
+															<tr style="color: black"
+																th:each="dailytask : ${listOfDailyTask}">
+																<td th:text="${dailytask.userName.userName}"></td>
+																<td th:text="${dailytask.Date }"></td>
+																	<td th:text="${dailytask.taskname}"></td>
+																<td th:text="${dailytask.task}"></td>
+																<td th:text="${dailytask.hours}"></td>
+																<td><a th:href="@{'/deleteTask/'+ ${dailytask.id}}"
+																		class="text-danger" data-toggle="tooltip"
+																		title="Delete Task"> <i
+																			class="mdi mdi-delete"></i>
+																	</a></td>
+
+															</tr>
+														</tbody>
+													</table>
+												</div>
+
+												<br>
+											</div>
+
+										</div>
+
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+
+</html>

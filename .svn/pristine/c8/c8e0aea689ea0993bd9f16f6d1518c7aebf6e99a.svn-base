@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+    <html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/main_layout}">
+
+    <head>
+
+    </head>
+
+    <body class="loading" data-layout="topnav">
+    <div layout:fragment="app_content">
+        <!-- Begin page -->
+        <div class="wrapper">
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+                    
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Base UI</a></li>
+                                            <li class="breadcrumb-item active">Ribbons</li>
+                                        </ol>
+                                    </div>
+                                    <h4 class="page-title">Ribbons</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                <ul class="nav nav-tabs nav-bordered mb-3">
+                                    <li class="nav-item">
+                                        <a href="#ribbons-preview" data-toggle="tab" aria-expanded="false" class="nav-link active">
+                                            Preview
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#ribbons-code" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                            Code
+                                        </a>
+                                    </li>
+                                </ul> <!-- end nav-->
+                                <div class="tab-content">
+                                    <div class="tab-pane show active" id="ribbons-preview">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="card ribbon-box">
+                                                    <div class="card-body">
+                                                        <div class="ribbon ribbon-primary float-left"><i class="mdi mdi-access-point mr-1"></i> Primary</div>
+                                                        <h5 class="text-primary float-right mt-0">Primary Header</h5>
+                                                        <div class="ribbon-content">
+                                                            <p class="mb-0">Quisque nec turpis at urna dictum luctus.
+                                                                Suspendisse convallis dignissim eros at volutpat. In egestas
+                                                                mattis dui. Aliquam mattis dictum aliquet. Nulla sapien
+                                                                mauris, eleifend et sem ac, commodo dapibus odio.</p>
+                                                        </div>
+                                                    </div> <!-- end card-body -->
+                                                </div> <!-- end card-->
+                                            </div> <!-- end col -->
+
+                                            <div class="col-lg-4">
+                                                <div class="card ribbon-box">
+                                                    <div class="card-body">
+                                                        <div class="ribbon ribbon-success float-right"><i class="mdi mdi-access-point mr-1"></i> Success</div>
+                                                        <h5 class="text-success float-left mt-0">Success Header</h5>
+                                                        <div class="ribbon-content">
+                                                            <p class="mb-0">Quisque nec turpis at urna dictum luctus.
+                                                                Suspendisse convallis dignissim eros at volutpat. In egestas
+                                                                mattis dui. Aliquam mattis dictum aliquet. Nulla sapien
+                                                                mauris, eleifend et sem ac, commodo dapibus odio.</p>
+                                                        </div>
+                                                    </div> <!-- end card-body -->
+                                                </div> <!-- end card-->
+                                            </div> <!-- end col -->
+
+                                            <div class="col-lg-4">
+                                                <div class="card ribbon-box">
+                                                    <div class="card-body">
+                                                        <div class="ribbon ribbon-info float-right"><i class="mdi mdi-access-point mr-1"></i> Info</div>
+                                                        <h5 class="text-info float-left mt-0">Info Header</h5>
+                                                        <div class="ribbon-content">
+                                                            <p class="mb-0">Quisque nec turpis at urna dictum luctus.
+                                                                Suspendisse convallis dignissim eros at volutpat. In egestas
+                                                                mattis dui. Aliquam mattis dictum aliquet. Nulla sapien
+                                                                mauris, eleifend et sem ac, commodo dapibus odio.</p>
+                                                        </div>
+                                                    </div> <!-- end card-body -->
+                                                </div> <!-- end card-->
+                                            </div> <!-- end col -->
+                                        </div>
+                                        <!-- end row -->
+
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="card ribbon-box">
+                                                    <div class="card-body">
+                                                        <div class="ribbon ribbon-warning float-left"><i class="mdi mdi-access-point mr-1"></i> Warning</div>
+                                                        <h5 class="text-warning float-right mt-0">Warning Header</h5>
+                                                        <div class="ribbon-content">
+                                                            <p class="mb-0">Quisque nec turpis at urna dictum luctus.
+                                                                Suspendisse convallis dignissim eros at volutpat. In egestas
+                                                                mattis dui. Aliquam mattis dictum aliquet. Nulla sapien
+                                                                mauris, eleifend et sem ac, commodo dapibus odio.</p>
+                                                        </div>
+                                                    </div> <!-- end card-body -->
+                                                </div> <!-- end card-->
+                                            </div> <!-- end col -->
+
+                                            <div class="col-lg-4">
+                                                <div class="card ribbon-box">
+                                                    <div class="card-body">
+                                                        <div class="ribbon ribbon-danger float-right"><i class="mdi mdi-access-point mr-1"></i> Danger</div>
+                                                        <h5 class="text-danger float-left mt-0">Danger Header</h5>
+                                                        <div class="ribbon-content">
+                                                            <p class="mb-0">Quisque nec turpis at urna dictum luctus.
+                                                                Suspendisse convallis dignissim eros at volutpat. In egestas
+                                                                mattis dui. Aliquam mattis dictum aliquet. Nulla sapien
+                                                                mauris, eleifend et sem ac, commodo dapibus odio.</p>
+                                                        </div>
+                                                    </div> <!-- end card-body -->
+                                                </div> <!-- end card-->
+                                            </div> <!-- end col -->
+
+                                            <div class="col-lg-4">
+                                                <div class="card ribbon-box">
+                                                    <div class="card-body">
+                                                        <div class="ribbon ribbon-dark float-right"><i class="mdi mdi-access-point mr-1"></i> Dark</div>
+                                                        <h5 class="text-dark float-left mt-0">Dark Header</h5>
+                                                        <div class="ribbon-content">
+                                                            <p class="mb-0">Quisque nec turpis at urna dictum luctus.
+                                                                Suspendisse convallis dignissim eros at volutpat. In egestas
+                                                                mattis dui. Aliquam mattis dictum aliquet. Nulla sapien
+                                                                mauris, eleifend et sem ac, commodo dapibus odio.</p>
+                                                        </div>
+                                                    </div> <!-- end card-body -->
+                                                </div> <!-- end card-->
+                                            </div> <!-- end col -->
+                                        </div>
+                                        <!-- end row -->
+
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="card ribbon-box">
+                                                    <div class="card-body">
+                                                        <div class="ribbon ribbon-secondary float-left"><i class="mdi mdi-access-point mr-1"></i> Secondary</div>
+                                                        <h5 class="text-secondary float-right mt-0">Secondary Header</h5>
+                                                        <div class="ribbon-content">
+                                                            <p class="mb-0">Quisque nec turpis at urna dictum luctus.
+                                                                Suspendisse convallis dignissim eros at volutpat. In egestas
+                                                                mattis dui. Aliquam mattis dictum aliquet. Nulla sapien
+                                                                mauris, eleifend et sem ac, commodo dapibus odio.</p>
+                                                        </div>
+                                                    </div> <!-- end card-body -->
+                                                </div> <!-- end card-->
+                                            </div> <!-- end col -->
+
+                                            <div class="col-lg-4">
+                                                <div class="card ribbon-box">
+                                                    <div class="card-body">
+                                                        <div class="ribbon-two ribbon-two-primary"><span>Primary</span></div>
+                                                        <p class="mb-0">Quisque nec turpis at urna dictum luctus. Suspendisse
+                                                            convallis dignissim eros at volutpat. In egestas mattis dui. Aliquam
+                                                            mattis dictum aliquet. Nulla sapien mauris, eleifend et sem ac,
+                                                            commodo dapibus odio. Vivamus pretium nec odio cursus elementum.
+                                                            Suspendisse molestie ullamcorper ornare.</p>
+                                                    </div> <!-- end card-body -->
+                                                </div> <!-- end card-->
+                                            </div> <!-- end col -->
+
+                                            <div class="col-lg-4">
+                                                <div class="card ribbon-box">
+                                                    <div class="card-body">
+                                                        <div class="ribbon-two ribbon-two-success"><span>Success</span></div>
+                                                        <p class="mb-0">Quisque nec turpis at urna dictum luctus. Suspendisse
+                                                            convallis dignissim eros at volutpat. In egestas mattis dui. Aliquam
+                                                            mattis dictum aliquet. Nulla sapien mauris, eleifend et sem ac,
+                                                            commodo dapibus odio. Vivamus pretium nec odio cursus elementum.
+                                                            Suspendisse molestie ullamcorper ornare.</p>
+                                                    </div> <!-- end card-body -->
+                                                </div> <!-- end card-->
+                                            </div> <!-- end col -->
+
+                                        </div>
+                                        <!-- end row -->
+
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="card ribbon-box">
+                                                    <div class="card-body">
+                                                        <div class="ribbon-two ribbon-two-info"><span>Info</span></div>
+                                                        <p class="mb-0">Quisque nec turpis at urna dictum luctus. Suspendisse
+                                                            convallis dignissim eros at volutpat. In egestas mattis dui. Aliquam
+                                                            mattis dictum aliquet. Nulla sapien mauris, eleifend et sem ac,
+                                                            commodo dapibus odio. Vivamus pretium nec odio cursus elementum.
+                                                            Suspendisse molestie ullamcorper ornare.</p>
+                                                    </div> <!-- end card-body -->
+                                                </div> <!-- end card-->
+                                            </div> <!-- end col -->
+
+                                            <div class="col-lg-4">
+                                                <div class="card ribbon-box">
+                                                    <div class="card-body">
+                                                        <div class="ribbon-two ribbon-two-warning"><span>Warning</span></div>
+                                                        <p class="mb-0">Quisque nec turpis at urna dictum luctus. Suspendisse
+                                                            convallis dignissim eros at volutpat. In egestas mattis dui. Aliquam
+                                                            mattis dictum aliquet. Nulla sapien mauris, eleifend et sem ac,
+                                                            commodo dapibus odio. Vivamus pretium nec odio cursus elementum.
+                                                            Suspendisse molestie ullamcorper ornare.</p>
+                                                    </div> <!-- end card-body -->
+                                                </div> <!-- end card-->
+                                            </div> <!-- end col -->
+
+                                            <div class="col-lg-4">
+                                                <div class="card ribbon-box">
+                                                    <div class="card-body">
+                                                        <div class="ribbon-two ribbon-two-dark"><span>Dark</span></div>
+                                                        <p class="mb-0">Quisque nec turpis at urna dictum luctus. Suspendisse
+                                                            convallis dignissim eros at volutpat. In egestas mattis dui. Aliquam
+                                                            mattis dictum aliquet. Nulla sapien mauris, eleifend et sem ac,
+                                                            commodo dapibus odio. Vivamus pretium nec odio cursus elementum.
+                                                            Suspendisse molestie ullamcorper ornare.</p>
+                                                    </div> <!-- end card-body -->
+                                                </div> <!-- end card-->
+                                            </div> <!-- end col -->
+
+                                        </div>
+                                        <!-- end row -->
+
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="card ribbon-box">
+                                                    <div class="card-body">
+                                                        <div class="ribbon-two ribbon-two-danger"><span>Danger</span></div>
+                                                        <p class="mb-0">Quisque nec turpis at urna dictum luctus. Suspendisse
+                                                            convallis dignissim eros at volutpat. In egestas mattis dui. Aliquam
+                                                            mattis dictum aliquet. Nulla sapien mauris, eleifend et sem ac,
+                                                            commodo dapibus odio. Vivamus pretium nec odio cursus elementum.
+                                                            Suspendisse molestie ullamcorper ornare.</p>
+                                                    </div> <!-- end card-body -->
+                                                </div> <!-- end card-->
+                                            </div> <!-- end col -->
+
+                                            <div class="col-lg-4">
+                                                <div class="card ribbon-box">
+                                                    <div class="card-body">
+                                                        <div class="ribbon-two ribbon-two-secondary"><span>Secondary</span></div>
+                                                        <p class="mb-0">Quisque nec turpis at urna dictum luctus. Suspendisse
+                                                            convallis dignissim eros at volutpat. In egestas mattis dui. Aliquam
+                                                            mattis dictum aliquet. Nulla sapien mauris, eleifend et sem ac,
+                                                            commodo dapibus odio. Vivamus pretium nec odio cursus elementum.
+                                                            Suspendisse molestie ullamcorper ornare.</p>
+                                                    </div> <!-- end card-body -->
+                                                </div> <!-- end card-->
+                                            </div> <!-- end col -->
+                                        </div>
+                                        <!-- end row -->
+
+                                    </div> <!-- end preview-->
+
+                                    <div class="tab-pane" id="ribbons-code">
+                                        <pre class="mb-0">
+                                                <span class="html escape">
+                                                    &lt;!-- Ribbons style 1 --&gt;
+
+                                                    &lt;!-- Left --&gt;
+                                                    &lt;div class=&quot;card ribbon-box&quot;&gt;
+                                                        &lt;div class=&quot;card-body&quot;&gt;
+                                                            &lt;div class=&quot;ribbon ribbon-primary float-left&quot;&gt;&lt;i class=&quot;mdi mdi-access-point mr-1&quot;&gt;&lt;/i&gt; Primary&lt;/div&gt;
+                                                            &lt;h5 class=&quot;text-primary float-right mt-0&quot;&gt;Primary Header&lt;/h5&gt;
+                                                            &lt;div class=&quot;ribbon-content&quot;&gt;
+                                                                ...
+                                                            &lt;/div&gt;
+                                                        &lt;/div&gt; &lt;!-- end card-body --&gt;
+                                                    &lt;/div&gt; &lt;!-- end card--&gt;
+                                                    
+                                                    &lt;!-- Right --&gt;
+                                                    &lt;div class=&quot;card ribbon-box&quot;&gt;
+                                                        &lt;div class=&quot;card-body&quot;&gt;
+                                                            &lt;div class=&quot;ribbon ribbon-success float-right&quot;&gt;&lt;i class=&quot;mdi mdi-access-point mr-1&quot;&gt;&lt;/i&gt; Success&lt;/div&gt;
+                                                            &lt;h5 class=&quot;text-success float-left mt-0&quot;&gt;Success Header&lt;/h5&gt;
+                                                            &lt;div class=&quot;ribbon-content&quot;&gt;
+                                                                ...
+                                                            &lt;/div&gt;
+                                                        &lt;/div&gt; &lt;!-- end card-body --&gt;
+                                                    &lt;/div&gt; &lt;!-- end card--&gt;
+                                                    
+                                                    
+                                                    &lt;!-- Ribbons style 2 --&gt;
+                                                    
+                                                    &lt;div class=&quot;card ribbon-box&quot;&gt;
+                                                        &lt;div class=&quot;card-body&quot;&gt;
+                                                            &lt;div class=&quot;ribbon-two ribbon-two-primary&quot;&gt;&lt;span&gt;Primary&lt;/span&gt;&lt;/div&gt;
+                                                            &lt;p class=&quot;mb-0&quot;&gt;Quisque nec turpis at urna dictum luctus. Suspendisse
+                                                                convallis dignissim eros at volutpat. In egestas mattis dui. Aliquam
+                                                                mattis dictum aliquet. &lt;/p&gt;
+                                                        &lt;/div&gt; &lt;!-- end card-body --&gt;
+                                                    &lt;/div&gt; &lt;!-- end card--&gt;
+                                                </span>
+                                            </pre> <!-- end highlight-->
+                                    </div> <!-- end preview code-->
+                                </div> <!-- end tab-content-->
+                            </div>
+                        </div>
+                        <!-- end row-->
+
+                    </div>
+                    <!-- container -->
+
+                </div>
+                <!-- content -->
+
+                <!-- Footer Start -->
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                2018 - 2019 © Hyper - Coderthemes.com
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-md-right footer-links d-none d-md-block">
+                                    <a href="javascript: void(0);">About</a>
+                                    <a href="javascript: void(0);">Support</a>
+                                    <a href="javascript: void(0);">Contact Us</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- end Footer -->
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+
+        </div>
+        <!-- END wrapper -->
+
+        <!-- Right Sidebar -->
+        <div class="right-bar">
+
+          <div class="rightbar-title">
+            <a href="javascript:void(0);" class="right-bar-toggle float-right">
+              <i class="dripicons-cross noti-icon"></i>
+            </a>
+            <h5 class="m-0">Settings</h5>
+          </div>
+
+          <div class="slimscroll-menu rightbar-content">
+
+            <div class="p-3">
+              <div class="alert alert-warning" role="alert">
+                <strong>Customize </strong> the overall color scheme, layout width, etc. Note that, Hyper stores the preferences
+                in local storage.
+              </div>
+
+              <!-- Settings -->
+              <h5 class="mt-3">Color Scheme</h5>
+              <hr class="mt-1" />
+
+              <div class="custom-control custom-switch mb-1">
+                <input type="radio" class="custom-control-input" name="color-scheme-mode" value="light" id="light-mode-check"
+                  checked />
+                <label class="custom-control-label" for="light-mode-check">Light Mode</label>
+              </div>
+
+              <div class="custom-control custom-switch mb-1">
+                <input type="radio" class="custom-control-input" name="color-scheme-mode" value="dark" id="dark-mode-check" />
+                <label class="custom-control-label" for="dark-mode-check">Dark Mode</label>
+              </div>
+
+              <!-- Width -->
+              <h5 class="mt-4">Width</h5>
+              <hr class="mt-1"/>
+              <div class="custom-control custom-switch mb-1">
+                <input type="radio" class="custom-control-input" name="width" value="fluid" id="fluid-check" checked />
+                <label class="custom-control-label" for="fluid-check">Fluid</label>
+              </div>
+              <div class="custom-control custom-switch mb-1">
+                <input type="radio" class="custom-control-input" name="width" value="boxed" id="boxed-check" />
+                <label class="custom-control-label" for="boxed-check">Boxed</label>
+              </div>
+
+      
+
+              <button class="btn btn-primary btn-block mt-4" id="resetBtn">Reset to Default</button>
+
+              <a href="https://themes.getbootstrap.com/product/hyper-responsive-admin-dashboard-template/" class="btn btn-danger btn-block mt-3" target="_blank"><i class="mdi mdi-basket mr-1"></i> Purchase Now</a>
+            </div> <!-- end padding-->
+
+          </div>
+        </div>
+
+        <div class="rightbar-overlay"></div>
+        <!-- /Right-bar -->
+
+        </div>
+
+    </body>
+</html>

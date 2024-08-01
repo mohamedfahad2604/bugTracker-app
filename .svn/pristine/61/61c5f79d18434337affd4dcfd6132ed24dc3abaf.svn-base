@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{fragments/bcs_main_layout}">
+<head>
+</head>
+<body class="loading" data-layout="topnav">
+	<div layout:fragment="app_content">
+		<div sec:authorize="hasAuthority('ROLE_ADMIN')">
+			<div class="account-pages mt-5 mb-5">
+				<div class="container" style="color: rgb(62, 205, 50);">
+					<h3 class="text-dark-50 text-center mt-0 font-weight-bold"
+						style="color: red;">Category View</h3>
+					<br> <a th:href="@{/addcategory}"
+						class="btn btn-secondary float-right"
+						style='border-color: white; background-color: #3688FC; color: white;'><i
+						class="mdi mdi-plus-circle mr-2"></i>Add Category </a>
+
+
+					<table id="issueTableone1"
+						class="table table-condensed table-striped dt-responsive nowrap"
+						style="width: 100%">
+						<thead>
+							<tr style="color: red;">
+								<th>Category Name</th>
+								<th>Description</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr  style="color: black" th:each="category : ${listCategory}">
+
+								<td th:text="${category.categoryName}">Category Name</td>
+								<td th:text="${category.description}">Description</td>
+
+								<td><a th:href="@{'/editcategory/'+ ${category.id}}"
+									class="text-success" data-toggle="tooltip"
+									title="Edit Category"> <i
+										class="mdi mdi-square-edit-outline"></i>
+								</a> <a th:href="@{'/deletecategory/' + ${category.id}}"
+									class="text-danger" data-toggle="tooltip"
+									title="Delete Category"> <i class="mdi mdi-delete"></i>
+								</a></td>
+							</tr>
+						</tbody>
+					</table>
+
+					<br />
+					<br />
+					<br />
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

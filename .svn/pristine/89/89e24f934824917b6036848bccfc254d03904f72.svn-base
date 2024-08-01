@@ -1,0 +1,57 @@
+package com.bizz.customersupport.controllers;
+
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.bizz.customersupport.entities.User;
+import com.bizz.customersupport.services.UserService;
+import com.bizz.customersupport.web.dto.UserRegistrationDto;
+
+@Controller
+@RequestMapping("/registration")
+public class UserRegistrationController {
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	@Valid
+	@Autowired
+	private UserService userService;
+
+	@ModelAttribute("user")
+	public UserRegistrationDto userRegistrationDto() {
+		return new UserRegistrationDto();
+	}
+
+	@GetMapping
+	public String showRegistrationForm(Model model) {
+		return "bcshtml/userRegistration";
+	}
+
+	@RequestMapping(value = "/newuser", method = RequestMethod.POST)
+	public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userDto,
+			BindingResult result) {
+		logger.info("Inside Controller");
+		User existing = userService.findByuserName(userDto.getUserName());
+		logger.info("existing Value " + existing);
+		if (existing != null) {
+			result.rejectValue("userName", null, "There is already an account registered with that userName");
+		}
+
+		if (result.hasErrors()) {
+			logger.info("Result has some errors " + result.getAllErrors());
+			return "bcshtml/userRegistration";
+		}
+
+		userService.save(userDto);
+		return "redirect:/listAllUsers";
+	}
+
+}
